@@ -9,5 +9,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <p style="color: red; font-size: larger; font-family: fantasy">Kocham Cię Martusiu</p>
     </body>
 </html>
