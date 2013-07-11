@@ -1,8 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./mainTemplate.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./mainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
 
+    <ui:define name="title">
+        Witaj
+    </ui:define>
+    
     <ui:define name="top">
         top
     </ui:define>
@@ -12,7 +19,14 @@
     </ui:define>
 
     <ui:define name="content">
-        content
+        <h:form>
+            login : <h:inputText required="true" requiredMessage="musisz podać login" value="#{loginController.login}" />
+            <br />
+            hasło : <h:inputSecret required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
+            <br />
+            <h:commandButton value="ZALOGUJ" action="#{loginController.logMeIn}">
+            </h:commandButton>
+        </h:form>
     </ui:define>
 
 </ui:composition>
