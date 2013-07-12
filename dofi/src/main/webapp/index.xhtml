@@ -7,7 +7,7 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="title">
-        Witaj
+        Witajcie Angel i Tirpitz! 
     </ui:define>
     
     <ui:define name="top">
@@ -20,12 +20,14 @@
 
     <ui:define name="content">
         <h:form id="loginForm">
-            login : <h:inputText id="login" required="true" requiredMessage="musisz podać login" value="#{loginController.login}" />
+            LOGIN : <h:inputText id="login" required="true" requiredMessage="musisz podać login" value="#{loginController.login}" />
             <h:message for="loginForm:login" errorStyle="color: red;" />
             <br />
-            hasło : <h:inputSecret id="password" required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
+            <br></br>
+            HASŁO : <h:inputSecret id="password" required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
             <h:message for="loginForm:password" errorStyle="color: red;" />
             <br />
+            <br></br>
             <h:commandButton value="ZALOGUJ" action="#{loginController.logMeIn}" />
         </h:form>
     </ui:define>
