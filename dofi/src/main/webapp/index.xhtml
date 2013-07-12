@@ -26,8 +26,7 @@
             hasło : <h:inputSecret id="password" required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
             <h:message for="loginForm:password" errorStyle="color: red;" />
             <br />
-            <h:commandButton value="ZALOGUJ" action="#{loginController.logMeIn}">
-            </h:commandButton>
+            <h:commandButton value="ZALOGUJ" action="#{loginController.logMeIn}" />
         </h:form>
     </ui:define>
 
