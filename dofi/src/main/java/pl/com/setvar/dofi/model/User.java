@@ -7,6 +7,7 @@ package pl.com.setvar.dofi.model;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import pl.com.setvar.dofi.util.DefaultLogger;
 
 /**
  *
@@ -35,14 +36,14 @@ public class User implements Serializable {
     }
     
     public boolean tryToLogMeIn(String login, String password){
-        
+        DefaultLogger.debug("User.tryToLogMeIn", ": login [", login, "] password [", password, "]");
         if(login.equals("tester") && password.equals("tester")){
             this.login = login;
             this.password = password;
             this.loggerdIn = true;
         } else {
             lastLoginError = "Błędne hasło";
-            loggerdIn = true;
+            loggerdIn = false;
         }
         return this.loggerdIn;
     }

@@ -33,11 +33,11 @@ public final class LoginController {
     public String logMeIn(){
         final FacesMessage msg;
         if(user.tryToLogMeIn(login, password)){
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Logowanie zakończyło się sukcesem", "");
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Logowanie zakończyło się sukcesem");
         } else {
             msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd logowania", user.getLastLoginError());
         }
-        FacesContext.getCurrentInstance().addMessage("loginMessage", msg);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         return null;
     }
 

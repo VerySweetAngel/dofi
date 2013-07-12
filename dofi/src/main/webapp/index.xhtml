@@ -19,10 +19,12 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
-            login : <h:inputText required="true" requiredMessage="musisz podać login" value="#{loginController.login}" />
+        <h:form id="loginForm">
+            login : <h:inputText id="login" required="true" requiredMessage="musisz podać login" value="#{loginController.login}" />
+            <h:message for="loginForm:login" errorStyle="color: red;" />
             <br />
-            hasło : <h:inputSecret required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
+            hasło : <h:inputSecret id="password" required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
+            <h:message for="loginForm:password" errorStyle="color: red;" />
             <br />
             <h:commandButton value="ZALOGUJ" action="#{loginController.logMeIn}">
             </h:commandButton>
