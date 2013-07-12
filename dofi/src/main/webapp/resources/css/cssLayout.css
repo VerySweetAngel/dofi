@@ -5,6 +5,10 @@
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
+    font-size: x-large;
+    font-stretch: ultra-expanded;
+    text-align: left;
+ 
 }
 
 #bottom {
