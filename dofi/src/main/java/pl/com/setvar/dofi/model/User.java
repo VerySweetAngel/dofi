@@ -4,10 +4,12 @@
  */
 package pl.com.setvar.dofi.model;
 
+import com.sun.imageio.plugins.common.I18N;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import pl.com.setvar.dofi.util.DefaultLogger;
+import pl.com.setvar.dofi.util.I18nText;
 
 /**
  *
@@ -21,7 +23,7 @@ public class User implements Serializable {
     private String password = "";
     private boolean loggerdIn = false;
     private String lastLoginError = "";
-    
+
     /**
      * Creates a new instance of User
      */
@@ -34,15 +36,16 @@ public class User implements Serializable {
     public String getLogin() {
         return login;
     }
-    
-    public boolean tryToLogMeIn(String login, String password){
+
+    public boolean tryToLogMeIn(String login, String password) {
         DefaultLogger.debug("User.tryToLogMeIn", ": login [", login, "] password [", password, "]");
-        if(login.equals("tester") && password.equals("tester")){
+        if (login.equals("tester") && password.equals("tester")) {
             this.login = login;
             this.password = password;
             this.loggerdIn = true;
         } else {
-            lastLoginError = "Błędne hasło";
+            I18nText i18nText = new I18nText("index");
+            lastLoginError = i18nText.get("badPassword");
             loggerdIn = false;
         }
         return this.loggerdIn;

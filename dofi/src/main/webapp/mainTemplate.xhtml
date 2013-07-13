@@ -8,29 +8,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
-        <title>DOFI <ui:insert name="title" /></title>
+        <link href="./resources/css/menu.css" rel="stylesheet" type="text/css" />
+        <title>#{global.dofi} <ui:insert name="title" /></title>
     </h:head>
 
     <h:body>
         <div id="top" class="top">
             <img src="./resources/img/logo_dofi.jpg" alt="Tu podaj tekst alternatywny" />
             <span>
-                Domowe finanse <ui:insert name="title" />
+                #{global.applicationTitle} 
+                <ui:insert name="title" />
             </span>
             <br />
         </div>
         <div>
-            <div id="left">
-                Menu
+            <div id="menu">
+                #{global.menu}
                 <br />
-                <h:button value="OPERATIONS" outcome="operations" />
-                <h:button value="JUXTAPOSITION" outcome="juxtaposition" />
-                <h:button value="FINANCIAL PLAN" outcome="financial_plan" />
-                <h:button value="SAVINGS" outcome="savings" />
-                <h:button value="ADMINISTRATION" outcome="administration" />
-                <h:button value="index" outcome="index" /> 
+                <h:button class=" option" value="#{pageTitles.operations}" outcome="operations" />
+                <h:button class=" option" value="#{pageTitles.juxtaposition}" outcome="juxtaposition" />
+                <h:button class=" option" value="#{pageTitles.financial_plan}" outcome="financial_plan" />
+                <h:button class=" option" value="#{pageTitles.savings}" outcome="savings" />
+                <h:button class=" option" value="#{pageTitles.administration}" outcome="administration" />
+                <h:button class=" option" value="#{pageTitles.index}" outcome="index" /> 
             </div>
-            <div id="content" class="left_content">
+            <div id="content" class="right_content">
                 <h:messages showSummary="true" 
                             showDetail="true"
                             globalOnly="true"
@@ -39,8 +41,6 @@
                             errorStyle="color:red;" />
                 <br />
                 <ui:insert name="content" />
-                <br />
-                user : #{user.login}
             </div>
         </div>
     </h:body>
