@@ -4,8 +4,9 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="./mainTemplate.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core" >
 
+    
     <ui:define name="title">
         Witajcie Angel i Tirpitz! 
     </ui:define>
@@ -15,12 +16,13 @@
        </ui:define>
 
     <ui:define name="content">
+        <f:loadBundle basename="I18N.index" var="text" />
         <h:form id="loginForm">
-            LOGIN : <h:inputText id="login" required="true" requiredMessage="musisz podać login" value="#{loginController.login}" />
+            LOGIN : <h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{loginController.login}" />
             <h:message for="loginForm:login" errorStyle="color: red;" />
             <br />
             <br></br>
-            HASŁO : <h:inputSecret id="password" required="true" requiredMessage="musisz podac hasło" value="#{loginController.password}" />
+            HASŁO : <h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{loginController.password}" />
             <h:message for="loginForm:password" errorStyle="color: red;" />
             <br />
             <br></br>
