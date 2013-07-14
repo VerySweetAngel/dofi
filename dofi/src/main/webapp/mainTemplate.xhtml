@@ -9,7 +9,8 @@
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/menu.css" rel="stylesheet" type="text/css" />
-        <title>#{global.dofi} <ui:insert name="title" /></title>
+        <link type="image/x-icon" href="./resources/img/logo_dofi.jpg" rel="shortcut icon"/>
+            <title>#{global.dofi} <ui:insert name="title" /></title>
     </h:head>
 
     <h:body>
@@ -23,7 +24,6 @@
         </div>
         <div>
             <div id="menu">
-                #{global.menu}
                 <br />
                 <h:button class=" option" value="#{pageTitles.operations}" outcome="operations" />
                 <h:button class=" option" value="#{pageTitles.juxtaposition}" outcome="juxtaposition" />

@@ -39,7 +39,7 @@
     position: absolute;
     top: 172px;
     width: 1400px;
-    text-align: center;
+    text-align:center;
     line-height: 10px;
     font-size: x-large;
 }
@@ -58,7 +58,8 @@
 }
 #loginForm {
     
+    bottom: 300px;
     font-size: medium;
-    position: relative;
-    bottom: -65px;
+    position: fixed;
+    left: 750px;
 }
