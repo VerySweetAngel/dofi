@@ -58,6 +58,14 @@ public class User implements Serializable {
         return this.isLoggerdIn();
     }
 
+    /** wylogowanie użytkownika */
+    public void logout() {
+        login = "";
+        password = "";
+        loggerdIn = false;
+        lastLoginError = "";
+    }
+
     /**
      * @return the login
      */
