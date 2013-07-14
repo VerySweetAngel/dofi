@@ -1,26 +1,61 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.util;
 
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Klasa, która opakowuje loggery. Zgodnie z log4j.properties, pliki loggerów będą zapisane w glassfish/applications/domain/domain1/logs.
  * @author tirpitz
  */
-public final class DefaultLogger {
+public class DefaultLogger {
     
-    private static final DefaultLogger SINGLETON = new DefaultLogger();
+    /** właściwa loggera z log4j */
+    private Logger loggerImpl;
+    /** logger domyślny */
+    public static final DefaultLogger DEFAULT = new DefaultLogger("defaultLogger");
+    /** logger do hibernate'a i rzeczy związanych z bazami danych */
+    public static final DefaultLogger HIBERNATE = new DefaultLogger("hibernate");
     
-    private Logger loggerImpl = Logger.getLogger("defaultLogger");
-    
-    public static void debug(Object message){
-        SINGLETON.loggerImpl.debug(message);
+    private DefaultLogger(String loggerName){
+        loggerImpl = Logger.getLogger(loggerName);
     }
     
-    public static void debug(Object... messages){
+    public void debug(Object message){
+        loggerImpl.debug(message);
+    }
+    
+    public void debug(Object... messages){
+        loggerImpl.debug(concatMessages(messages));
+    }
+    
+    public void info(Object message){
+        loggerImpl.info(message);
+    }
+    
+    public void info(Object... messages){
+        loggerImpl.info(concatMessages(messages));
+    }
+    
+    public void warn(Object message){
+        loggerImpl.warn(message);
+    }
+            
+    public void error(Object message){
+        loggerImpl.error(message);
+    }
+    
+    public void error(Object message, Throwable throwable){
+        loggerImpl.error(message, throwable);
+    }
+            
+    public void fatal(Object message){
+        loggerImpl.fatal(message);
+    }
+    
+    public void fatal(Object message, Throwable throwabl){
+        loggerImpl.fatal(message, throwabl);
+    }
+    
+    private String concatMessages(Object[] messages){
         StringBuilder msgCombiner = new StringBuilder();
         for(Object singleMsg : messages){
             String singleMsgStr = "null";
@@ -30,30 +65,6 @@ public final class DefaultLogger {
             msgCombiner.append(singleMsgStr);
             msgCombiner.append(" ");
         }
-        SINGLETON.loggerImpl.debug(msgCombiner.toString());
-    }
-    
-    public static void info(Object message){
-        SINGLETON.loggerImpl.info(message);
-    }
-    
-    public static void warn(Object message){
-        SINGLETON.loggerImpl.warn(message);
-    }
-            
-    public static void error(Object message){
-        SINGLETON.loggerImpl.error(message);
-    }
-    
-    public static void error(Object message, Throwable throwable){
-        SINGLETON.loggerImpl.error(message, throwable);
-    }
-            
-    public static void fatal(Object message){
-        SINGLETON.loggerImpl.fatal(message);
-    }
-    
-    public static void fatal(Object message, Throwable throwabl){
-        SINGLETON.loggerImpl.fatal(message, throwabl);
+        return msgCombiner.toString();
     }
 }

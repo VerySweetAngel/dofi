@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 5, 2013 8:01:46 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="pl.com.setvar.dofi.model.User" schema="APP" table="USERS">
+    <id name="id" type="int">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="login" type="string">
+      <column length="15" name="LOGIN" not-null="true" unique="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="15" name="PASSWORD" not-null="true"/>
+    </property>
+    <property name="realName" type="string">
+      <column length="30" name="REAL_NAME"/>
+    </property>
+    <property name="email" type="string">
+      <column length="30" name="EMAIL"/>
+    </property>
+    <property name="isAdmin" type="boolean">
+      <column length="25" name="IS_ADMIN"/>
+    </property>
+  </class>
+</hibernate-mapping>

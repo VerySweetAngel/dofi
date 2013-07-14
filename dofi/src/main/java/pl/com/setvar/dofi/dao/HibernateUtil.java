@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.dao;
 
 import java.io.IOException;
@@ -13,28 +9,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import pl.com.setvar.dofi.util.DefaultLogger;
 
 /**
- * Hibernate Utility class with a convenient method to get Session Factory
- * object.
- *
+ * Klasa obslługuje bazę danych. Zwraca fabryki sesji. Przed każdym żądaniem HTTP i po nim, otwiera i kończy sesję. 
+ * Tworzy fabrykę sesji przy starcie aplikacji i zamyka ja na koniec.
  * @author tirpitz
  */
 public class HibernateUtil implements Filter {
 
-    private static final SessionFactory sessionFactory;
-    
-    static {
-        try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            sessionFactory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
+    private static SessionFactory sessionFactory;
     
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
@@ -42,22 +26,38 @@ public class HibernateUtil implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        createFactory();
+    }
+    
+    private void createFactory(){
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+            DefaultLogger.HIBERNATE.info("HibernateUtil.createFactory session factory created");
+        } catch (Throwable ex) {
+            DefaultLogger.HIBERNATE.fatal("HibernateUtil.createFactory cannot build session factory", ex);
+            throw new ExceptionInInitializerError(ex);
+        }
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter filtering request");
          try{
              sessionFactory.getCurrentSession().beginTransaction();
+             DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter transaction begun");
              chain.doFilter(request, response);
              sessionFactory.getCurrentSession().getTransaction().commit();
+             DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter transaction commited");
          }
          catch(Throwable ex){
              sessionFactory.getCurrentSession().getTransaction().rollback();
+             DefaultLogger.HIBERNATE.error("HibernateUtil.doFilter session error", ex);
          }
     }
 
     @Override
     public void destroy() {
         sessionFactory.close();
+        DefaultLogger.HIBERNATE.info("HibernateUtil.destroy session factory closed");
     }
 }

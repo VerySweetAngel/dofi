@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.controller;
 
 import javax.faces.application.FacesMessage;
@@ -14,30 +10,29 @@ import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.I18nText;
 
 /**
- *
+ * kontroler logowania użytkowników - ziarno zarządzane o zasięgu rządania
  * @author tirpitz
  */
 @ManagedBean
 @RequestScoped
 public final class LoginController {
-
+    
+    /** użytkownik z sesji */
     @ManagedProperty(value = "#{user}")
     private User user;
+    /** login podany w formularzu logowania */
     private String login;
+    /** hasło podane w formularzu logowania */
     private String password;
 
-    /**
-     * Creates a new instance of LoginController
-     */
+    /** pusty kontruktor */
     public LoginController() {
     }
 
-    /**
-     * próba zalogowania uzytkownika
-     */
+    /** próba zalogowania uzytkownika */
     public String logMeIn() {
-        final FacesMessage msg;
-        final I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
+        FacesMessage msg;
+        I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
         if (user.tryToLogMeIn(login, password)) {
             msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", i18nText.get("loginWasSuccessful"));
         } else {
