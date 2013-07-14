@@ -10,6 +10,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import pl.com.setvar.dofi.model.User;
+import pl.com.setvar.dofi.util.Bundles;
+import pl.com.setvar.dofi.util.I18nText;
 
 /**
  *
@@ -23,19 +25,23 @@ public final class LoginController {
     private User user;
     private String login;
     private String password;
-    
+
     /**
      * Creates a new instance of LoginController
      */
-    public LoginController() {}
-    
-    /** próba zalogowania uzytkownika */
-    public String logMeIn(){
+    public LoginController() {
+    }
+
+    /**
+     * próba zalogowania uzytkownika
+     */
+    public String logMeIn() {
         final FacesMessage msg;
-        if(user.tryToLogMeIn(login, password)){
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Logowanie zakończyło się sukcesem");
+        final I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
+        if (user.tryToLogMeIn(login, password)) {
+            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", i18nText.get("loginWasSuccessful"));
         } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd logowania", user.getLastLoginError());
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, user.getLastLoginError(), i18nText.get("loginError"));
         }
         FacesContext.getCurrentInstance().addMessage(null, msg);
         return null;

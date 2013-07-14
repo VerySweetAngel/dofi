@@ -1,0 +1,22 @@
+/* 
+    Document   : menu
+    Created on : 2013-07-13, 22:18:58
+    Author     : Marta
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#menu {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+    bottom: 15px;
+    position: absolute;
+    top: 172px;
+    
+}
+
+#menu .option {
+    width: 100%;
+}
