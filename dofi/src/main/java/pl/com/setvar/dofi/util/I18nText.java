@@ -14,11 +14,13 @@ import javax.faces.context.FacesContext;
  */
 public class I18nText {
 
+    
+    
     private String bundleName;
     ResourceBundle bundle;
 
-    public I18nText(String name) {
-        bundleName = name;
+    public I18nText(Bundles name) {
+        bundleName = name.getPath();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Locale locale = facesContext.getViewRoot().getLocale();
         bundle = ResourceBundle.getBundle(bundleName, locale);

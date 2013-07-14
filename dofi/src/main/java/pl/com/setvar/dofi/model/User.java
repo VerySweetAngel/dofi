@@ -8,6 +8,7 @@ import com.sun.imageio.plugins.common.I18N;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.DefaultLogger;
 import pl.com.setvar.dofi.util.I18nText;
 
@@ -44,7 +45,7 @@ public class User implements Serializable {
             this.password = password;
             this.loggerdIn = true;
         } else {
-            I18nText i18nText = new I18nText("index");
+            I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
             lastLoginError = i18nText.get("badPassword");
             loggerdIn = false;
         }

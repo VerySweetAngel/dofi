@@ -39,6 +39,9 @@
     position: absolute;
     top: 172px;
     width: 1400px;
+    text-align: center;
+    line-height: 10px;
+    font-size: x-large;
 }
 
 #top a:link, #top a:visited {
@@ -52,4 +55,10 @@
     font-weight : bold;
     text-decoration : underline;
 
+}
+#loginForm {
+    
+    font-size: medium;
+    position: relative;
+    bottom: -65px;
 }
