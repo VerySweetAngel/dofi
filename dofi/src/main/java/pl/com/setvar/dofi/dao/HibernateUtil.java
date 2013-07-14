@@ -48,13 +48,16 @@ public class HibernateUtil implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
          try{
              sessionFactory.getCurrentSession().beginTransaction();
+             chain.doFilter(request, response);
+             sessionFactory.getCurrentSession().getTransaction().commit();
          }
          catch(Throwable ex){
-         
+             sessionFactory.getCurrentSession().getTransaction().rollback();
          }
     }
 
     @Override
     public void destroy() {
+        sessionFactory.close();
     }
 }
