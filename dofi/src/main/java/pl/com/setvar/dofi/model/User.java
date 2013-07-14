@@ -31,6 +31,7 @@ public class User implements Serializable {
 
     /** pusty konstruktor */
     public User() {
+        DefaultLogger.DEFAULT.info("User created");
     }
 
     /** 
@@ -50,6 +51,7 @@ public class User implements Serializable {
             this.setLogin(login);
             this.setPassword(password);
             this.loggerdIn = true;
+            isAdmin = true;
         } else {
             I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
             lastLoginError = i18nText.get("badPassword");
