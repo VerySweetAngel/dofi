@@ -66,14 +66,6 @@ public class User implements Serializable {
         lastLoginError = "";
     }
 
-    public void logout() {
-
-        login = "";
-        password = "";
-        loggerdIn = false;
-        lastLoginError = "";
-    }
-
     /**
      * @return the login
      */
