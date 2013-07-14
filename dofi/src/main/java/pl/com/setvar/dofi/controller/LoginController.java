@@ -47,6 +47,15 @@ public final class LoginController {
         return null;
     }
 
+    public String logout() {
+        user.logout();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        final I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
+        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", i18nText.get("logout"));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        return "index";
+    }
+
     /**
      * @param user the user to set
      */

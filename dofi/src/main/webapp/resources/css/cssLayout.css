@@ -34,14 +34,14 @@
 .right_content {
     background-color: #dddddd;
     padding: 5px;
-    margin: 0px 170px 0px 170px;
     bottom: 15px;
     position: absolute;
     top: 172px;
-    width: 1400px;
+    width: 87.5%;
     text-align:center;
     line-height: 10px;
     font-size: x-large;
+    margin: 0px 170px 0px 170px;
 }
 
 #top a:link, #top a:visited {
@@ -58,8 +58,8 @@
 }
 #loginForm {
     
-    bottom: 300px;
+    bottom: -200px;
     font-size: medium;
-    position: fixed;
-    left: 750px;
+    position: relative;
+    
 }
