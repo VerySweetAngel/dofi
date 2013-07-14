@@ -4,7 +4,6 @@
  */
 package pl.com.setvar.dofi.model;
 
-import com.sun.imageio.plugins.common.I18N;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -31,6 +30,14 @@ public class User implements Serializable {
     public User() {
     }
 
+    public void logout() {
+
+        login = "";
+        password = "";
+        loggerdIn = false;
+        lastLoginError = "";
+    }
+
     /**
      * @return the login
      */
@@ -49,7 +56,7 @@ public class User implements Serializable {
             lastLoginError = i18nText.get("badPassword");
             loggerdIn = false;
         }
-        return this.loggerdIn;
+        return this.isLoggerdIn();
     }
 
     /**
@@ -57,5 +64,12 @@ public class User implements Serializable {
      */
     public String getLastLoginError() {
         return lastLoginError;
+    }
+
+    /**
+     * @return the loggerdIn
+     */
+    public boolean isLoggerdIn() {
+        return loggerdIn;
     }
 }

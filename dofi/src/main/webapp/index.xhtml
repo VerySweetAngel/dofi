@@ -18,7 +18,7 @@
         <f:loadBundle basename="I18N.index" var="text" />
         <h:form id="loginForm">
             #{text.login}: <h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{loginController.login}" />
-            <h:message for="loginForm:login" errorStyle="color: red;" />
+            <h:message for="loginForm:login" errorStyle="color: red," />
             <br />
             <br></br>
             #{text.password}: <h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{loginController.password}" />
