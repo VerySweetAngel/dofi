@@ -17,15 +17,15 @@
         
         <f:loadBundle basename="I18N.index" var="text" />
         <h:form id="loginForm">
-            #{text.login}: <h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{loginController.login}" />
+            #{text.login}: <h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{sessionUser.login}" />
             <h:message for="loginForm:login" errorStyle="color: red," />
             <br />
             <br></br>
-            #{text.password}: <h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{loginController.password}" />
+            #{text.password}: <h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" />
             <h:message for="loginForm:password" errorStyle="color: red;" />
             <br />
             <br></br>
-            <h:commandButton value="#{text.loginButton}" action="#{loginController.logMeIn}" />
+            <h:commandButton value="#{text.loginButton}" action="#{sessionUser.logMeIn}" />
         </h:form>
     </ui:define>
 

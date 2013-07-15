@@ -1,22 +1,12 @@
 package pl.com.setvar.dofi.model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import pl.com.setvar.dofi.dao.HibernateUtil;
-import pl.com.setvar.dofi.util.Bundles;
-import pl.com.setvar.dofi.util.DefaultLogger;
-import pl.com.setvar.dofi.util.I18nText;
+import pl.com.setvar.dofi.dao.UserDao;
 
 /**
- * Klasa użytkownika aplikacji. Zarządzane ziarno ma zakres sesji i nazwę "user".
- * Użytkownik potrafi się zalogować i pamięta ostatni błąd logowania.
- * Klasa połączona z bazą danych.
+ * użytkownik systemu
  * @author tirpitz
  */
-@ManagedBean
-@SessionScoped
 public class User implements Serializable {
 
     private int id = 0;
@@ -26,60 +16,32 @@ public class User implements Serializable {
     private String email = "";
     private boolean isAdmin = false;
     
-    private boolean loggerdIn = false;
-    private String lastLoginError = "";
-
-    /** pusty konstruktor */
     public User() {
-        DefaultLogger.DEFAULT.info("User created");
+    }
+    
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
-    /** 
-     * Metoda próbuje zalogowac użytkownika zgodnie z zadanym hasłem i loginem. W przypadku sukcesu zwróci wartośc parawda.
-     * W przypadku błędu logowania, zwróci wartośc fałsz i zapamięta treść ostatniego błędu logowania w lastLoginError.
-     */
-    public boolean tryToLogMeIn(String login, String password) {
-        DefaultLogger.DEFAULT.debug("User.tryToLogMeIn", ": login [", login, "] password [", password, "]");
-        
-        List<User> customers;
-        customers = HibernateUtil.getSessionFactory().getCurrentSession().createQuery("from User").list();
-        for(User u : customers){
-            DefaultLogger.DEFAULT.info(u.id, u.login, u.password);
+    public boolean loadIfExistsByCredentials(){
+        UserDao dao = new UserDao();
+        User fromDb = dao.findByCredentials(login, password);
+        if(fromDb == null){
+            return false;
         }
-        
-        if (login.equals("tester") && password.equals("tester")) {
-            this.setLogin(login);
-            this.setPassword(password);
-            this.loggerdIn = true;
-            isAdmin = true;
-        } else {
-            I18nText i18nText = new I18nText(Bundles.I18N_INDEX);
-            lastLoginError = i18nText.get("badPassword");
-            loggerdIn = false;
-        }
-        return this.isLoggerdIn();
+        id = fromDb.id;
+        realName = fromDb.realName;
+        email = fromDb.email;
+        isAdmin = fromDb.isAdmin;
+        return true;
     }
-
-    /** wylogowanie użytkownika */
-    public void logout() {
-        login = "";
-        password = "";
-        loggerdIn = false;
-        lastLoginError = "";
-    }
-
+    
     /**
      * @return the login
      */
     public String getLogin() {
         return login;
-    }
-    
-    /**
-     * @return the lastLoginError
-     */
-    public String getLastLoginError() {
-        return lastLoginError;
     }
 
     /**
@@ -157,12 +119,5 @@ public class User implements Serializable {
      */
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
-    }
-
-    /**
-     * @return the loggerdIn
-     */
-    public boolean isLoggerdIn() {
-        return loggerdIn;
     }
 }

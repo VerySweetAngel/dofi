@@ -13,3 +13,4 @@ CREATE TABLE users(
 );
 CREATE INDEX users_login_index ON users(login);
 INSERT INTO users (login, password, is_admin) VALUES ('admin', 'admin', 1);
+INSERT INTO users (login, password, is_admin) VALUES ('tester', 'tester', 0);

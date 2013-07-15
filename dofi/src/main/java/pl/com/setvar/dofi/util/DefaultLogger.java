@@ -10,6 +10,7 @@ public class DefaultLogger {
     
     /** właściwa loggera z log4j */
     private Logger loggerImpl;
+    
     /** logger domyślny */
     public static final DefaultLogger DEFAULT = new DefaultLogger("defaultLogger");
     /** logger do hibernate'a i rzeczy związanych z bazami danych */

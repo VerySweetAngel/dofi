@@ -26,15 +26,15 @@
             <div id="menu">
                 <h:form>
                     <h:commandButton class="option" value="#{pageTitles.index}" action="index" />
-                    <c:if test ="#{user.loggerdIn}">
+                    <c:if test ="#{sessionUser.loggerdIn}">
                         <h:commandButton class="option" value="#{pageTitles.operations}" action="operations" />
                         <h:commandButton class="option" value="#{pageTitles.juxtaposition}" action="juxtaposition" />
                         <h:commandButton class="option" value="#{pageTitles.financial_plan}" action="financial_plan" />
                         <h:commandButton class="option" value="#{pageTitles.savings}" action="savings" />
-                        <c:if test="#{user.isAdmin}">
+                        <c:if test="#{sessionUser.admin}">
                            <h:commandButton class="option" value="#{pageTitles.administration}" action="administration" />
                         </c:if>
-                        <h:commandButton class="option" value="#{pageTitles.logout}" action="#{loginController.logout}" />
+                        <h:commandButton class="option" value="#{pageTitles.logout}" action="#{sessionUser.logMeOut()}" />
                     </c:if>
                 </h:form>
             </div>
