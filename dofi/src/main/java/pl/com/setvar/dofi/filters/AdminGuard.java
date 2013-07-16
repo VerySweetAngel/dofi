@@ -19,7 +19,7 @@ public class AdminGuard extends LoggedInGuard {
         if(sessionUser != null){
             canContinueChain = sessionUser.isAdmin();
         }
-        DefaultLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
+        DefaultLogger.DEFAULT.debug("AdminGuard canContinueChain = ", canContinueChain);
         return canContinueChain;
     }    
 }
