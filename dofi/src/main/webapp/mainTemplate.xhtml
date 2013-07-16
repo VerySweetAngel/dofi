@@ -26,7 +26,7 @@
             <div id="menu">
                 <h:form>
                     <h:commandButton class="option" value="#{pageTitles.index}" action="/index" />
-                    <!--<c:if test ="#{sessionUser.loggerdIn}">-->
+                    <c:if test ="#{sessionUser.loggerdIn}">
                         <h:commandButton class="option" value="#{pageTitles.operations}" action="/logged/operations" />
                         <h:commandButton class="option" value="#{pageTitles.juxtaposition}" action="/logged/juxtaposition" />
                         <h:commandButton class="option" value="#{pageTitles.financial_plan}" action="/logged/financial_plan" />
@@ -35,7 +35,7 @@
                            <h:commandButton class="option" value="#{pageTitles.administration}" action="/admin/administration" />
                         </c:if>
                         <h:commandButton class="option" value="#{pageTitles.logout}" action="#{sessionUser.logMeOut}" />
-                    <!--</c:if>-->
+                    </c:if>
                 </h:form>
             </div>
             <div id="content" class="right_content">
