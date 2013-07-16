@@ -1,5 +1,6 @@
 package pl.com.setvar.dofi.domain;
 
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -14,7 +15,7 @@ import pl.com.setvar.dofi.util.I18nText;
  */
 @ManagedBean
 @SessionScoped
-public final class SessionUser {
+public final class SessionUser implements Serializable {
     
     private String login = "";
     private String password = "";
@@ -49,7 +50,7 @@ public final class SessionUser {
         I18nText texts = new I18nText(Bundles.I18N_INDEX);
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", texts.get("logout"));
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        return "index";
+        return "/index";
     }
 
     /**
