@@ -1,7 +1,6 @@
 package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
-import javax.el.ELContext;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
