@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/mainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" >
+
+    <ui:define name="title">
+        #{pageTitles.operations}
+    </ui:define>
+    
+    <ui:define name="content">
+	<h:form>
+            <h:dataTable value="#{operations.list}" var="operation">
+<!--			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+				
+			</h:column>-->
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Utworzona" />
+				</f:facet>
+                            <h:inputText value="#{operation.created}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Utworzył" />
+				</f:facet>
+                            <h:inputText value="#{operation.creator}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data zdarzenia" />
+				</f:facet>
+                            <h:inputText value="#{operation.happened}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Produkt" />
+				</f:facet>
+                            <h:inputText value="#{operation.product}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Wartość" />
+				</f:facet>
+                            <h:inputText value="#{operation.value}" />
+			</h:column>
+			<f:facet name="footer">
+				<h:panelGroup>
+                                    <h:inputText value="#{editedOperation.creator}" />
+                                    <h:inputText value="#{editedOperation.happened}" />
+                                    <h:inputText value="#{editedOperation.product}" />
+                                    <h:inputText value="#{editedOperation.value}" />
+				</h:panelGroup>
+			</f:facet>
+		</h:dataTable>
+	</h:form>
+    </ui:define>
+
+</ui:composition>

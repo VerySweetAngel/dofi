@@ -1,9 +1,7 @@
 package pl.com.setvar.dofi.dao;
 
 import java.io.IOException;
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -14,13 +12,11 @@ import org.hibernate.cfg.Configuration;
 import pl.com.setvar.dofi.util.DefaultLogger;
 
 /**
- * Klasa obslługuje bazę danych. Zwraca fabryki sesji. Przed każdym żądaniem
- * HTTP i po nim, otwiera i kończy sesję. Tworzy fabrykę sesji przy starcie
- * aplikacji i zamyka ja na koniec.
+ * Klasa obslługuje bazę danych. Zwraca fabrykę sesji i aktualną sesję. 
  *
  * @author tirpitz
  */
-public class HibernateUtil implements Filter {
+public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
 
@@ -32,12 +28,7 @@ public class HibernateUtil implements Filter {
         return sessionFactory.getCurrentSession();
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        createFactory();
-    }
-
-    private void createFactory() {
+    public static void createFactory() {
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
             DefaultLogger.HIBERNATE.info("HibernateUtil.createFactory session factory created");
@@ -47,8 +38,7 @@ public class HibernateUtil implements Filter {
         }
     }
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public static void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter filtering request");
         Transaction transaction = null;
         try {
@@ -58,16 +48,16 @@ public class HibernateUtil implements Filter {
             transaction.commit();
             DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter transaction commited");
         } catch (Throwable ex) {
+            DefaultLogger.HIBERNATE.error("HibernateUtil.doFilter session error", ex);
             if (transaction != null) {
                 transaction.rollback();
+                DefaultLogger.HIBERNATE.error("HibernateUtil.doFilter session rollback", ex);
             }
-            DefaultLogger.HIBERNATE.error("HibernateUtil.doFilter session error", ex);
         }
     }
 
-    @Override
-    public void destroy() {
-        sessionFactory.close();
-        DefaultLogger.HIBERNATE.info("HibernateUtil.destroy session factory closed");
+    public static void closeFactory(){
+        sessionFactory.close();       
+        DefaultLogger.HIBERNATE.info("HibernateUtil.close session factory closed");
     }
 }
