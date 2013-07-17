@@ -4,6 +4,7 @@
  */
 package pl.com.setvar.dofi.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -14,7 +15,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean(name = "editedOperation")
 @RequestScoped
-public class Operation {
+public class Operation implements Serializable {
     
     private Date created = new Date();
     private Date happened = new Date();
@@ -22,7 +23,7 @@ public class Operation {
     private String product = "Kawa z mlekiem";
     private Integer value = -100;
     private Short volume = 2;
-    private String tagi = "<3";
+    private String tagi = "ggg";
 
     /**
      * @return the created
