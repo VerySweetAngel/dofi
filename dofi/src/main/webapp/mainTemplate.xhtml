@@ -10,6 +10,7 @@
         <link href="#{resource['css:default.css']}" rel="stylesheet" type="text/css" />
         <link href="#{resource['css:cssLayout.css']}" rel="stylesheet" type="text/css" />
         <link href="#{resource['css:menu.css']}" rel="stylesheet" type="text/css" />
+        <link href="#{resource['css:operations.css']}" rel="stylesheet" type="text/css" />
         <link type="image/x-icon" href="#{resource['img:logo_dofi.jpg']}" rel="shortcut icon"/>
         <title>#{global.dofi} - <ui:insert name="title" /></title>
     </h:head>
@@ -31,6 +32,7 @@
                         <h:commandButton class="option" value="#{pageTitles.juxtaposition}" action="/logged/juxtaposition" />
                         <h:commandButton class="option" value="#{pageTitles.financial_plan}" action="/logged/financial_plan" />
                         <h:commandButton class="option" value="#{pageTitles.savings}" action="/logged/savings" />
+                        <h:commandButton class="option" value="#{pageTitles.setings}" action="/logged/setings" />
                         <c:if test="#{sessionUser.admin}">
                            <h:commandButton class="option" value="#{pageTitles.administration}" action="/admin/administration" />
                         </c:if>

@@ -15,22 +15,19 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Operations {
-    
+
     private ArrayList<Operation> list = new ArrayList<Operation>();
-    
-    public Operations(){
-        list.add(new Operation());
-        list.add(new Operation());
-        list.add(new Operation());
-        list.add(new Operation());
-        list.add(new Operation());
-        list.add(new Operation());
+
+    public Operations() {
+        for (int i = 0; i < 200; i++) {
+            list.add(new Operation());
+        }
     }
 
-    /**
-     * @return the operations
-     */
-    public ArrayList<Operation> getList() {
+/**
+ * @return the operations
+ */
+public ArrayList<Operation> getList() {
         return list;
     }
 }
