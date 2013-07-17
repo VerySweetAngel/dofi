@@ -31,6 +31,7 @@
                         <h:commandButton class="option" value="#{pageTitles.juxtaposition}" action="juxtaposition" />
                         <h:commandButton class="option" value="#{pageTitles.financial_plan}" action="financial_plan" />
                         <h:commandButton class="option" value="#{pageTitles.savings}" action="savings" />
+                        <h:commandButton class="option" value="#{pageTitles.setings}" action="setings" />
                         <c:if test="#{sessionUser.admin}">
                            <h:commandButton class="option" value="#{pageTitles.administration}" action="administration" />
                         </c:if>
@@ -43,8 +44,8 @@
                             showDetail="true"
                             globalOnly="true"
                             tooltip="true"
-                            infoStyle="color:blue;"
-                            errorStyle="color:red;" />
+                            infoStyle="color:blue; text - align: right;"
+                            errorStyle="color:red; text - align: right;"/>
                 <br />
                 <ui:insert name="content" />
             </div>
