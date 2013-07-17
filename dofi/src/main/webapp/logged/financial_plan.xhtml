@@ -1,15 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/mainTemplate.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/mainTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                >
 
     <ui:define name="title">
         #{pageTitles.financial_plan}
     </ui:define>
 
-
     <ui:define name="content">
         content
     </ui:define>
-
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable class="financialTable" value="#{financialPlans.list}" var="financialPlan">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Kategoria" />
+                    </f:facet>
+                    <h:outputText value="#{financialPlan.category}">
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ile wydamy" />
+                    </f:facet>
+                    <h:inputText value="#{financialPlan.weSpend}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ile wydaliśmy" />
+                    </f:facet>
+                    <h:inputText value="#{financialPlan.released}">
+                        <f:convertDateTime type="date"/>
+                    </h:inputText> 
+                </h:column>
+                <h:column>    
+                    <f:facet name="header">
+                        <h:outputText value="Różnica" />
+                    </f:facet>
+                    <h:inputText value="#{financialPlan.difference}" />
+                </h:column>
+                <f:facet name="footer">
+                    <h:panelGroup>
+                        <h:inputText value="#{editedFinancialPlan.category}" />
+                        <h:inputText value="#{editedFinancialPlan.weSpend}" />
+                        <h:inputText value="#{editedFinancialPlan.released}" />
+                        <h:inputText value="#{editedFinancialPlan.difference}" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
 </ui:composition>
