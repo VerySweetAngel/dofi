@@ -5,6 +5,7 @@
 package pl.com.setvar.dofi.dao;
 
 import java.io.Serializable;
+import java.util.List;
 import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
 
@@ -54,5 +55,10 @@ public class GenericDao {
     
     public <T> T load(Class<T> klass, Serializable id){
         return (T) getSession().load(klass, id);
+    }
+    
+    /** zwraca listę wszytkioch */
+    public <T> List<T> findAll(Class<T> klass){
+        return getSession().createQuery(String.format("FROM %s", klass.getSimpleName())).list();
     }
 }

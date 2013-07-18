@@ -6,40 +6,46 @@ package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import pl.com.setvar.dofi.dao.UserDao;
+import pl.com.setvar.dofi.model.Operation;
+import pl.com.setvar.dofi.model.User;
 
 /**
  *
  * @author tirpitz
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class Operations implements Serializable {
 
-    private ArrayList<Operation> list = new ArrayList<Operation>();
+    private List<Operation> operationsList;
+    private List<User> usersList;
 
     public Operations() {
-        for (int i = 0; i < 2; i++) {
-            list.add(new Operation());
-            
+        usersList = User.findAll();
+    }
+    
+    public void save(){
+        for(Operation operation : operationsList){
+            if()
         }
     }
 
     public void addEmpty() {
-        list.add(new Operation());
+        if(operationsList == null){
+            operationsList = new ArrayList<Operation>();
+        }
+        operationsList.add(new Operation());
     }
 
-    public void delete(Operation operationDelete) {
-        list.remove(operationDelete);
+    public void delete(Operation operation) {
+        operationsList.remove(operation);
     }
 
-        /**
-         * @return the operations
-         */
-    
-
-    public ArrayList<Operation> getList() {
-        return list;
+    public List<Operation> getList() {
+        return operationsList;
     }
 }

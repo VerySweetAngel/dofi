@@ -22,12 +22,18 @@
                     <h:outputText value="#{operation.created}">
                         <f:convertDateTime type="date"/>
                     </h:outputText>
+                    <f:facet name="footer">
+                        <h:commandButton value="Zapisz zmiany" action="#{operations.save()}" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Utworzył" />
                     </f:facet>
                     <h:inputText value="#{operation.creator}" />
+                    <f:facet name="footer">
+                        <h:inputText value="#{editedOperation.creator}" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -35,52 +41,59 @@
                     </f:facet>
                     <h:inputText value="#{operation.happened}">
                         <f:convertDateTime type="date"/>
-                    </h:inputText> 
+                    </h:inputText>
+                    <f:facet name="footer">
+                        <h:inputText value="#{editedOperation.happened}">
+                            <f:convertDateTime type="date"/>
+                        </h:inputText>
+                    </f:facet>
                 </h:column>
                 <h:column>    
                     <f:facet name="header">
                         <h:outputText value="Produkt" />
                     </f:facet>
                     <h:inputText value="#{operation.product}" />
+                    <f:facet name="footer">
+                        <h:inputText value="#{editedOperation.product}" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Ilość" />
                     </f:facet>
                     <h:inputText value="#{operation.volume}" />
+                    <f:facet name="footer">
+                        <h:inputText value="#{editedOperation.volume}" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Wartość" />
                     </f:facet>
                     <h:inputText value="#{operation.value}" />
+                    <f:facet name="footer">
+                        <h:inputText value="#{editedOperation.value}" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Tagi" />
                     </f:facet>
                     <h:inputText value="#{operation.tagi}" />
+                    <f:facet name="footer">
+                        <h:inputText value="#{editedOperation.tagi}" />
+                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header"> 
                         <h:outputText value="Usuń" />
                     </f:facet>
                     <h:commandButton value="Usuń wiersz" action="#{operations.delete(operation)}" />
+                    <f:facet name="footer">
+                        <h:commandButton value="Dodaj wiersz" action="#{operations.addEmpty()}" />
+                    </f:facet>
                 </h:column>
-                <f:facet name="footer">
-                    <h:panelGroup class = "panelGroup">
-                        <h:inputText value="#{editedOperation.creator}" />
-                        <h:inputText value="#{editedOperation.happened}">
-                            <f:convertDateTime type="date"/>
-                        </h:inputText>
-                        <h:inputText value="#{editedOperation.product}" />
-                        <h:inputText value="#{editedOperation.volume}" />
-                        <h:inputText value="#{editedOperation.value}" />
-                        <h:inputText value="#{editedOperation.tagi}" />
-                    </h:panelGroup>
-                </f:facet>
             </h:dataTable>
-            <h:commandButton value="Dodaj wiersz" action="#{operations.addEmpty()}" />
         </h:form>
     </ui:define>
 

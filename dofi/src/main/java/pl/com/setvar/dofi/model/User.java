@@ -1,6 +1,7 @@
 package pl.com.setvar.dofi.model;
 
 import java.io.Serializable;
+import java.util.List;
 import pl.com.setvar.dofi.dao.UserDao;
 
 /**
@@ -24,6 +25,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public static List<User> findAll(){
+        return new UserDao().findAll(User.class);
+    }
+    
     public boolean loadIfExistsByCredentials(){
         UserDao dao = new UserDao();
         User fromDb = dao.findByCredentials(login, password);
