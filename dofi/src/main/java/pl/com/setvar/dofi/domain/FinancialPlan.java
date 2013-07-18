@@ -34,10 +34,10 @@ public class FinancialPlan implements Serializable {
     private Short candy = 16;
     private Short enterainment = 17;
     private Short other = 18;
-    private String category = "łoś";
-    private Short weSpend = 20;
-    private Short released = 21;
-    private Short difference = 22;
+    private String category = "łoś, koza";
+    private Short weSpend = 50;
+    private Short released = 30;
+    private Short difference = 20;
 
     /**
      * @return the feed

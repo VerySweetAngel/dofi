@@ -8,6 +8,13 @@
 
 .financialTable{
     
-    color: red;
+    border: medium double #045491;
+    color: blue;
+    font-stretch: expanded;
+    line-height: initial;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    top: 15px;
 }
 

@@ -35,7 +35,6 @@
                         <h:outputText value="Ile wydaliśmy" />
                     </f:facet>
                     <h:inputText value="#{financialPlan.released}">
-                        <f:convertDateTime type="date"/>
                     </h:inputText> 
                 </h:column>
                 <h:column>    
@@ -44,14 +43,6 @@
                     </f:facet>
                     <h:inputText value="#{financialPlan.difference}" />
                 </h:column>
-                <f:facet name="footer">
-                    <h:panelGroup>
-                        <h:inputText value="#{editedFinancialPlan.category}" />
-                        <h:inputText value="#{editedFinancialPlan.weSpend}" />
-                        <h:inputText value="#{editedFinancialPlan.released}" />
-                        <h:inputText value="#{editedFinancialPlan.difference}" />
-                    </h:panelGroup>
-                </f:facet>
             </h:dataTable>
         </h:form>
     </ui:define>

@@ -10,4 +10,8 @@
     margin: auto;
     
 }   
-
+.panelGroup{
+    text-align: center;
+    text-decoration-color: #D20005;
+    column-gap: calc;
+}

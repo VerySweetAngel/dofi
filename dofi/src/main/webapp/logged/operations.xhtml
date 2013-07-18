@@ -68,14 +68,14 @@
                     <h:commandButton value="Usuń wiersz" action="#{operations.delete(operation)}" />
                 </h:column>
                 <f:facet name="footer">
-                    <h:panelGroup>
+                    <h:panelGroup class = "panelGroup">
                         <h:inputText value="#{editedOperation.creator}" />
                         <h:inputText value="#{editedOperation.happened}">
                             <f:convertDateTime type="date"/>
                         </h:inputText>
                         <h:inputText value="#{editedOperation.product}" />
-                        <h:inputText value="#{editedOperation.value}" />
                         <h:inputText value="#{editedOperation.volume}" />
+                        <h:inputText value="#{editedOperation.value}" />
                         <h:inputText value="#{editedOperation.tagi}" />
                     </h:panelGroup>
                 </f:facet>
