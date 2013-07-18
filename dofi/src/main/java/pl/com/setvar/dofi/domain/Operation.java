@@ -4,6 +4,7 @@
  */
 package pl.com.setvar.dofi.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -14,13 +15,15 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean(name = "editedOperation")
 @RequestScoped
-public class Operation {
+public class Operation implements Serializable {
     
     private Date created = new Date();
     private Date happened = new Date();
-    private String creator = "marek";
-    private String product = "wrotki";
-    private Long value = -100L;
+    private String creator = "Marta";
+    private String product = "Kawa z mlekiem";
+    private Integer value = -100;
+    private Short volume = 2;
+    private String tagi = "ggg";
 
     /**
      * @return the created
@@ -63,8 +66,9 @@ public class Operation {
     public void setCreator(String creator) {
         this.creator = creator;
     }
-
-    /**
+    
+    
+        /**
      * @return the product
      */
     public String getProduct() {
@@ -77,18 +81,53 @@ public class Operation {
     public void setProduct(String product) {
         this.product = product;
     }
+ 
+    /**
+     * @return the volume
+     */
+    public Short getVolume() {
+        return volume;
+    }
+
+    /**
+     * @param volume the volume to set
+     */
+    public void setVolume(String product) {
+        this.setVolume(volume);
+    }
+ 
+    /**
+     * @return the tagi
+     */
+    public String getTagi() {
+        return tagi;
+    }
+
+    /**
+     * @param tagi the tagi to set
+     */
+    public void setTagi(String tagi) {
+        this.tagi = tagi;
+    }
 
     /**
      * @return the value
      */
-    public Long getValue() {
+    public Integer getValue() {
         return value;
     }
 
     /**
      * @param value the value to set
      */
-    public void setValue(Long value) {
+    public void setValue(Integer value) {
         this.value = value;
+    }
+
+    /**
+     * @param volume the volume to set
+     */
+    public void setVolume(Short volume) {
+        this.volume = volume;
     }
 }

@@ -10,11 +10,11 @@
     float: left;
     background-color: #ece3a5;
     width: 10%;
-    bottom: 15px;
     position: absolute;
-    top: 172px;
+  
 }
 
 #menu .option {
-    width: 100%;
+    width: 90%;
+    background-repeat: repeat-x;
 }

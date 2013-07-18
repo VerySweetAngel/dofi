@@ -25,7 +25,6 @@
 
 .right_content {
     background-color: #dddddd;
-    bottom: 15px;
     position: absolute;
     top: 172px;
     width: 88.5%;
@@ -33,6 +32,8 @@
     line-height: 10px;
     font-size: x-large;
     margin-left: 10.5%;
+    background-repeat: repeat-x;
+    
 }
 
 #top a:link, #top a:visited {
@@ -51,5 +52,7 @@
     bottom: -200px;
     font-size: medium;
     position: relative;
-    
+
+
 }
+

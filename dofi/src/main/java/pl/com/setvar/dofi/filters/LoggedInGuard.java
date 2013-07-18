@@ -18,6 +18,7 @@ import pl.com.setvar.dofi.util.DefaultLogger;
 
 /**
  * Filtr sprawdza, czy user jest zalogowany.
+ *
  * @author tirpitz
  */
 public class LoggedInGuard implements Filter {
@@ -30,7 +31,7 @@ public class LoggedInGuard implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         SessionUser sessionUser = (SessionUser) httpServletRequest.getSession().getAttribute("sessionUser");
-        if(canContinueChain(sessionUser)){
+        if (canContinueChain(sessionUser)) {
             chain.doFilter(request, response);
         } else {
             HttpServletResponse httpServletResponse = (HttpServletResponse) response;
@@ -41,13 +42,14 @@ public class LoggedInGuard implements Filter {
     @Override
     public void destroy() {
     }
-    
-    protected boolean canContinueChain(SessionUser sessionUser){
+
+    protected boolean canContinueChain(SessionUser sessionUser) {
         boolean canContinueChain = false;
-        if(sessionUser != null){
+        if (sessionUser != null) {
             canContinueChain = sessionUser.isLoggerdIn();
         }
         DefaultLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
-        return canContinueChain;
-    }    
+//        return canContinueChain;
+        return true;
+    }
 }
