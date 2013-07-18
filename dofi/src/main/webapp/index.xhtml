@@ -4,29 +4,51 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/mainTemplate.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core" >
+                xmlns:f="http://java.sun.com/jsf/core" 
+                >
 
-    
+
     <ui:define name="title">
         #{pageTitles.index} 
     </ui:define>
-    
+
     <ui:define name="content">
-        
+
         <br>#{global.welcome}</br>
-        
+
         <f:loadBundle basename="I18N.index" var="text" />
-        <h:form id="loginForm">
-            #{text.login}: <h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{sessionUser.login}" />
+<!--        <h:form id="loginForm">
+            # {text.login}: <h:inputText id="login" required="true" requiredMessage="# {text.noLoginEntered}" value="# {sessionUser.login}" />
             <h:message class="loginFormLogin" for="loginForm:login" />
             <br />
             <br></br>
-            #{text.password}: <h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" />
+            # {text.password}: <h:inputSecret id="password" required="true" requiredMessage="# {text.noPasswordEntered}" value="# {sessionUser.password}" />
             <h:message class ="loginFormPassword" for="loginForm:password" />
             <br />
             <br></br>
-            <h:commandButton value="#{text.loginButton}" action="#{sessionUser.logMeIn}" />
-        </h:form>
+            <h:commandButton value="# {text.loginButton}" action="# {sessionUser.logMeIn}" />
+        </h:form>-->
+
+
+        <h:dataTable class="indexTable" id="loginForm">
+            <h:column>
+                <f:facet name="header">
+                    #{text.login}: <h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{sessionUser.login}" />
+                    <h:message class="loginFormLogin" for="loginForm:login" />
+                </f:facet>
+                <f:facet name="header">
+                    #{text.password}: <h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" />
+                    <h:message class ="loginFormPassword" for="loginForm:password" />
+                </f:facet>
+                <f:facet name="header">
+                    <h:commandButton value="#{text.loginButton}" action="#{sessionUser.logMeIn}" />
+                </f:facet>
+            </h:column>
+        </h:dataTable>
+
+
+
+
     </ui:define>
 
 </ui:composition>
