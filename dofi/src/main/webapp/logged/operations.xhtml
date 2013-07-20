@@ -80,7 +80,12 @@
                     </h:panelGroup>
                 </f:facet>
             </h:dataTable>
-            <h:commandButton value="Dodaj wiersz" action="#{operations.addEmpty()}" />
+            <h:commandButton class="button" value="Dodaj wiersz" action="#{operations.addEmpty()}" />
+            
+<!--          Przycisk "(Dodaj wiersz)Zapisz" działa jaki Dodaj wiersz ale ma działać jako Zapisz na dzień 20/07/2013 godz: 17-33 nie
+          potrafię tego inaczej napisać. P.s. mam nadzieje że mi to wybaczysz jak tylko to poprawie na poprawnie działający guzik.-->
+            
+            <h:commandButton class="button" value="(Dodaj wiersz)Zapisz" action="#{operations.addEmpty()}" />
         </h:form>
     </ui:define>
 

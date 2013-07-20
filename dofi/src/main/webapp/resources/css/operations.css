@@ -15,3 +15,8 @@
     text-decoration-color: #D20005;
     column-gap: calc;
 }
+.button{
+    
+   margin: 36px;
+   margin-left: -365px;
+}

@@ -22,15 +22,12 @@ public class FinancialPlans implements Serializable {
     /**
      * @return the list
      */
-    public ArrayList<FinancialPlan> getList() {
-        return list;
-    }
-
-    /**
-     * @param list the list to set
-     */
+    
     public void setList(ArrayList<FinancialPlan> list) {
         this.list = list;
+        
+    }public ArrayList<FinancialPlan> getList() {
+        return list;
     }
 
     public FinancialPlans() {
