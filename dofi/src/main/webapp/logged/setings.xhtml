@@ -1,57 +1,61 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<html>
+<head>
+<!--<ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/mainTemplate.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core" 
-
-    <ui:define name="title">
-        #{pageTitles.setings}
-    </ui:define>
-
-     <ui:define name="content">
-        <h:form>
-            <h:dataTable class="savingTable" value="#{savings.list}" var="saving">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Mamy:" />
-                    </f:facet>
-                    <h:inputText value="#{saving.weHave}">
-                    </h:inputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Zbieramy na:" />
-                    </f:facet>
-                    <h:inputText value="#{saving.collectThe}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Brakuje nam:" />
-                    </f:facet>
-                    <h:inputText value="#{saving.missingOutOn}">
-                    </h:inputText> 
-                </h:column>
-                 <h:column>
-                    <f:facet name="header"> 
-                        <h:outputText value="Usuń" />
-                    </f:facet>
-                    <h:commandButton value="Usuń wiersz" action="#{savings.delete(saving)}" />
-                </h:column>
-                <f:facet name="footer">
-                    <h:panelGroup class = "panelGroup">
-                        <h:inputText value="#{editedSaving.weHave}" />
-                        <h:inputText value="#{editedSaving.collectThe}" />
-                        <h:inputText value="#{editedSaving.missingOutOn}" />
-                        
-                    </h:panelGroup>
-                </f:facet>
-            </h:dataTable>
-            <h:commandButton class="button" value="Dodaj wiersz" action="#{savings.addEmpty()}" />
-             <h:commandButton class="button" value="(Dodaj wiersz) Zapisz" action="#{savings.addEmpty()}" />
-        </h:form>
-       
-    </ui:define>
-
-</ui:composition>
+                xmlns:f="http://java.sun.com/jsf/core" -->
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+<!--                >-->
+</head>
+    <!--    <ui:define name="title">
+            # {pageTitles.setings}
+        </ui:define>
+    
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable class="setingsTable" value="# {setings.list}" var="setings">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Zmiana hasła   " />
+                            </f:facet>
+                            <h:inputText value="# {setings.password}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Zmiana prawdziwego imienia   " />
+                            </f:facet>
+                            <h:inputText value="# {setings.realName}">
+                            </h:inputText> 
+                        </h:column>
+                        <h:column>    
+                            <f:facet name="header">
+                                <h:outputText value="Zmiana email" />
+                            </f:facet>
+                            <h:inputText value="# {setings.email}" />
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+    </ui:composition>-->
+    <head></head>
+    <body>
+    <table border="2" width="auto">
+        <tbody align="left">
+            <tr>
+                <td>Zmiana hasła</td>  <td>komórka2</td>  <td>komórka3</td>
+            </tr>
+            <tr>
+                <td>Zmiana prawdziwego imienia</td>  <td>komórka5</td>  <td>komórka6</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Zmiana email</td>  <td>komórka8</td>  <td>komórka9</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

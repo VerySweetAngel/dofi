@@ -1,13 +1,12 @@
 /* 
-    Document   : financialTable
-    Created on : 2013-07-17, 21:37:02
+    Document   : setingsTable
+    Created on : 2013-07-20, 18:00:42
     Author     : Marta
     Description:
         Purpose of the stylesheet follows.
 */
 
-.financialTable{
-    
+.setingsTable {
     border: medium double #045491;
     color: blue;
     font-stretch: expanded;

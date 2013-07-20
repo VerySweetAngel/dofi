@@ -17,7 +17,7 @@
             <h:dataTable class="opTable" value="#{operations.list}" var="operation">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Utworzona" />
+                        <h:outputText value="Utworzona   " />
                     </f:facet>
                     <h:outputText value="#{operation.created}">
                         <f:convertDateTime type="date"/>
@@ -25,13 +25,13 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Utworzył" />
+                        <h:outputText value="Utworzył   " />
                     </f:facet>
                     <h:inputText value="#{operation.creator}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Data zdarzenia" />
+                        <h:outputText value="Data zdarzenia   " />
                     </f:facet>
                     <h:inputText value="#{operation.happened}">
                         <f:convertDateTime type="date"/>
