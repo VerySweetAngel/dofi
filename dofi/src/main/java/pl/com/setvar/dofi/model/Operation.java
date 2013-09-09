@@ -1,29 +1,120 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import pl.com.setvar.dofi.dao.GenericDao;
 
 /**
- * operacja finansowa
- * @author tirpitz
+ * klasa operacji księgowej
+ * @author tirpitz-verus
  */
-public class Operation {
-    
-    private int id;
-    private Date created = new Date();
-    private Date happened = new Date();
-    private int creatorId;
-    private int operatorId;
-    private int productId;
-    private int value;
-    private List tags;
-    
-    public boolean anyDataEntered(){
-        boolean empty = true;
-        if(happened != null)
+public class Operation implements java.io.Serializable {
+
+     private int id;
+     private Date creationsDate;
+     private User operator;
+     private User creator;
+     private Tag category;
+     private int value;
+     private Set<Tag> tags = new HashSet<Tag>(0);
+
+    public Operation() {
     }
+
+    public Operation(int id, Date creationsDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
+       this.id = id;
+       this.creationsDate = creationsDate;
+       this.operator = operator;
+       this.creator = creator;
+       this.category = category;
+       this.value = value;
+       this.tags = tags;
+    }
+   
+    /**
+     * metoda sprawdza, czy wprowadzono jakieś dane, na podstawie wartości, operatora i kategorii
+     */
+    public boolean anyDataEntered(){
+        if(value != 0 & category != null & operator != null)
+            return true;
+        return false;
+    }
+    
+    /**
+     * natychmiastowy zapis do bazy danych
+     */
+    public void save(){
+        new GenericDao().saveOrUpdate(this);
+    }
+    
+    /**
+     * usunięcie operacji
+     */
+    public void delete(){
+        new GenericDao().delete(this);
+    }
+    
+    public int getId() {
+        return this.id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    public Date getCreationsDate() {
+        return this.creationsDate;
+    }
+    
+    public void setCreationsDate(Date creationsDate) {
+        this.creationsDate = creationsDate;
+    }
+    public User getOperator() {
+        return this.operator;
+    }
+    
+    public void setOperator(User operator) {
+        this.operator = operator;
+    }
+    public User getCreator() {
+        return this.creator;
+    }
+    
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+    public Tag getCategory() {
+        return this.category;
+    }
+    
+    public void setCategory(Tag category) {
+        this.category = category;
+    }
+    public int getValue() {
+        return this.value;
+    }
+    
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    /**
+     * @return the tags
+     */
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * @param tags the tags to set
+     */
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+
+
+
 }
+
+

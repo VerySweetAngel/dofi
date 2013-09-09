@@ -2,14 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 9, 2013 9:02:25 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class name="pl.com.setvar.dofi.model.Juxtaposition" schema="APP" table="JUXTAPOSITIONS">
+  <class name="pl.com.setvar.dofi.model.Taglink" schema="APP" table="TAGLINKS">
     <id name="id" type="int">
       <column name="ID"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="pl.com.setvar.dofi.model.Tag" column="TAG" not-null="true" />
-    <property name="name" type="string">
-      <column length="50" name="name" not-null="true" unique="true"/>
+    <property name="word" type="string">
+      <column length="50" name="WORD" not-null="true"/>
     </property>
+    <many-to-one class="pl.com.setvar.dofi.model.Tag" column="TAG" cascade="all" />
   </class>
 </hibernate-mapping>

@@ -10,8 +10,9 @@ import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
 
 /**
- *
+ * klasa bazowa dla DAO
  * @author tirpitz
+ * @todo przerobić na statyczny dostęp
  */
 public class GenericDao {
 
@@ -27,6 +28,11 @@ public class GenericDao {
     /** insert na końcu sesji */
     public void persist(final Object o) {
         getSession().persist(o);
+    }
+    
+    /** usunięcie obiektu */
+    public void delete(final Object o){
+        getSession().delete(o);
     }
     
     /** natychmiastowy update */

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import pl.com.setvar.dofi.dao.UserDao;
 import pl.com.setvar.dofi.model.Operation;
 import pl.com.setvar.dofi.model.User;
 
@@ -30,7 +29,7 @@ public class Operations implements Serializable {
     
     public void save(){
         for(Operation operation : operationsList){
-            if()
+            operation.save();
         }
     }
 
@@ -43,6 +42,7 @@ public class Operations implements Serializable {
 
     public void delete(Operation operation) {
         operationsList.remove(operation);
+        
     }
 
     public List<Operation> getList() {
