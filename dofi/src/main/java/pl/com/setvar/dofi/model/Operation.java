@@ -5,6 +5,7 @@
 package pl.com.setvar.dofi.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * operacja finansowa
@@ -13,16 +14,16 @@ import java.util.Date;
 public class Operation {
     
     private int id;
-    private Date created;
-    private Date happened;
-    private int userId;
+    private Date created = new Date();
+    private Date happened = new Date();
+    private int creatorId;
+    private int operatorId;
     private int productId;
-    private short volume;
     private int value;
-    private int tagGroupId;
-    private int vendorId;
+    private List tags;
     
     public boolean anyDataEntered(){
-        return ()
+        boolean empty = true;
+        if(happened != null)
     }
 }

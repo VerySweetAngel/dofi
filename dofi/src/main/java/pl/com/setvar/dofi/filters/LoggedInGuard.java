@@ -49,7 +49,6 @@ public class LoggedInGuard implements Filter {
             canContinueChain = sessionUser.isLoggerdIn();
         }
         DefaultLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
-//        return canContinueChain;
         return true;
     }
 }
