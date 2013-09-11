@@ -5,7 +5,7 @@
   <class name="pl.com.setvar.dofi.model.Juxtaposition" schema="APP" table="JUXTAPOSITIONS">
     <id name="id" type="int">
       <column name="ID"/>
-      <generator class="assigned"/>
+      <generator class="identity"/>
     </id>
     <many-to-one name="tag" class="pl.com.setvar.dofi.model.Tag" column="TAG" not-null="true" />
     <property name="name" type="string">

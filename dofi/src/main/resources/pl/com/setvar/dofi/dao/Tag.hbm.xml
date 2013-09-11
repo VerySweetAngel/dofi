@@ -5,7 +5,7 @@
   <class name="pl.com.setvar.dofi.model.Tag" schema="APP" table="TAGS">
     <id name="id" type="int">
       <column name="ID"/>
-      <generator class="assigned"/>
+      <generator class="identity"/>
     </id>
     <property name="tagname" type="string">
       <column length="50" name="TAGNAME" not-null="true" unique="true"/>

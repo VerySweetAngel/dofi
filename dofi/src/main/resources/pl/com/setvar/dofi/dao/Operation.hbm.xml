@@ -5,7 +5,7 @@
   <class name="pl.com.setvar.dofi.model.Operation" schema="APP" table="OPERATIONS">
     <id name="id" type="int">
       <column name="ID"/>
-      <generator class="assigned"/>
+      <generator class="identity"/>
     </id>
     <property name="creationDate" type="timestamp">
       <column length="29" name="CREATION_DATE" not-null="true" default="CURRENT_TIMESTAMP" />

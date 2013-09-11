@@ -5,7 +5,7 @@
   <class name="pl.com.setvar.dofi.model.Taglink" schema="APP" table="TAGLINKS">
     <id name="id" type="int">
       <column name="ID"/>
-      <generator class="assigned"/>
+      <generator class="identity"/>
     </id>
     <property name="word" type="string">
       <column length="50" name="WORD" not-null="true"/>

@@ -8,10 +8,14 @@ public class Tag  implements java.io.Serializable {
 
      private int id;
      private String tagname;
-     private boolean category;
+     private boolean category = false;
      private Tag parent;
 
     public Tag() {
+    }
+    
+    public Tag(String tagName) {
+        tagname = tagName;
     }
 	
     public Tag(int id, String tagname) {

@@ -5,7 +5,7 @@
   <class name="pl.com.setvar.dofi.model.OperationTag" schema="APP" table="OPERATION_TAGS">
     <id name="id" type="int">
       <column name="ID"/>
-      <generator class="assigned"/>
+      <generator class="identity"/>
     </id>
     <many-to-one name="tag" class="pl.com.setvar.dofi.model.Tag" not-null="true" cascade="all" column="TAG" />
     <many-to-one name="operation" class="pl.com.setvar.dofi.model.Operation" not-null="true" cascade="all" column="OPERATION" />
