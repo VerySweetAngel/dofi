@@ -42,7 +42,7 @@ public class Operations implements Serializable {
 
     public void delete(Operation operation) {
         operationsList.remove(operation);
-        
+        operation.delete();
     }
 
     public List<Operation> getList() {

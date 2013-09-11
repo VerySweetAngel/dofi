@@ -36,14 +36,14 @@ CREATE INDEX taglinks_word_index ON taglinks(word);
 -- tabela operacji i asocjacji z tagami
 CREATE TABLE operations(
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT operations_pk PRIMARY KEY,
-    creations_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     operator INTEGER NOT NULL,
     creator INTEGER NOT NULL,
     category INTEGER NOT NULL,
     "value" INTEGER NOT NULL,
     FOREIGN KEY (category) REFERENCES users(id)
 );
-CREATE INDEX operations_creations_date_index ON operations(creations_date);
+CREATE INDEX operations_creations_date_index ON operations(creation_date);
 CREATE INDEX operations_category_index ON operations(category);
 
 CREATE TABLE operation_tags(

@@ -10,6 +10,6 @@
     <property name="word" type="string">
       <column length="50" name="WORD" not-null="true"/>
     </property>
-    <many-to-one class="pl.com.setvar.dofi.model.Tag" column="TAG" cascade="all" />
+    <many-to-one name="tag" class="pl.com.setvar.dofi.model.Tag" column="TAG" cascade="all" />
   </class>
 </hibernate-mapping>

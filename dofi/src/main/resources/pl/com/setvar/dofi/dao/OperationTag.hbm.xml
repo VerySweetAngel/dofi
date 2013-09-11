@@ -7,7 +7,7 @@
       <column name="ID"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="pl.com.setvar.dofi.model.Tag" not-null="true" cascade="all" column="TAG" />
-    <many-to-one class="pl.com.setvar.dofi.model.Operation" not-null="true" cascade="all" column="OPERATION" />
+    <many-to-one name="tag" class="pl.com.setvar.dofi.model.Tag" not-null="true" cascade="all" column="TAG" />
+    <many-to-one name="operation" class="pl.com.setvar.dofi.model.Operation" not-null="true" cascade="all" column="OPERATION" />
   </class>
 </hibernate-mapping>

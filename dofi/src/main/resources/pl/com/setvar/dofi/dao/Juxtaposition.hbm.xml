@@ -7,7 +7,7 @@
       <column name="ID"/>
       <generator class="assigned"/>
     </id>
-    <many-to-one class="pl.com.setvar.dofi.model.Tag" column="TAG" not-null="true" />
+    <many-to-one name="tag" class="pl.com.setvar.dofi.model.Tag" column="TAG" not-null="true" />
     <property name="name" type="string">
       <column length="50" name="name" not-null="true" unique="true"/>
     </property>

@@ -13,6 +13,6 @@
     <property name="category" type="boolean" >
       <column name="CATEGORY" default="false" />
     </property>
-    <many-to-one name="parent" class="pl.com.setvar.dofi.model.Tag" column="PARENT" cascade="all" lazy="true" />
+    <many-to-one name="parent" class="pl.com.setvar.dofi.model.Tag" column="PARENT" cascade="all" />
   </class>
 </hibernate-mapping>

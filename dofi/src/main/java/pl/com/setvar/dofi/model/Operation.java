@@ -12,7 +12,7 @@ import pl.com.setvar.dofi.dao.GenericDao;
 public class Operation implements java.io.Serializable {
 
      private int id;
-     private Date creationsDate;
+     private Date creationDate;
      private User operator;
      private User creator;
      private Tag category;
@@ -22,9 +22,9 @@ public class Operation implements java.io.Serializable {
     public Operation() {
     }
 
-    public Operation(int id, Date creationsDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
+    public Operation(int id, Date creationDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
        this.id = id;
-       this.creationsDate = creationsDate;
+       this.creationDate = creationDate;
        this.operator = operator;
        this.creator = creator;
        this.category = category;
@@ -62,12 +62,12 @@ public class Operation implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Date getCreationsDate() {
-        return this.creationsDate;
+    public Date getCreationDate() {
+        return this.creationDate;
     }
     
-    public void setCreationsDate(Date creationsDate) {
-        this.creationsDate = creationsDate;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
     public User getOperator() {
         return this.operator;
