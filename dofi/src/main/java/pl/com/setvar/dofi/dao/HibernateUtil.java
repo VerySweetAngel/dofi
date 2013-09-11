@@ -1,10 +1,5 @@
 package pl.com.setvar.dofi.dao;
 
-import java.io.IOException;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -65,21 +60,6 @@ public class HibernateUtil {
             DefaultLogger.HIBERNATE.fatal("HibernateUtil.createFactory cannot build session factory", ex);
             throw new ExceptionInInitializerError(ex);
         }
-    }
-
-    /** funkcja służy do właczenia w filtr - każde rządanie będzie otoczone sesją i transakcją */
-    public static void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter filtering request");
-        HibernateUtil hibernateUtil = new HibernateUtil();
-        try {
-            hibernateUtil.beginTransaction();
-            chain.doFilter(request, response);
-            hibernateUtil.commitTransaction();
-        } catch (Throwable ex) {
-            DefaultLogger.HIBERNATE.error("HibernateUtil.doFilter session error", ex);
-            hibernateUtil.rollbackTransaction();
-        }
-        DefaultLogger.HIBERNATE.debug("HibernateUtil.doFilter request filtered");
     }
 
     /** funckaj zamyka sesję */
