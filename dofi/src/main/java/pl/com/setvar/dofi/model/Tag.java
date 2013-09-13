@@ -29,6 +29,8 @@ public class Tag  implements java.io.Serializable {
        this.parent = parent;
     }
    
+    
+    
     public int getId() {
         return this.id;
     }
@@ -57,10 +59,6 @@ public class Tag  implements java.io.Serializable {
     public void setParent(Tag parent) {
         this.parent = parent;
     }
-
-
-
-
 }
 
 
