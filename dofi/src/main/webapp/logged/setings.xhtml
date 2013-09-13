@@ -1,61 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-<!--<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/mainTemplate.xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core" -->
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-<!--                >-->
-</head>
-    <!--    <ui:define name="title">
-            # {pageTitles.setings}
-        </ui:define>
-    
-            <ui:define name="content">
-                <h:form>
-                    <h:dataTable class="setingsTable" value="# {setings.list}" var="setings">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Zmiana hasła   " />
-                            </f:facet>
-                            <h:inputText value="# {setings.password}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Zmiana prawdziwego imienia   " />
-                            </f:facet>
-                            <h:inputText value="# {setings.realName}">
-                            </h:inputText> 
-                        </h:column>
-                        <h:column>    
-                            <f:facet name="header">
-                                <h:outputText value="Zmiana email" />
-                            </f:facet>
-                            <h:inputText value="# {setings.email}" />
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-            </ui:define>
-    </ui:composition>-->
-    <head></head>
-    <body>
-    <table border="2" width="auto">
-        <tbody align="left">
-            <tr>
-                <td>Zmiana hasła</td>  <td>komórka2</td>  <td>komórka3</td>
-            </tr>
-            <tr>
-                <td>Zmiana prawdziwego imienia</td>  <td>komórka5</td>  <td>komórka6</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td>Zmiana email</td>  <td>komórka8</td>  <td>komórka9</td>
-            </tr>
-        </tbody>
-    </table>
-</body>
-</html>
+<composition xmlns="http://www.w3.org/1999/xhtml"
+             template="/mainTemplate.xhtml"
+             >
+
+    <!--                    <td>Zmiana hasła</td>  <td>stare hasło</td>  <td>nowe hasło</td>
+                    
+                        <td>Zmiana prawdziwego imienia</td>  <td>stare imię</td>  <td>nowe imię</td>
+           
+                        <td>Zmiana email</td>  <td>stary email</td>  <td>nowy email</td>-->
+
+    <define name="title">
+        #{pageTitles.setings}
+    </define>
+    <define name="content">
+        <form>
+            <table class="setingsTable" value="setings" var="setings">
+            <column>
+                <facet name="header">
+                    <outputText value="Zmiana hasła:" />
+                </facet>
+            </column>
+            <column>
+                <facet name="header">
+                    <outputText value="Zmiana emaila" />
+                </facet>
+            </column>
+            <column>
+                <facet name="header">
+                    <outputText value="Zmiana imienia" />
+                </facet>
+            </column>
+<!--            <facet name="footer">
+                <panelGroup class = "panelGroup">
+                    <inputText value="hasz{editedSaving.zmianaHasla}" />
+                    <inputText value="{editedSaving.zmianaEmail}" />
+                    <inputText value="{editedSaving.zmianaImienia}" />
+               </panelGroup>
+            </facet>-->
+            </table>
+
+            <!--            Przycisk Zapisz działa jak Dodaj wiersz-->
+
+            <commandButton class="button" value="Dodaj wiersz" action="#{savings.addEmpty()}" />
+            <commandButton class="button" value="(Dodaj wiersz) Zapisz" action="#{savings.addEmpty()}" />
+        </form>
+    </define>
+</composition>
