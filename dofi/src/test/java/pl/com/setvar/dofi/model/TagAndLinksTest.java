@@ -27,4 +27,8 @@ public class TagAndLinksTest extends BaseTestWithHibernate{
         List<Tag> result = tagDao.findAvaibleTags("jag");
         assertTrue((result.size() == 2), "powinny być tylko dwa takie tagi a było " + result.size());
     }
+    
+    @Test
+    public void findTagsByLinks(){
+    }
 }

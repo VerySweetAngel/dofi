@@ -18,6 +18,7 @@ public class Operation implements java.io.Serializable {
      private Tag category;
      private int value;
      private Set<Tag> tags = new HashSet<Tag>(0);
+     private GenericDao dao = new GenericDao();
 
     public Operation() {
     }
@@ -45,14 +46,14 @@ public class Operation implements java.io.Serializable {
      * natychmiastowy zapis do bazy danych
      */
     public void save(){
-        new GenericDao().saveOrUpdate(this);
+        dao.saveOrUpdate(this);
     }
     
     /**
      * usunięcie operacji
      */
     public void delete(){
-        new GenericDao().delete(this);
+        dao.delete(this);
     }
     
     public int getId() {
