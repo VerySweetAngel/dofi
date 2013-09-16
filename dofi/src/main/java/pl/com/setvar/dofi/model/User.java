@@ -125,4 +125,8 @@ public class User implements Serializable {
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+    public static User findByLogin(String login) {
+        UserDao userDao = new UserDao();
+        return userDao.findByLogin(login);
+}
 }

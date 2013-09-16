@@ -17,53 +17,43 @@
             <h:dataTable class="opTable" value="#{operations.list}" var="operation">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Utworzona" />
-                    </f:facet>
-                    <h:outputText value="#{operation.created}">
-                        <f:convertDateTime type="date"/>
-                    </h:outputText>
-                    <f:facet name="footer">
-                        <h:commandButton value="Zapisz zmiany" action="#{operations.save()}" />
-                    </f:facet>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Utworzył" />
-                    </f:facet>
-                    <h:inputText value="#{operation.creator}" />
-                    <f:facet name="footer">
-                        <h:inputText value="#{editedOperation.creator}" />
-                    </f:facet>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
                         <h:outputText value="Data zdarzenia" />
                     </f:facet>
-                    <h:inputText value="#{operation.happened}">
-                        <f:convertDateTime type="date"/>
+                    <h:inputText value="#{operation.creationDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
                     </h:inputText>
-                    <f:facet name="footer">
-                        <h:inputText value="#{editedOperation.happened}">
-                            <f:convertDateTime type="date"/>
-                        </h:inputText>
+                    <f:facet name="creationDate">
+<!--                        <h:inputText value="#{editedOperation.creationDate}">
+                            <f:convertDateTime type="footer"/>
+                        </h:inputText>-->
                     </f:facet>
                 </h:column>
                 <h:column>    
                     <f:facet name="header">
-                        <h:outputText value="Produkt" />
+                        <h:outputText value="Wpisała" />
                     </f:facet>
-                    <h:inputText value="#{operation.product}" />
+                    <h:inputText value="#{operation.creator}" />
                     <f:facet name="footer">
-                        <h:inputText value="#{editedOperation.product}" />
+                        <!--<h:inputText value="#{editedOperation.creator}" />-->
                     </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Ilość" />
+                        <h:outputText value="Kontrahent" />
                     </f:facet>
-                    <h:inputText value="#{operation.volume}" />
+                    <h:inputText value="#{operation.operator}" >
+                    </h:inputText>
                     <f:facet name="footer">
-                        <h:inputText value="#{editedOperation.volume}" />
+                        <!--<h:inputText value="#{editedOperation.operator}" />-->
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Kategoria" />
+                    </f:facet>
+                    <h:inputText value="#{operation.category}" />
+                    <f:facet name="footer">
+                        <!--<h:inputText value="#{editedOperation.category}" />-->
                     </f:facet>
                 </h:column>
                 <h:column>
@@ -72,16 +62,18 @@
                     </f:facet>
                     <h:inputText value="#{operation.value}" />
                     <f:facet name="footer">
-                        <h:inputText value="#{editedOperation.value}" />
+                        <!--<h:inputText value="#{editedOperation.value}" />-->
                     </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Tagi" />
                     </f:facet>
-                    <h:inputText value="#{operation.tagi}" />
+                    <h:inputText value="#{operation.tags}">
+                        <f:converter converterId="TagSetConverter" />
+                    </h:inputText>
                     <f:facet name="footer">
-                        <h:inputText value="#{editedOperation.tagi}" />
+                        <!--<h:inputText value="#{editedOperation.tags}" />-->
                     </f:facet>
                 </h:column>
                 <h:column>
