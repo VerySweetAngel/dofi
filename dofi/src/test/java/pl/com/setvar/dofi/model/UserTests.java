@@ -32,7 +32,7 @@ public class UserTests extends BaseTestWithHibernate {
             if(!admin & login.equals("tester"))
                 testerPresent = true;
         }
-        assertTrue(adminPresent, "brak użytkownika aadmin");
+        assertTrue(adminPresent, "brak użytkownika admin");
         assertTrue(testerPresent, "brak użytkownika tester");
     }
 

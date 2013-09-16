@@ -4,7 +4,12 @@
  */
 package pl.com.setvar.dofi.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import pl.com.setvar.dofi.model.Tag;
 
 /**
@@ -35,5 +40,21 @@ public class TagDao extends GenericDao {
                 .setString("criteria", "%" + criteria + "%")
                 .setBoolean("category", category)
                 .list();
+    }
+
+    public Tag findByTagname(String tagname) {
+        return (Tag) getSession().createQuery("FROM Tag t WHERE t.tagname = :tagname")
+                .setString("tagname", tagname)
+                .uniqueResult();
+    }
+
+    public Set<Tag> getSetByTagnames(String tagnames) {
+        StringTokenizer st = new StringTokenizer(tagnames);
+        Criteria criteria = getSession().createCriteria(Tag.class);
+        while (st.hasMoreTokens()){
+            String tagname  = st.nextToken();
+            criteria.add(Restrictions.eq("tagname", tagname));
+        }
+        return new HashSet(criteria.list());
     }
 }

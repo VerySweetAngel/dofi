@@ -19,4 +19,9 @@ public class UserDao extends GenericDao {
                 .setString("password", password)
                 .uniqueResult();
     }
+    public User findByLogin(String login) {
+        return (User) getSession().createQuery("FROM User t WHERE t.login = :login")
+                .setString("login", login)
+                .uniqueResult();
+}
 }
