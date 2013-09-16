@@ -12,5 +12,10 @@
     <property name="show_sql">true</property>
     <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
     <mapping resource="pl/com/setvar/dofi/dao/User.hbm.xml"/>
+    <mapping resource="pl/com/setvar/dofi/dao/OperationTag.hbm.xml"/>
+    <mapping resource="pl/com/setvar/dofi/dao/Operation.hbm.xml"/>
+    <mapping resource="pl/com/setvar/dofi/dao/Tag.hbm.xml"/>
+    <mapping resource="pl/com/setvar/dofi/dao/Juxtaposition.hbm.xml"/>
+    <mapping resource="pl/com/setvar/dofi/dao/Taglink.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -5,12 +5,14 @@
 package pl.com.setvar.dofi.dao;
 
 import java.io.Serializable;
+import java.util.List;
 import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
 
 /**
- *
+ * klasa bazowa dla DAO
  * @author tirpitz
+ * @todo przerobić na statyczny dostęp
  */
 public class GenericDao {
 
@@ -26,6 +28,11 @@ public class GenericDao {
     /** insert na końcu sesji */
     public void persist(final Object o) {
         getSession().persist(o);
+    }
+    
+    /** usunięcie obiektu */
+    public void delete(final Object o){
+        getSession().delete(o);
     }
     
     /** natychmiastowy update */
@@ -54,5 +61,10 @@ public class GenericDao {
     
     public <T> T load(Class<T> klass, Serializable id){
         return (T) getSession().load(klass, id);
+    }
+    
+    /** zwraca listę wszytkioch */
+    public <T> List<T> findAll(Class<T> klass){
+        return getSession().createQuery(String.format("FROM %s", klass.getSimpleName())).list();
     }
 }

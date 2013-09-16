@@ -1,49 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<composition xmlns="http://www.w3.org/1999/xhtml"
-             template="/mainTemplate.xhtml"
-             >
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/mainTemplate.xhtml">
 
-    <!--                    <td>Zmiana hasła</td>  <td>stare hasło</td>  <td>nowe hasło</td>
-                    
-                        <td>Zmiana prawdziwego imienia</td>  <td>stare imię</td>  <td>nowe imię</td>
-           
-                        <td>Zmiana email</td>  <td>stary email</td>  <td>nowy email</td>-->
-
-    <define name="title">
+    <ui:define name="title">
         #{pageTitles.setings}
-    </define>
-    <define name="content">
-        <form>
-            <table class="setingsTable" value="setings" var="setings">
-            <column>
-                <facet name="header">
-                    <outputText value="Zmiana hasła:" />
-                </facet>
-            </column>
-            <column>
-                <facet name="header">
-                    <outputText value="Zmiana emaila" />
-                </facet>
-            </column>
-            <column>
-                <facet name="header">
-                    <outputText value="Zmiana imienia" />
-                </facet>
-            </column>
-<!--            <facet name="footer">
-                <panelGroup class = "panelGroup">
-                    <inputText value="hasz{editedSaving.zmianaHasla}" />
-                    <inputText value="{editedSaving.zmianaEmail}" />
-                    <inputText value="{editedSaving.zmianaImienia}" />
-               </panelGroup>
-            </facet>-->
-            </table>
+    </ui:define>
 
-            <!--            Przycisk Zapisz działa jak Dodaj wiersz-->
+    <ui:define name="content">
+        content
+    </ui:define>
 
-            <commandButton class="button" value="Dodaj wiersz" action="#{savings.addEmpty()}" />
-            <commandButton class="button" value="(Dodaj wiersz) Zapisz" action="#{savings.addEmpty()}" />
-        </form>
-    </define>
-</composition>
+</ui:composition>

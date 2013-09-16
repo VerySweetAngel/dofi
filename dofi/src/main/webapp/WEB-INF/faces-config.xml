@@ -19,4 +19,28 @@
             <var>global</var>
         </resource-bundle>
     </application>
+    <converter>
+        <converter-for-class>
+            pl.com.setvar.dofi.model.User
+        </converter-for-class>
+        <converter-class>
+            pl.com.setvar.dofi.converters.UserConverter
+        </converter-class>
+    </converter>
+    <converter>
+        <converter-for-class>
+            pl.com.setvar.dofi.model.Tag
+        </converter-for-class>
+        <converter-class>
+            pl.com.setvar.dofi.converters.TagConverter
+        </converter-class>
+    </converter>
+    <converter>
+        <converter-class>
+            pl.com.setvar.dofi.converters.TagSetConverter
+        </converter-class>
+        <converter-id>
+            TagSetConverter
+        </converter-id>
+    </converter>
 </faces-config>
