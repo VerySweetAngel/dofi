@@ -28,7 +28,7 @@ public class Tag implements java.io.Serializable {
         if (category == null) {
             category = new Tag(tagname);
             category.setCategory(true);
-            tagDao.persist(category);
+            tagDao.save(category);
         }
         return category;
     }

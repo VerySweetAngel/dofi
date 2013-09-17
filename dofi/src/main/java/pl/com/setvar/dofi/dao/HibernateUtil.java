@@ -26,6 +26,7 @@ public class HibernateUtil {
     public void commitTransaction(){
         transaction.commit();
         DefaultLogger.HIBERNATE.debug("HibernateUtil.commitTransaction transaction commited");
+        System.out.println("HibernateUtil.commitTransaction transaction commited");
     }
     
     /** metoda cofa transakcję, jeżeli ta istnieje */

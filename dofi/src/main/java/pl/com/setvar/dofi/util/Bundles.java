@@ -8,7 +8,8 @@ public enum Bundles {
 
     /** teksty dla strony index */
     I18N_INDEX("I18N/index"), 
-    I18N_SETTINGS("I18N/settings");
+    I18N_SETTINGS("I18N/settings"), 
+    I18N_OPERATIONS("I18N/operations");
     
     /** ścieżka do pliku */
     private String path;

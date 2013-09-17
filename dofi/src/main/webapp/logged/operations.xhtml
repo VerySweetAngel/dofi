@@ -49,6 +49,7 @@
                         </f:facet>
                         <h:inputText required="true" requiredMessage="#{text.noCategoryEntered}" value="#{operation.category}" >
                             <f:converter converterId="CategoryTagConverter" />
+                            <f:validateLength minimum="2" maximum="50" />
                         </h:inputText>
                         <f:facet name="footer">
                         </f:facet>
