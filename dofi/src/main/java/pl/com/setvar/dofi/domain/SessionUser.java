@@ -21,6 +21,7 @@ public final class SessionUser implements Serializable {
     private String password = "";
     private boolean loggerdIn = false;
     private boolean admin = false;
+    private User loggedInUser;
 
     public SessionUser() {
     }
@@ -39,9 +40,9 @@ public final class SessionUser implements Serializable {
     }
 
     private void tryToLogUser() {
-        User user = new User(login, password);
-        setLoggerdIn(user.loadIfExistsByCredentials());
-        admin = user.isIsAdmin();
+        loggedInUser = new User(login, password);
+        setLoggerdIn(loggedInUser.loadIfExistsByCredentials());
+        admin = loggedInUser.isIsAdmin();
         password = "";
     }
     
@@ -100,5 +101,10 @@ public final class SessionUser implements Serializable {
      */
     public void setLoggerdIn(boolean loggerdIn) {
         this.loggerdIn = loggerdIn;
+    }
+    
+    /** @param loggedInUser zalogowany user lub null */
+    public User getLoggedInUser(){
+        return loggedInUser;
     }
 }
