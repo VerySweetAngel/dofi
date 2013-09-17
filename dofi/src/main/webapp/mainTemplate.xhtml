@@ -14,18 +14,20 @@
         <link href="#{resource['css:financialTable.css']}" rel="stylesheet" type="text/css" />
         <link href="#{resource['css:indexTable.css']}" rel="stylesheet" type="text/css" />
         <link href="#{resource['css:savingTable.css']}" rel="stylesheet" type="text/css" />
-         <link href="#{resource['css:setingsTable.css']}" rel="stylesheet" type="text/css" />
-       <link type="image/x-icon" href="#{resource['img:logo_dofi.jpg']}" rel="shortcut icon"/>
-       
+        <link href="#{resource['css:setingsTable.css']}" rel="stylesheet" type="text/css" />
+        <link type="image/x-icon" href="#{resource['img:logo_dofi.jpg']}" rel="shortcut icon"/>
+
         <title>#{global.dofi} - <ui:insert name="title" /></title>
     </h:head>
 
     <h:body>
         <div id="top" class="top">
-            <img src="#{resource['img:logo_dofi.jpg']}" alt="Tu podaj tekst alternatywny" />
+            <img src="#{resource['img:logo_dofi.jpg']}" alt="#{global.mainLogoAltText}" />
             <span>
                 #{global.applicationTitle} - <ui:insert name="title" />
             </span>
+            <br />
+            <span>#{global.version} : #{buildNumber.buildNumber0}</span>
             <br />
         </div>
         <div>

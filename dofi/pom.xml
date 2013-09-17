@@ -156,7 +156,7 @@
                     <items>
                         <item>buildNumber0</item>
                     </items>
-                    <buildNumberPropertiesFileLocation>${basedir}/buildNumber.properties</buildNumberPropertiesFileLocation>
+                    <buildNumberPropertiesFileLocation>${basedir}/src/main/resources/buildNumber.properties</buildNumberPropertiesFileLocation>
                     <revisionOnScmFailure>${buildNumber}</revisionOnScmFailure>
                 </configuration>
             </plugin>
