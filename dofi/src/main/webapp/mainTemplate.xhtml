@@ -50,10 +50,13 @@
             <div id="content" class="right_content">
                 <h:messages showSummary="true" 
                             showDetail="true"
-                            globalOnly="true"
+                            globalOnly="false"
                             tooltip="true"
-                            infoStyle="color:blue; text - align: right;"
-                            errorStyle="color:red; text - align: right;"/>
+                            infoStyle="color:blue; text-align: right;"
+                            errorStyle="color:red; text-align: right;"
+                            layout="list"
+                            fatalStyle="color:red; text-align: right; font-weight:bold;"
+                            warnStyle="color:orange; text-align: right;"/>
                 <br />
                 <h1><ui:insert name="title" /></h1>
                 <ui:insert name="content" />

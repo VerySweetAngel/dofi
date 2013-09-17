@@ -57,4 +57,10 @@ public class TagDao extends GenericDao {
         }
         return new HashSet(criteria.list());
     }
+
+    public Tag findCategoryByTagname(String tagname) {
+        return (Tag) getSession().createQuery("FROM Tag t WHERE t.tagname = :tagname AND t.category = true")
+                .setString("tagname", tagname)
+                .uniqueResult();
+    }
 }

@@ -3,9 +3,9 @@
 <!-- =========== FULL CONFIGURATION FILE ================================== -->
 
 <faces-config version="2.0"
-    xmlns="http://java.sun.com/xml/ns/javaee" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
     <application>
         <locale-config>
             <default-locale>pl</default-locale>
@@ -14,7 +14,7 @@
             <base-name>I18N.pageTitles</base-name>
             <var>pageTitles</var>
         </resource-bundle>
-                <resource-bundle>
+        <resource-bundle>
             <base-name>I18N.global</base-name>
             <var>global</var>
         </resource-bundle>
@@ -41,6 +41,14 @@
         </converter-class>
         <converter-id>
             TagSetConverter
+        </converter-id>
+    </converter>
+    <converter>
+        <converter-class>
+            pl.com.setvar.dofi.converters.CategoryTagConverter
+        </converter-class>
+        <converter-id>
+            CategoryTagConverter
         </converter-id>
     </converter>
 </faces-config>

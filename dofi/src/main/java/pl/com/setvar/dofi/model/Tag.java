@@ -17,8 +17,22 @@ public class Tag implements java.io.Serializable {
 
     public static Set<Tag> getSetByTagnames(String tagname) {
         TagDao tagDao = new TagDao();
-        return tagDao.getSetByTagnames (tagname);
+        return tagDao.getSetByTagnames(tagname);
     }
+
+    public static Tag findBysCategoryTagname(String tagname) {
+        TagDao tagDao;
+        tagDao = new TagDao();
+        Tag category;
+        category = tagDao.findCategoryByTagname(tagname);
+        if (category == null) {
+            category = new Tag(tagname);
+            category.setCategory(true);
+            tagDao.persist(category);
+        }
+        return category;
+    }
+    
     private int id;
     private String tagname;
     private boolean category = false;
