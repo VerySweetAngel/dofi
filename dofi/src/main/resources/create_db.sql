@@ -40,7 +40,7 @@ CREATE TABLE operations(
     operator INTEGER NOT NULL,
     creator INTEGER NOT NULL,
     category INTEGER NOT NULL,
-    "value" INTEGER NOT NULL,
+    value INTEGER NOT NULL,
     FOREIGN KEY (category) REFERENCES users(id)
 );
 CREATE INDEX operations_creations_date_index ON operations(creation_date);
@@ -49,16 +49,16 @@ CREATE INDEX operations_category_index ON operations(category);
 CREATE TABLE operation_tags(
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT operation_tags_pk PRIMARY KEY,
     tag INTEGER NOT NULL,
-    "operation" INTEGER NOT NULL,
+    operation INTEGER NOT NULL,
     FOREIGN KEY (tag) REFERENCES tags(id),
-    FOREIGN KEY ("operation") REFERENCES operations(id)
+    FOREIGN KEY (operation) REFERENCES operations(id)
 );
 
 -- tabela zestawień
 CREATE TABLE juxtapositions(
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT juxtapositions_pk PRIMARY KEY,
     tag INTEGER NOT NULL,
-    "name" VARCHAR(50) NOT NULL CONSTRAINT juxtapositions_unique_name UNIQUE,
+    name VARCHAR(50) NOT NULL CONSTRAINT juxtapositions_unique_name UNIQUE,
     FOREIGN KEY (tag) REFERENCES tags(id)
 );
-CREATE INDEX juxtapositions_name_index ON juxtapositions("name");
+CREATE INDEX juxtapositions_name_index ON juxtapositions(name);
