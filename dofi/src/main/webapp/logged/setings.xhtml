@@ -6,13 +6,55 @@
                 xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:define name="title">
-        #{pageTitles.setings}
+        #{pageTitles.settings}
     </ui:define>
 
     <ui:define name="content">
         <f:loadBundle basename="I18N.settings" var="text" />
-        <h:form>
+        <h2>#{text.userSettingsTitle}</h2>
+        <h:form id="userSettingsForm">
+            <table style="margin: auto;">
+                <tr>
+                    <td>#{text.realName}</td>
+                    <td><h:inputText id="realName" required="true" requiredMessage="#{text.noRealNameEntered}" value="#{sessionUser.loggedInUser.realName}" /></td>
+                    <td><h:message class="formErrorMessage" for="userSettingsForm:realName" /></td>
+                </tr>
+                <tr>
+                    <td>#{text.email}</td>
+                    <td><h:inputText id="email" required="true" requiredMessage="#{text.noEmailEntered}" value="#{sessionUser.loggedInUser.email}" /></td>
+                    <td><h:message class="formErrorMessage" for="userSettingsForm:email" /></td>
+                </tr>
+                <tr>
+                    <td>#{text.password}</td>
+                    <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" /></td>
+                    <td><h:message class="formErrorMessage" for="loginForm:password" /></td>
+                </tr>
+                <tr>
+                    <td>#{text.newPassword}</td>
+                    <td><h:inputSecret id="newPassword" required="true" requiredMessage="#{text.noNewPasswordEntered}" value="#{settings.newPassword}" /></td>
+                    <td><h:message class="formErrorMessage" for="loginForm:newPassword" /></td>
+                </tr>
+               <tr>
+                    <td>#{text.repeatedPassword}</td>
+                    <td><h:inputSecret id="repeatedPassword" required="true" requiredMessage="#{text.noNewPasswordEntered}" value="#{settings.repeatedPassword}" /></td>
+                    <td><h:message class="formErrorMessage" for="repeatedPassword" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><h:commandButton value="#{text.save}" action="#{settings.saveUserSettings()}" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </h:form>
+        <br />
+        <h2>#{text.categoriesSettingsTitle}</h2>
+        <h:form id="categoriesSettingsForm">
             
+        </h:form>
+        <br />
+        <h2>#{text.tagsSettingsTitle}</h2>
+        <h:form id="userSettingsForm">
+
         </h:form>
     </ui:define>
 

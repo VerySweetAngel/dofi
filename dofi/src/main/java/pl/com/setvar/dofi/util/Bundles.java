@@ -7,7 +7,8 @@ package pl.com.setvar.dofi.util;
 public enum Bundles {
 
     /** teksty dla strony index */
-    I18N_INDEX("I18N/index");
+    I18N_INDEX("I18N/index"), 
+    I18N_SETTINGS("I18N/settings");
     
     /** ścieżka do pliku */
     private String path;

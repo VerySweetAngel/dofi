@@ -39,7 +39,7 @@
                         <h:commandButton class="option" value="#{pageTitles.juxtaposition}" action="/logged/juxtaposition" />
                         <h:commandButton class="option" value="#{pageTitles.financial_plan}" action="/logged/financial_plan" />
                         <h:commandButton class="option" value="#{pageTitles.savings}" action="/logged/savings" />
-                        <h:commandButton class="option" value="#{pageTitles.setings}" action="/logged/setings" />
+                        <h:commandButton class="option" value="#{pageTitles.settings}" action="/logged/setings" />
                         <c:if test="#{sessionUser.admin}">
                             <h:commandButton class="option" value="#{pageTitles.administration}" action="/admin/administration" />
                         </c:if>
@@ -55,6 +55,7 @@
                             infoStyle="color:blue; text - align: right;"
                             errorStyle="color:red; text - align: right;"/>
                 <br />
+                <h1><ui:insert name="title" /></h1>
                 <ui:insert name="content" />
             </div>
         </div>
