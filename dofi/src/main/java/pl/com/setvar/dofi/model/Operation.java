@@ -45,9 +45,7 @@ public class Operation implements java.io.Serializable {
      * natychmiastowy zapis do bazy danych
      */
     public void save(){
-        System.out.println(String.format("operation save id: %d; cat: %s; tags: %s", id, getCategory().toString(), getTags().toString()));
-        new GenericDao().saveOrUpdate(this);
-        System.out.println(String.format("operation saved id: %d; cat: %s; tags: %s", id, getCategory().toString(), getTags().toString()));
+        new GenericDao().replicate(this);
     }
     
     /**

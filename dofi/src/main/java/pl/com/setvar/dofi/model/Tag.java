@@ -92,8 +92,21 @@ public class Tag implements java.io.Serializable {
     
     @Override
     public String toString(){
-        String par = (getParent() != null ? "," + getParent().getTagname() : "");
+        String par = (getParent() != null ? String.format(",%s", getParent().getTagname()) : "");
         String cat = (isCategory() ? ",cat" : "");
         return String.format("%s[%d %s %s]", getTagname(), (Integer) getId(), cat, par);
+    }
+
+    /** metoda zapisuje obiekt na koniec sesji */
+    public void save() {
+        new TagDao().replicate(this);
+    }
+
+    /** metoda usówa obiekt */
+    public void delete() {
+        // TODO przy usówaniu kategorii, nie można usunąc tych kategorii, które mają jakies operacje
+        // TODO jeżeli usówamy zwykły tag, to trzeba też usunąć jego powiązania z operacjami
+        // TODO trzeba kaskadowo usówać linki ze łowami
+        new TagDao().delete(this);
     }
 }

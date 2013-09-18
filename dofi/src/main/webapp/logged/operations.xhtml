@@ -23,16 +23,12 @@
                     <h:inputText value="#{operation.creationDate}">
                         <f:convertDateTime pattern="yyyy-MM-dd"/>
                     </h:inputText>
-                    <f:facet name="#{text.creationDate}">      
-                    </f:facet>
                 </h:column>
                 <h:column>    
                     <f:facet name="header">
                         <h:outputText value="#{text.creator}" />
                     </f:facet>
                     <h:inputText value="#{operation.creator}" />
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -40,8 +36,6 @@
                     </f:facet>
                     <h:inputText value="#{operation.operator}" >
                     </h:inputText>
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -51,16 +45,12 @@
                         <f:converter converterId="CategoryTagConverter" />
                         <f:validateLength minimum="2" maximum="50" />
                     </h:inputText>
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{text.value}" />
                     </f:facet>
                     <h:inputText value="#{operation.value}" />
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -69,8 +59,6 @@
                     <h:inputText value="#{operation.tags}">
                         <f:converter converterId="TagSetConverter" />
                     </h:inputText>
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <h:commandButton value="#{text.delete}" action="#{operations.delete(operation)}" />

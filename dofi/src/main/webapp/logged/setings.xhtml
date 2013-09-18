@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/mainTemplate.xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="title">
         #{pageTitles.settings}
@@ -27,17 +28,17 @@
                 <tr>
                     <td>#{text.password}</td>
                     <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" /></td>
-                    <td><h:message class="formErrorMessage" for="loginForm:password" /></td>
+                    <td><h:message class="formErrorMessage" for="userSettingsForm:password" /></td>
                 </tr>
                 <tr>
                     <td>#{text.newPassword}</td>
                     <td><h:inputSecret id="newPassword" required="true" requiredMessage="#{text.noNewPasswordEntered}" value="#{settings.newPassword}" /></td>
-                    <td><h:message class="formErrorMessage" for="loginForm:newPassword" /></td>
+                    <td><h:message class="formErrorMessage" for="userSettingsForm:newPassword" /></td>
                 </tr>
-               <tr>
+                <tr>
                     <td>#{text.repeatedPassword}</td>
                     <td><h:inputSecret id="repeatedPassword" required="true" requiredMessage="#{text.noNewPasswordEntered}" value="#{settings.repeatedPassword}" /></td>
-                    <td><h:message class="formErrorMessage" for="repeatedPassword" /></td>
+                    <td><h:message class="formErrorMessage" for="userSettingsForm:repeatedPassword" /></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -49,13 +50,75 @@
         <br />
         <h2>#{text.categoriesSettingsTitle}</h2>
         <h:form id="categoriesSettingsForm">
-            
+            <h:dataTable class="categoryTable" value="#{settings.categories()}" var="category">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.tagName}" />
+                    </f:facet>
+                    <h:inputText id="tagname" value="#{category.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
+                    <h:message class="formErrorMessage" for="categoriesSettingsForm:tagname" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.category}" />
+                    </f:facet>
+                    <h:selectBooleanCheckbox value="#{category.category}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.parent}" />
+                    </f:facet>
+                    <h:inputText value="#{category.parent}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.links}" />
+                    </f:facet>
+                    <h:inputText value="#{category.parent}" />
+                </h:column>
+                <h:column>
+                    <h:commandButton value="#{text.delete}" action="#{settings.deleteCategory(category)}" />
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="#{text.addNew}" action="#{settings.addCategory()}" />
+            <h:commandButton value="#{text.save}" action="#{settings.saveCategories()}" />
         </h:form>
         <br />
-        <h2>#{text.tagsSettingsTitle}</h2>
-        <h:form id="userSettingsForm">
-
+        <h2>#{text.nonCategoriesSettingsTitle}</h2>
+        <h:form id="nonCSettingsForm">
+            <h:dataTable class="categoryTable" value="#{settings.nonCategories()}" var="nonCategory">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.tagName}" />
+                    </f:facet>
+                    <h:inputText value="#{nonCategory.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
+                    <h:message class="formErrorMessage" for="nonCategoriesSettingsTitle:tagname" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.category}" />
+                    </f:facet>
+                    <h:selectBooleanCheckbox value="#{nonCategory.category}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.parent}" />
+                    </f:facet>
+                    <h:inputText value="#{nonCategory.parent}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.links}" />
+                    </f:facet>
+                    <h:inputText value="#{nonCategory.parent}" />
+                </h:column>
+                <h:column>
+                    <h:commandButton value="#{text.delete}" action="#{settings.deleteNonCategory(nonCategory)}" />
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="#{text.addNew}" action="#{settings.addNonCategory()}" />
+            <h:commandButton value="#{text.save}" action="#{settings.saveNonCategories()}" />
         </h:form>
     </ui:define>
-
+    
 </ui:composition>
