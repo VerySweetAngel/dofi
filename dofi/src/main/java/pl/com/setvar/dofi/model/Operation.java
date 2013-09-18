@@ -46,7 +46,7 @@ public class Operation implements java.io.Serializable {
      */
     public void save(){
         System.out.println(String.format("operation save id: %d", id));
-        new GenericDao().saveOrUpdate(this);
+        new GenericDao().replicate(this);
         System.out.println(String.format("operation saved id: %d", id));
     }
     

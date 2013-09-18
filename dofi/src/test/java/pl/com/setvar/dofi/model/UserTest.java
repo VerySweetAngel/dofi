@@ -14,7 +14,7 @@ import pl.com.setvar.dofi.util.BaseTestWithHibernate;
  *
  * @author tirpitz
  */
-public class UserTests extends BaseTestWithHibernate {
+public class UserTest extends BaseTestWithHibernate {
     
     /**
      *test sprawdza, czy findAll zwróci przynajmniej dwóch userów (admin i tester)

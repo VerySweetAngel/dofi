@@ -14,75 +14,75 @@
 
     <ui:define name="content">
         <f:loadBundle basename="I18N.operations" var="text" />
-            <h:form>
-                <h:dataTable class="opTable" value="#{operations.list}" var="operation">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{text.creationDate}" />
-                        </f:facet>
-                        <h:inputText value="#{operation.creationDate}">
-                            <f:convertDateTime pattern="yyyy-MM-dd"/>
-                        </h:inputText>
-                        <f:facet name="#{text.creationDate}">      
-                        </f:facet>
-                    </h:column>
-                    <h:column>    
-                        <f:facet name="header">
-                            <h:outputText value="#{text.creator}" />
-                        </f:facet>
-                        <h:inputText value="#{operation.creator}" />
-                        <f:facet name="footer">
-                        </f:facet>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{text.operator}" />
-                        </f:facet>
-                        <h:inputText value="#{operation.operator}" >
-                        </h:inputText>
-                        <f:facet name="footer">
-                        </f:facet>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{text.category}" />
-                        </f:facet>
-                        <h:inputText required="true" requiredMessage="#{text.noCategoryEntered}" value="#{operation.category}" >
-                            <f:converter converterId="CategoryTagConverter" />
-                            <f:validateLength minimum="2" maximum="50" />
-                        </h:inputText>
-                        <f:facet name="footer">
-                        </f:facet>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{text.value}" />
-                        </f:facet>
-                        <h:inputText value="#{operation.value}" />
-                        <f:facet name="footer">
-                        </f:facet>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{text.tags}" />
-                        </f:facet>
-                        <h:inputText value="#{operation.tags}">
-                            <f:converter converterId="TagSetConverter" />
-                        </h:inputText>
-                        <f:facet name="footer">
-                        </f:facet>
-                    </h:column>
-                    <h:column>
-                        <h:commandButton value="#{text.delete}" action="#{operations.delete(operation)}" />
-                        <f:facet name="footer">
-                            <h:commandButton value="#{text.operationsAddEmpty}" action="#{operations.addEmpty()}" />
-                        </f:facet>
-                        <f:facet name="footer">
-                            <h:commandButton value="#{text.save}" action="#{operations.save()}" />
-                        </f:facet>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
+        <h:form>
+            <h:dataTable class="opTable" value="#{operations.list}" var="operation">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.creationDate}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.creationDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:inputText>
+                    <f:facet name="#{text.creationDate}">      
+                    </f:facet>
+                </h:column>
+                <h:column>    
+                    <f:facet name="header">
+                        <h:outputText value="#{text.creator}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.creator}" />
+                    <f:facet name="footer">
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.operator}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.operator}" >
+                    </h:inputText>
+                    <f:facet name="footer">
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.category}" />
+                    </f:facet>
+                    <h:inputText required="true" requiredMessage="#{text.noCategoryEntered}" value="#{operation.category}" >
+                        <f:converter converterId="CategoryTagConverter" />
+                        <f:validateLength minimum="2" maximum="50" />
+                    </h:inputText>
+                    <f:facet name="footer">
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.value}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.value}" />
+                    <f:facet name="footer">
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.tags}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.tags}">
+                        <f:converter converterId="TagSetConverter" />
+                    </h:inputText>
+                    <f:facet name="footer">
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="#{text.delete}" action="#{operations.delete(operation)}" />
+                    <f:facet name="footer">
+                        <h:commandButton value="#{text.operationsAddEmpty}" action="#{operations.addEmpty()}" />
+                    </f:facet>
+                    <f:facet name="footer">
+                        <h:commandButton value="#{text.save}" action="#{operations.save()}" />
+                    </f:facet>
+                </h:column>
+            </h:dataTable>
+        </h:form>
     </ui:define>
 
 </ui:composition>

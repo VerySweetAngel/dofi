@@ -11,9 +11,9 @@
     <name>dofi</name>
 
     <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+<!--        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <!--<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>-->
     </properties>
     
     <!-- hack na brak subversion w naszym projekcie -> buildnumber-maven-plugin go ciągle szuka -->
@@ -27,41 +27,24 @@
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.2.5.ga</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jta</artifactId>
-                    <groupId>javax.transaction</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.3.2.GA</version>
+            <version>4.2.3.Final</version> 
         </dependency>
         <dependency>
-            <groupId>unknown.binary</groupId>
+            <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
-            <version>SNAPSHOT</version>
+            <version>10.10.1.1</version>
         </dependency>
         <dependency>
-            <groupId>unknown.binary</groupId>
+            <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-            <version>SNAPSHOT</version>
+            <version>10.10.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.5.2</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
@@ -72,7 +55,19 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>4.2.3.Final</version>
-        </dependency>   
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <version>1.0.2.Final</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.1_spec</artifactId>
+            <version>2.0.9.Final</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -84,9 +79,9 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
-                    <compilerArguments>
+<!--                    <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
+                    </compilerArguments>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -104,7 +99,7 @@
                     <failOnError>false</failOnError>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.1</version>
@@ -128,14 +123,14 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.16</version>
                 <configuration>
                     <includes>
-                        <include>**/*Tests.java</include>
+                        <include>**/*Test.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -162,11 +157,4 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
 </project>

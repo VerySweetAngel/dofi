@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 9, 2013 9:02:25 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
   <class name="pl.com.setvar.dofi.model.OperationTag" schema="APP" table="OPERATION_TAGS">
