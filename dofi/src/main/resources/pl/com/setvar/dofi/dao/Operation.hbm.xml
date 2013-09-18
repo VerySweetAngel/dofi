@@ -16,11 +16,13 @@
     <property name="value" type="int">
       <column name="value" not-null="true"/>
     </property>
-    <set name="tags" table="TAGS" cascade="save-update" >
+    <set name="tags" table="OPERATION_TAGS" cascade="save-update" >
         <key>
-            <column name="ID" />
+            <column name="OPERATION" not-null="true" />
         </key>
-        <one-to-many class="pl.com.setvar.dofi.model.Tag" />
+        <many-to-many entity-name="pl.com.setvar.dofi.model.Tag">
+            <column name="TAG" not-null="true" />
+        </many-to-many>
     </set>
   </class>
 </hibernate-mapping>

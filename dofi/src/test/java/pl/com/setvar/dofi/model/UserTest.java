@@ -55,7 +55,9 @@ public class UserTest extends BaseTestWithHibernate {
         dao.save(expected);
         
         User actual = new User(login, password);
-        assertTrue(actual.loadIfExistsByCredentials(), "zapisany user powinen dać się zalogować");
+        boolean isLoggedIn = actual.loadIfExistsByCredentials();
+        
+        assertTrue(isLoggedIn, "zapisany user powinen dać się zalogować");
         assertEquals(actual.getLogin(), expected.getLogin());
         assertEquals(actual.getPassword(), expected.getPassword());
         assertEquals(actual.getEmail(), expected.getEmail());

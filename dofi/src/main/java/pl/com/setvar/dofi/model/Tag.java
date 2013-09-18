@@ -15,6 +15,7 @@ public class Tag implements java.io.Serializable {
         return tagDao.findByTagname(tagname);
     }
 
+    /** funkcja zwraca kolekcję tagów na podstawie zadanych nazw */
     public static Set<Tag> getSetByTagnames(String tagname) {
         TagDao tagDao = new TagDao();
         return tagDao.getSetByTagnames(tagname);
@@ -87,5 +88,12 @@ public class Tag implements java.io.Serializable {
 
     public void setParent(Tag parent) {
         this.parent = parent;
+    }
+    
+    @Override
+    public String toString(){
+        String par = (getParent() != null ? "," + getParent().getTagname() : "");
+        String cat = (isCategory() ? ",cat" : "");
+        return String.format("%s[%d %s %s]", getTagname(), (Integer) getId(), cat, par);
     }
 }

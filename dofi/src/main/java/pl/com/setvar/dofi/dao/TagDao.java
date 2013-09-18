@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Restrictions;
 import pl.com.setvar.dofi.model.Tag;
 
@@ -50,11 +52,16 @@ public class TagDao extends GenericDao {
 
     public Set<Tag> getSetByTagnames(String tagnames) {
         StringTokenizer st = new StringTokenizer(tagnames);
-        Criteria criteria = getSession().createCriteria(Tag.class);
+        if(st.hasMoreTokens() == false){
+            return new HashSet<Tag>();
+        }
+        Junction junction = Restrictions.disjunction();
         while (st.hasMoreTokens()){
             String tagname  = st.nextToken();
-            criteria.add(Restrictions.eq("tagname", tagname));
+            junction = junction.add(Restrictions.eq("tagname", tagname));
         }
+        Criteria criteria = getSession().createCriteria(Tag.class);
+        criteria = criteria.add(junction);
         return new HashSet(criteria.list());
     }
 

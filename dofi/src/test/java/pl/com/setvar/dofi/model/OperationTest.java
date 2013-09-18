@@ -6,10 +6,8 @@ package pl.com.setvar.dofi.model;
 
 import java.util.Date;
 import java.util.HashSet;
-import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 import pl.com.setvar.dofi.dao.GenericDao;
-import pl.com.setvar.dofi.dao.TagDao;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 
 /**
@@ -24,10 +22,6 @@ public class OperationTest extends BaseTestWithHibernate{
         Tag category = new Tag("markiza");
         Tag t1 = new Tag("jaguar");
         Tag t2 = new Tag("giewont");
-//        TagDao tagDao = new TagDao();
-//        tagDao.saveOrUpdate(category);
-//        tagDao.saveOrUpdate(t1);
-//        tagDao.saveOrUpdate(t2);
         HashSet<Tag> tags = new HashSet<Tag>();
         tags.add(t1);
         tags.add(t2);
