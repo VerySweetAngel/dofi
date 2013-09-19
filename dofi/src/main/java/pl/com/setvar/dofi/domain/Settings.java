@@ -67,13 +67,13 @@ public class Settings implements Serializable{
     
     /** metoda zwraca lliste tagów, będących kategoriami */
     public List<Tag> categories(){
-        categories = Tag.listCategories();
+        categories = Tag.listAllCategories();
         return categories;
     }
     
     /** metoda zwraca lliste tagów, będących kategoriami */
     public List<Tag> nonCategories(){
-        nonCategories = Tag.listNonCategories();
+        nonCategories = Tag.listAllTags();
         return nonCategories;
     }
     

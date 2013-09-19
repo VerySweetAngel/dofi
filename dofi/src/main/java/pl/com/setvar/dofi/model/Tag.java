@@ -1,5 +1,7 @@
 package pl.com.setvar.dofi.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import pl.com.setvar.dofi.dao.TagDao;
 
@@ -10,6 +12,7 @@ import pl.com.setvar.dofi.dao.TagDao;
  */
 public class Tag implements java.io.Serializable {
 
+    /** metoda wyszukuje tagi po nazwie, niezależnie  */
     public static Tag findByTagname(String tagname) {
         TagDao tagDao = new TagDao();
         return tagDao.findByTagname(tagname);
@@ -21,7 +24,8 @@ public class Tag implements java.io.Serializable {
         return tagDao.getSetByTagnames(tagname);
     }
 
-    public static Tag findBysCategoryTagname(String tagname) {
+    /** wyszukiwanie kategorii po nazwie */
+    public static Tag findByCategoryTagname(String tagname) {
         TagDao tagDao;
         tagDao = new TagDao();
         Tag category;
@@ -33,11 +37,25 @@ public class Tag implements java.io.Serializable {
         }
         return category;
     }
+
+    /** zwraca listę wszytkich kategorii */
+    public static ArrayList<Tag> listAllCategories() {
+        TagDao tagDao = new TagDao();
+        return new ArrayList<Tag>(tagDao.listAll(TagDao.CATEGORY_TAG));
+    }
+
+    /** metoda zwraca listę wszytstkich tagów nie będących katqegoriami */
+    public static ArrayList<Tag> listAllTags() {
+        TagDao tagDao = new TagDao();
+        return new ArrayList<Tag>(tagDao.listAll(TagDao.NOT_A_CATEGORY_TAG));
+    }
     
     private int id;
     private String tagname;
     private boolean category = false;
     private Tag parent;
+    private Set<Taglink> taglinks = new HashSet<Taglink>();
+    private Set<Operation> operations = new HashSet<Operation>();
 
     public Tag() {
     }
@@ -58,6 +76,22 @@ public class Tag implements java.io.Serializable {
         this.parent = parent;
     }
 
+    public void setOperations(Set<Operation> operations){
+        this.operations = operations;
+    }
+    
+    public Set<Operation> getOperations(){
+        return operations;
+    }
+    
+    public void setTaglinks(Set<Taglink> taglinks){
+        this.taglinks = taglinks;
+    }
+    
+    public Set<Taglink> getTaglinks(){
+        return taglinks;
+    }
+    
     public int getId() {
         return this.id;
     }
@@ -104,9 +138,12 @@ public class Tag implements java.io.Serializable {
 
     /** metoda usówa obiekt */
     public void delete() {
-        // TODO przy usówaniu kategorii, nie można usunąc tych kategorii, które mają jakies operacje
+        if(isCategory()){
+            // przy usówaniu kategorii, nie można usunąc tych kategorii, które mają jakies operacje
+            if(operations.isEmpty())
+                new TagDao().delete(this);
+        }
         // TODO jeżeli usówamy zwykły tag, to trzeba też usunąć jego powiązania z operacjami
-        // TODO trzeba kaskadowo usówać linki ze łowami
         new TagDao().delete(this);
     }
 }

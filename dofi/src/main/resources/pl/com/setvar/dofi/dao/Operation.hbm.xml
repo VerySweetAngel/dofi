@@ -16,7 +16,7 @@
     <property name="value" type="int">
       <column name="value" not-null="true"/>
     </property>
-    <set name="tags" table="OPERATION_TAGS" cascade="save-update" >
+    <set name="tags" table="OPERATION_TAGS" cascade="save-update" inverse="true">
         <key>
             <column name="OPERATION" not-null="true" />
         </key>

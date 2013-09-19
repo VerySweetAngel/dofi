@@ -19,6 +19,6 @@ public class CategoryTagConverter extends TagConverter{
         if (value == null) {
             return null;
         }
-        return Tag.findBysCategoryTagname(value);
+        return Tag.findByCategoryTagname(value);
     }
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Restrictions;
 import pl.com.setvar.dofi.model.Tag;
@@ -20,8 +19,8 @@ import pl.com.setvar.dofi.model.Tag;
  */
 public class TagDao extends GenericDao {
     
-    private static final boolean CATEGORY_TAG = true;
-    private static final boolean NOT_A_CATEGORY_TAG = false;
+    public static final boolean CATEGORY_TAG = true;
+    public static final boolean NOT_A_CATEGORY_TAG = false;
     
     public List<Tag> findTags(String criteria){
         return findTags(criteria, NOT_A_CATEGORY_TAG);
@@ -37,10 +36,13 @@ public class TagDao extends GenericDao {
         return findTags(criteria, NOT_A_CATEGORY_TAG);
     }
     
+    /** 
+     * Zwraca listę tagów spełniających żądane kryteria.
+     */
     private List<Tag> findTags(String criteria, boolean category){
         return (List<Tag>) getSession().getNamedQuery("findTagsByTagnameAndTaglinkWord")
-                .setString("criteria", "%" + criteria + "%")
                 .setBoolean("category", category)
+                .setString("criteria", String.format("%%s%", criteria))
                 .list();
     }
 
@@ -70,5 +72,11 @@ public class TagDao extends GenericDao {
                 .setString("tagname", tagname)
                 .setParameter("category", true)
                 .uniqueResult();
+    }
+
+    public List<Tag> listAll(boolean category) {
+        return (List<Tag>) getSession().createQuery("FROM Tag t WHERE t.category = :category")
+                .setParameter("category", true)
+                .list();
     }
 }

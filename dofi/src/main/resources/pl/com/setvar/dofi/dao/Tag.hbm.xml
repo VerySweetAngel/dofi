@@ -14,6 +14,18 @@
       <column name="CATEGORY" default="false" />
     </property>
     <many-to-one name="parent" class="pl.com.setvar.dofi.model.Tag" column="PARENT" cascade="all" />
+    <set name="taglinks" table="TAGLINKS" cascade="save-update, delete" inverse="true">
+        <key column="TAG" not-null="true" />
+        <one-to-many class="pl.com.setvar.dofi.model.Taglink" />
+    </set>
+    <set name="tags" table="OPERATION_TAGS" cascade="save-update" inverse="true">
+        <key>
+            <column name="TAG" not-null="true" />
+        </key>
+        <many-to-many entity-name="pl.com.setvar.dofi.model.Operation">
+            <column name="OPERATION" not-null="true" />
+        </many-to-many>
+    </set>
   </class>
   <sql-query name="findTagsByTagnameAndTaglinkWord">
       <return alias="Tag" class="pl.com.setvar.dofi.model.Tag" />
