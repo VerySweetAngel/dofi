@@ -14,22 +14,28 @@ import pl.com.setvar.dofi.util.I18nText;
 
 /**
  * Użytkownik używający aplikacji w ramach trwającej sesji.
+ *
  * @author tirpitz
  */
 @ManagedBean
 @SessionScoped
 public final class SessionUser implements Serializable {
-    
+
     private String login = "";
     private String password = "";
     private boolean loggerdIn = false;
     private boolean admin = false;
     private User loggedInUser;
 
+    /**
+     * Konstruktor klasy.
+     */
     public SessionUser() {
     }
-    
-    /** akcja wywołana ze strony */
+
+    /**
+     * Metoda realizuje akcję, wywoływaną ze strony logowania - próba zalogowania użytkownika według podanych danych.
+     */
     public void logMeIn() {
         FacesMessage msg;
         I18nText texts = new I18nText(Bundles.I18N_INDEX);
@@ -48,7 +54,7 @@ public final class SessionUser implements Serializable {
         admin = loggedInUser.isIsAdmin();
         password = "";
     }
-    
+
     public String logMeOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         I18nText texts = new I18nText(Bundles.I18N_INDEX);
@@ -65,10 +71,10 @@ public final class SessionUser implements Serializable {
     }
 
     /**
-     * @param login the login to set
+     * @param userLogin the login to set
      */
-    public void setLogin(String login) {
-        this.login = login;
+    public void setLogin(String userLogin) {
+        this.login = userLogin;
     }
 
     /**
@@ -79,10 +85,10 @@ public final class SessionUser implements Serializable {
     }
 
     /**
-     * @param password the password to set
+     * @param userPassword the password to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String userPassword) {
+        this.password = userPassword;
     }
 
     /**
@@ -100,14 +106,20 @@ public final class SessionUser implements Serializable {
     }
 
     /**
-     * @param loggerdIn the loggerdIn to set
+     * Metoda ustawia flagę zalogowanego użytkownika.
+     *
+     * @param isUserLoggedIn czy uzytkownik jest zalogowany?
      */
-    public void setLoggerdIn(boolean loggerdIn) {
-        this.loggerdIn = loggerdIn;
+    public void setLoggerdIn(boolean isUserLoggedIn) {
+        this.loggerdIn = isUserLoggedIn;
     }
-    
-    /** @param loggedInUser zalogowany user lub null */
-    public User getLoggedInUser(){
+
+    /**
+     * Metoda zwraca zalogowanego użytkownika.
+     *
+     * @return zalogowany użytkownik
+     */
+    public User getLoggedInUser() {
         return loggedInUser;
     }
 }

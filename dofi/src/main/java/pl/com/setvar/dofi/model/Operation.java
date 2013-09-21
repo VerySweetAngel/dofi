@@ -24,7 +24,7 @@ public class Operation implements java.io.Serializable {
     private int value;
     private Set<Tag> tags = new HashSet<Tag>(0);
     
-    protected GenericDaoInterface dao = new GenericDao();
+    protected transient GenericDaoInterface dao = new GenericDao();
 
     public Operation() {
     }
@@ -76,7 +76,7 @@ public class Operation implements java.io.Serializable {
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = (Date) creationDate.clone();
     }
 
     public User getOperator() {

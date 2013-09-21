@@ -18,7 +18,8 @@ public class User implements Serializable {
     private String realName = "";
     private String email = "";
     private boolean isAdmin = false;
-    protected UserDaoInterface dao = new UserDao();
+    
+    protected transient UserDaoInterface dao = new UserDao();
 
     public User() {
     }

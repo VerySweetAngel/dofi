@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import pl.com.setvar.dofi.util.DefaultLogger;
+import pl.com.setvar.dofi.util.DofiLogger;
 
 /**
  * Klasa obslługuje bazę danych. Zwraca fabrykę sesji i aktualną sesję. Obiekt klasy służy do obsługi transakcji.
@@ -19,22 +19,22 @@ public class HibernateUtil {
     /** metoda rozpoczyna transakcję w ramach bazy danych */
     public void beginTransaction(){
         transaction = getSessionFactory().getCurrentSession().beginTransaction();
-        DefaultLogger.HIBERNATE.debug("HibernateUtil.beginTransaction transaction begun");
+        DofiLogger.HIBERNATE.debug("HibernateUtil.beginTransaction transaction begun");
     }
     
     /** metoda zatwierdza transakcję w ramach bazy danych */
     public void commitTransaction(){
         transaction.commit();
-        DefaultLogger.HIBERNATE.debug("HibernateUtil.commitTransaction transaction commited");
+        DofiLogger.HIBERNATE.debug("HibernateUtil.commitTransaction transaction commited");
     }
     
     /** metoda cofa transakcję, jeżeli ta istnieje */
     public void rollbackTransaction(){
         if (transaction != null){
             transaction.rollback();
-            DefaultLogger.HIBERNATE.debug("HibernateUtil.rollbackTransaction transaction rollback");
+            DofiLogger.HIBERNATE.debug("HibernateUtil.rollbackTransaction transaction rollback");
         } else {
-            DefaultLogger.HIBERNATE.debug("HibernateUtil.rollbackTransaction no transaction to rollback");
+            DofiLogger.HIBERNATE.debug("HibernateUtil.rollbackTransaction no transaction to rollback");
         }
     }
 
@@ -55,9 +55,9 @@ public class HibernateUtil {
     public static void createFactory() {
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
-            DefaultLogger.HIBERNATE.info("HibernateUtil.createFactory session factory created");
+            DofiLogger.HIBERNATE.info("HibernateUtil.createFactory session factory created");
         } catch (Throwable ex) {
-            DefaultLogger.HIBERNATE.fatal("HibernateUtil.createFactory cannot build session factory", ex);
+            DofiLogger.HIBERNATE.fatal("HibernateUtil.createFactory cannot build session factory", ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
@@ -65,6 +65,6 @@ public class HibernateUtil {
     /** funckaj zamyka sesję */
     public static void closeFactory(){
         sessionFactory.close();       
-        DefaultLogger.HIBERNATE.info("HibernateUtil.close session factory closed");
+        DofiLogger.HIBERNATE.info("HibernateUtil.close session factory closed");
     }
 }

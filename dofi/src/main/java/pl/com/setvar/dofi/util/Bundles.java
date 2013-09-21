@@ -1,33 +1,38 @@
 package pl.com.setvar.dofi.util;
 
 /**
- * Enum do plików z zasobami.
+ * Enum do plików z zasobami. Enymy przechowują ścieżki do zasobów.
  *
  * @author Marta
  */
 public enum Bundles {
 
     /**
-     * teksty dla strony index
+     * Teksty dla strony index.
      */
     I18N_INDEX("I18N/index"),
     /**
-     * teksty dla strony settings
+     * etksty dla strony settings.
      */
     I18N_SETTINGS("I18N/settings"),
     /**
-     * teksty dla strony operations
+     * etksty dla strony operations.
      */
     I18N_OPERATIONS("I18N/operations");
+    
     /**
-     * ścieżka do pliku
+     * Ścieżka do pliku.
      */
     private String path;
 
-    Bundles(String path) {
-        this.path = path;
+    Bundles(String boundlePath) {
+        this.path = boundlePath;
     }
 
+    /**
+     * Metoda zwraca ścieżkę do zasobu, który reprezentuje.
+     * @return 
+     */
     public String getPath() {
         return path;
     }

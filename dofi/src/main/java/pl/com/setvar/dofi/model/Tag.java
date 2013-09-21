@@ -61,7 +61,7 @@ public class Tag implements java.io.Serializable {
     private Set<Taglink> taglinks = new HashSet<Taglink>();
     private Set<Operation> operations = new HashSet<Operation>();
     
-    protected TagDaoInterface dao = new TagDao();
+    protected transient TagDaoInterface dao = new TagDao();
 
     public Tag() {
     }

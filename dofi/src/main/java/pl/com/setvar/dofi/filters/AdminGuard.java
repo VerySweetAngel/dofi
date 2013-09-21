@@ -1,7 +1,7 @@
 package pl.com.setvar.dofi.filters;
 
 import pl.com.setvar.dofi.domain.SessionUser;
-import pl.com.setvar.dofi.util.DefaultLogger;
+import pl.com.setvar.dofi.util.DofiLogger;
 
 // TODO dopisać test
 
@@ -19,7 +19,7 @@ public class AdminGuard extends LoggedInGuard {
         if(sessionUser != null){
             canContinueChain = sessionUser.isAdmin();
         }
-        DefaultLogger.DEFAULT.debug("AdminGuard canContinueChain = ", canContinueChain);
+        DofiLogger.DEFAULT.debug("AdminGuard canContinueChain = ", canContinueChain);
         return canContinueChain;
     }    
 }

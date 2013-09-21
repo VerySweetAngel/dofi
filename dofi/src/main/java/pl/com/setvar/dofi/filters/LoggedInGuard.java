@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pl.com.setvar.dofi.domain.SessionUser;
-import pl.com.setvar.dofi.util.DefaultLogger;
+import pl.com.setvar.dofi.util.DofiLogger;
 
 // TODO dopisac komentarze
 // TODO dopisać testy
@@ -48,7 +48,7 @@ public class LoggedInGuard implements Filter {
         if (sessionUser != null) {
             canContinueChain = sessionUser.isLoggerdIn();
         }
-        DefaultLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
+        DofiLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
         return true;
     }
 }
