@@ -29,7 +29,7 @@ public class I18nText {
      * @param key klucz do wyszukania wartości
      * @return treść wyszukana na podstawie klucza
      */
-    final public String get(final String key) {
+    public String get(final String key) {
         return bundle.getString(key);
     }
 }

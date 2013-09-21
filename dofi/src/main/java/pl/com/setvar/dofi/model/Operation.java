@@ -24,12 +24,12 @@ public class Operation implements java.io.Serializable {
 
     public Operation(int id, Date creationDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
        this.id = id;
-       this.creationDate = creationDate;
+       this.creationDate = (Date) creationDate.clone();
        this.operator = operator;
        this.creator = creator;
        this.category = category;
        this.value = value;
-       this.tags = tags;
+       this.tags.addAll(tags);
     }
    
     /**
@@ -63,7 +63,7 @@ public class Operation implements java.io.Serializable {
         this.id = id;
     }
     public Date getCreationDate() {
-        return this.creationDate;
+        return (Date) this.creationDate.clone();
     }
     
     public void setCreationDate(Date creationDate) {

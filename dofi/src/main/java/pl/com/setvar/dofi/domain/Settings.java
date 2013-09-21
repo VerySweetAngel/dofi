@@ -26,7 +26,7 @@ import pl.com.setvar.dofi.util.I18nText;
 @ViewScoped
 public class Settings implements Serializable{
     
-    /** now hasło */
+    /** nowe hasło */
     private String newPassword = "";
     /** powtórzenie nowego hasła */
     private String repeatedPassword = "";
