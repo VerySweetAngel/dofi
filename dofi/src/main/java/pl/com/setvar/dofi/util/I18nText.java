@@ -5,21 +5,31 @@ import java.util.ResourceBundle;
 import javax.faces.context.FacesContext;
 
 /**
- * klasa zasobów tekstów  - metoda get(klucz z pliku) zwraca zadaną treść
+ * Klasa zasobów tekstów. Metoda get(klucz z pliku) zwraca zadaną treść.
  * @author Marta
  */
 public class I18nText {
 
+    /** obiekt zasobu z tekstem */
     private ResourceBundle bundle;
 
-    public I18nText(Bundles name) {
+    /**
+     * Konstruktor do tworzenia nowego obiektu klasy.
+     * @param name enum {@link pl.com.setvar.dofi.util.Bundles} wyznaczający zasób tekstowy
+     */
+    public I18nText(final Bundles name) {
         String bundleName = name.getPath();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Locale locale = facesContext.getViewRoot().getLocale();
         bundle = ResourceBundle.getBundle(bundleName, locale);
     }
 
-    public String get(String key) {
+    /**
+     * Metoda zwraca treść na podstawie klucza.
+     * @param key klucz do wyszukania wartości
+     * @return treść wyszukana na podstawie klucza
+     */
+    final public String get(final String key) {
         return bundle.getString(key);
     }
 }

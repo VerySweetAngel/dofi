@@ -42,7 +42,7 @@ public class TagDao extends GenericDao {
     private List<Tag> findTags(String criteria, boolean category){
         return (List<Tag>) getSession().getNamedQuery("findTagsByTagnameAndTaglinkWord")
                 .setBoolean("category", category)
-                .setString("criteria", String.format("%%s%", criteria))
+                .setString("criteria", String.format("%1$s%2$s%1$s", "%", criteria))
                 .list();
     }
 

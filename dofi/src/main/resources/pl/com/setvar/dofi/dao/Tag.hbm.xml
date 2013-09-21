@@ -18,7 +18,7 @@
         <key column="TAG" not-null="true" />
         <one-to-many class="pl.com.setvar.dofi.model.Taglink" />
     </set>
-    <set name="tags" table="OPERATION_TAGS" cascade="save-update" inverse="true">
+    <set name="operations" table="OPERATION_TAGS" cascade="save-update" inverse="true">
         <key>
             <column name="TAG" not-null="true" />
         </key>

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.converters;
 
 import javax.faces.component.UIComponent;
@@ -9,13 +5,13 @@ import javax.faces.context.FacesContext;
 import pl.com.setvar.dofi.model.Tag;
 
 /**
- *
+ * Konwerter do Tagów (będących kategoriami).
  * @author Marta
  */
-public class CategoryTagConverter extends TagConverter{
+public class CategoryTagConverter extends TagConverter {
 
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public final Object getAsObject(final FacesContext context, final UIComponent component, final String value) {
         if (value == null) {
             return null;
         }

@@ -3,64 +3,71 @@ package pl.com.setvar.dofi.util;
 import org.apache.log4j.Logger;
 
 /**
- * Klasa, która opakowuje loggery. Zgodnie z log4j.properties, pliki loggerów będą zapisane w glassfish/applications/domain/domain1/logs.
+ * Klasa, która opakowuje loggery. Zgodnie z log4j.properties, pliki loggerów
+ * będą zapisane w glassfish/applications/domain/domain1/logs.
+ *
  * @author tirpitz
  */
 public class DefaultLogger {
-    
-    /** właściwa loggera z log4j */
+
+    /**
+     * właściwa loggera z log4j
+     */
     private Logger loggerImpl;
-    
-    /** logger domyślny */
+    /**
+     * logger domyślny
+     */
     public static final DefaultLogger DEFAULT = new DefaultLogger("defaultLogger");
-    /** logger do hibernate'a i rzeczy związanych z bazami danych */
+    /**
+     * logger do hibernate'a i rzeczy związanych z bazami danych
+     */
     public static final DefaultLogger HIBERNATE = new DefaultLogger("hibernate");
-    
-    private DefaultLogger(String loggerName){
+
+    private DefaultLogger(String loggerName) {
         loggerImpl = Logger.getLogger(loggerName);
     }
-    
-    public void debug(Object message){
+
+    public void debug(Object message) {
         loggerImpl.debug(message);
     }
-    
-    public void debug(Object... messages){
+
+    public void debug(Object... messages) {
         loggerImpl.debug(concatMessages(messages));
     }
-    
-    public void info(Object message){
+
+    public void info(Object message) {
         loggerImpl.info(message);
     }
-    
-    public void info(Object... messages){
+
+    public void info(Object... messages) {
         loggerImpl.info(concatMessages(messages));
     }
-    
-    public void warn(Object message){
+
+    public void warn(Object message) {
         loggerImpl.warn(message);
     }
-            
-    public void error(Object message){
+
+    public void error(Object message) {
         loggerImpl.error(message);
     }
-    
-    public void error(Object message, Throwable throwable){
+
+    public void error(Object message, Throwable throwable) {
         loggerImpl.error(message, throwable);
     }
-            
-    public void fatal(Object message){
+
+    public void fatal(Object message) {
         loggerImpl.fatal(message);
     }
-    
-    public void fatal(Object message, Throwable throwabl){
+
+    public void fatal(Object message, Throwable throwabl) {
         loggerImpl.fatal(message, throwabl);
     }
-    
-    private String concatMessages(Object[] messages){
+
+    private String concatMessages(Object[] messages) {
         StringBuilder msgCombiner = new StringBuilder();
-        for(Object singleMsg : messages){
+        for (Object singleMsg : messages) {
             String singleMsgStr = "null";
-            if(singleMsg != null){
+            if (singleMsg != null) {
                 singleMsgStr = singleMsg.toString();;
             }
             msgCombiner.append(singleMsgStr);
