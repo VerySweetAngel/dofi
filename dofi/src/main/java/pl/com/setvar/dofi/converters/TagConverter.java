@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.converters;
 
 import javax.faces.application.FacesMessage;
@@ -10,6 +6,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import pl.com.setvar.dofi.model.Tag;
+
+// TODO przenieśc implementację do klasy Tag i nastepnie napisać testy jednostkowe
 
 /**
  * Klasa ta służy do zmieniania tagów na napis. Działa w dwie strony.

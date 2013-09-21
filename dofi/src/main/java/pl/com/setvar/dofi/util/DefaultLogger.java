@@ -2,6 +2,8 @@ package pl.com.setvar.dofi.util;
 
 import org.apache.log4j.Logger;
 
+// TODO doadać komentarze.
+
 /**
  * Klasa, która opakowuje loggery. Zgodnie z log4j.properties, pliki loggerów
  * będą zapisane w glassfish/applications/domain/domain1/logs.

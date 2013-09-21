@@ -3,9 +3,11 @@ package pl.com.setvar.dofi.model;
 import java.io.Serializable;
 import java.util.List;
 import pl.com.setvar.dofi.dao.UserDao;
+import pl.com.setvar.dofi.dao.UserDaoInterface;
 
 /**
- * użytkownik systemu
+ * Użytkownik systemu.
+ *
  * @author tirpitz
  */
 public class User implements Serializable {
@@ -16,23 +18,23 @@ public class User implements Serializable {
     private String realName = "";
     private String email = "";
     private boolean isAdmin = false;
-    
+    protected UserDaoInterface dao = new UserDao();
+
     public User() {
     }
-    
+
     public User(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
-    public static List<User> findAll(){
+    public static List<User> findAll() {
         return new UserDao().findAll(User.class);
     }
-    
-    public boolean loadIfExistsByCredentials(){
-        UserDao dao = new UserDao();
+
+    public boolean loadIfExistsByCredentials() {
         User fromDb = dao.findByCredentials(login, password);
-        if(fromDb == null){
+        if (fromDb == null) {
             return false;
         }
         id = fromDb.id;
@@ -41,7 +43,7 @@ public class User implements Serializable {
         isAdmin = fromDb.isAdmin;
         return true;
     }
-    
+
     /**
      * @return the login
      */
@@ -125,8 +127,9 @@ public class User implements Serializable {
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+
     public static User findByLogin(String login) {
         UserDao userDao = new UserDao();
         return userDao.findByLogin(login);
-}
+    }
 }

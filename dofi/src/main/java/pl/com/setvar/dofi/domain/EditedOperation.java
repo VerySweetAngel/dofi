@@ -1,19 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import pl.com.setvar.dofi.model.Operation;
 import pl.com.setvar.dofi.model.User;
 
 /**
- * Bean edytowanej operacji na liście operacji
- *
+ * Bean edytowanej operacji na liście operacji.
  * @author Marta
  */
 @ManagedBean

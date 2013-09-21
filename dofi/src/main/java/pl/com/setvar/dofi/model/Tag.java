@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import pl.com.setvar.dofi.dao.TagDao;
+import pl.com.setvar.dofi.dao.TagDaoInterface;
+
+// TODO wyciągnąc stąd klasę Category i napisać testy jednostkowe. Dorobić mapowanie hbm.xml. Określić interfejs.
+// TODO napisać testy jednostkowe do klasy.
+// TODO Określić interfejs.
 
 /**
- * klasa taga do opisu operacji
- *
+ * Klasa taga do opisu operacji.
  * @author tirpitz-verus
  */
 public class Tag implements java.io.Serializable {
@@ -56,6 +60,8 @@ public class Tag implements java.io.Serializable {
     private Tag parent;
     private Set<Taglink> taglinks = new HashSet<Taglink>();
     private Set<Operation> operations = new HashSet<Operation>();
+    
+    protected TagDaoInterface dao = new TagDao();
 
     public Tag() {
     }
@@ -133,7 +139,7 @@ public class Tag implements java.io.Serializable {
 
     /** metoda zapisuje obiekt na koniec sesji */
     public void save() {
-        new TagDao().replicate(this);
+        dao.replicate(this);
     }
 
     /** metoda usówa obiekt */
@@ -141,9 +147,9 @@ public class Tag implements java.io.Serializable {
         if(isCategory()){
             // przy usówaniu kategorii, nie można usunąc tych kategorii, które mają jakies operacje
             if(operations.isEmpty())
-                new TagDao().delete(this);
+                dao.delete(this);
         }
         // TODO jeżeli usówamy zwykły tag, to trzeba też usunąć jego powiązania z operacjami
-        new TagDao().delete(this);
+        dao.delete(this);
     }
 }

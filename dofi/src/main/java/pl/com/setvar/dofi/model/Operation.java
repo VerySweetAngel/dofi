@@ -4,96 +4,109 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import pl.com.setvar.dofi.dao.GenericDao;
+import pl.com.setvar.dofi.dao.GenericDaoInterface;
+
+// TODO dopisać dokumentację.
+// TODO dopisać testy.
 
 /**
- * klasa operacji księgowej
+ * Klasa operacji księgowej.
+ *
  * @author tirpitz-verus
  */
 public class Operation implements java.io.Serializable {
 
-     private int id;
-     private Date creationDate;
-     private User operator;
-     private User creator;
-     private Tag category;
-     private int value;
-     private Set<Tag> tags = new HashSet<Tag>(0);
+    private int id;
+    private Date creationDate;
+    private User operator;
+    private User creator;
+    private Tag category;
+    private int value;
+    private Set<Tag> tags = new HashSet<Tag>(0);
+    
+    protected GenericDaoInterface dao = new GenericDao();
 
     public Operation() {
     }
 
     public Operation(int id, Date creationDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
-       this.id = id;
-       this.creationDate = (Date) creationDate.clone();
-       this.operator = operator;
-       this.creator = creator;
-       this.category = category;
-       this.value = value;
-       this.tags.addAll(tags);
+        this.id = id;
+        this.creationDate = (Date) creationDate.clone();
+        this.operator = operator;
+        this.creator = creator;
+        this.category = category;
+        this.value = value;
+        this.tags.addAll(tags);
     }
-   
+
     /**
      * metoda sprawdza, czy wprowadzono jakieś dane, na podstawie wartości, operatora i kategorii
      */
-    public boolean anyDataEntered(){
-        if(value != 0 & category != null & operator != null)
+    public boolean anyDataEntered() {
+        if (value != 0 & category != null & operator != null) {
             return true;
+        }
         return false;
     }
-    
+
     /**
      * natychmiastowy zapis do bazy danych
      */
-    public void save(){
-        new GenericDao().replicate(this);
+    public void save() {
+        dao.replicate(this);
     }
-    
+
     /**
      * usunięcie operacji
      */
-    public void delete(){
-        new GenericDao().delete(this);
+    public void delete() {
+        dao.delete(this);
     }
-    
+
     public int getId() {
         return this.id;
     }
-    
+
     public void setId(int id) {
         this.id = id;
     }
+
     public Date getCreationDate() {
         return (Date) this.creationDate.clone();
     }
-    
+
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
+
     public User getOperator() {
         return this.operator;
     }
-    
+
     public void setOperator(User operator) {
         this.operator = operator;
     }
+
     public User getCreator() {
         return this.creator;
     }
-    
+
     public void setCreator(User creator) {
         this.creator = creator;
     }
+
     public Tag getCategory() {
         return this.category;
     }
-    
+
     public void setCategory(Tag category) {
         this.category = category;
     }
+
     public int getValue() {
         return this.value;
     }
-    
+
     public void setValue(int value) {
         this.value = value;
     }
@@ -111,10 +124,4 @@ public class Operation implements java.io.Serializable {
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
-
-
-
-
 }
-
-

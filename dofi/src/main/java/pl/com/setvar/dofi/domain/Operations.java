@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
@@ -18,6 +14,9 @@ import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.model.User;
 import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.I18nText;
+
+// TODO Onapisać testy jednostkowe.
+// TODO dopisac dokumentację.
 
 /**
  *

@@ -18,8 +18,10 @@ import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.I18nText;
 
+// TODO dodać testy jednostkowe
+
 /**
- * ziarenko strony ustawień
+ * Bean strony ustawień.
  * @author tirpitz
  */
 @ManagedBean

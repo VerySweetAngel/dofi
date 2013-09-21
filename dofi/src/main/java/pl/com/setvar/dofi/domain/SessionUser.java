@@ -9,8 +9,11 @@ import pl.com.setvar.dofi.model.User;
 import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.I18nText;
 
+// TODO udokumentować klasę.
+// TODO napisać testy jednostkowe.
+
 /**
- * użytkownik używający aplikację w ramach trwającej sesji
+ * Użytkownik używający aplikacji w ramach trwającej sesji.
  * @author tirpitz
  */
 @ManagedBean

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.dao;
 
 import java.util.HashSet;
@@ -13,25 +9,28 @@ import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Restrictions;
 import pl.com.setvar.dofi.model.Tag;
 
+// TODO przenieść implementację rzeczy dla kategorii do klasy CategoryDao i nastepnie napisać testy jednostkowe
+// TODO dopisać dokumentację
+
 /**
- *
+ * Klasa DAO dla klasy {@link pl.com.setvar.dofi.model.Tag}.
  * @author tirpitz
  */
-public class TagDao extends GenericDao {
+public class TagDao extends GenericDao implements TagDaoInterface {
     
-    public static final boolean CATEGORY_TAG = true;
-    public static final boolean NOT_A_CATEGORY_TAG = false;
-    
+    @Override
     public List<Tag> findTags(String criteria){
         return findTags(criteria, NOT_A_CATEGORY_TAG);
     }
     
     /** metoda wyszukuje kategorie, czyli tagi,l będące kategoriami */
+    @Override
     public List<Tag> findCategories(String criteria){
         return findTags(criteria, CATEGORY_TAG);
     }
     
     /** metoda wyszukuje tagi nie będące kategorią */
+    @Override
     public List<Tag> findAvaibleTags(String criteria){
         return findTags(criteria, NOT_A_CATEGORY_TAG);
     }
@@ -46,12 +45,14 @@ public class TagDao extends GenericDao {
                 .list();
     }
 
+    @Override
     public Tag findByTagname(String tagname) {
         return (Tag) getSession().createQuery("FROM Tag t WHERE t.tagname = :tagname")
                 .setString("tagname", tagname)
                 .uniqueResult();
     }
 
+    @Override
     public Set<Tag> getSetByTagnames(String tagnames) {
         StringTokenizer st = new StringTokenizer(tagnames);
         if(st.hasMoreTokens() == false){
@@ -67,6 +68,7 @@ public class TagDao extends GenericDao {
         return new HashSet(criteria.list());
     }
 
+    @Override
     public Tag findCategoryByTagname(String tagname) {
         return (Tag) getSession().createQuery("FROM Tag t WHERE t.tagname = :tagname AND t.category = :category")
                 .setString("tagname", tagname)
@@ -74,6 +76,7 @@ public class TagDao extends GenericDao {
                 .uniqueResult();
     }
 
+    @Override
     public List<Tag> listAll(boolean category) {
         return (List<Tag>) getSession().createQuery("FROM Tag t WHERE t.category = :category")
                 .setParameter("category", true)

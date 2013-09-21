@@ -13,6 +13,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import pl.com.setvar.dofi.model.User;
 
+// TODO przenieśc implementację do klasy User i nastepnie napisać testy jednostkowe
+
 /**
  * Klasa ta służy do zmieniania danych każdego użytkownika na napis. Działa w
  * dwie strony.

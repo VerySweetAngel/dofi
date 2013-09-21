@@ -1,11 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.filters;
 
 import pl.com.setvar.dofi.domain.SessionUser;
 import pl.com.setvar.dofi.util.DefaultLogger;
+
+// TODO dopisać test
 
 /**
  *  Filtr sprawdza, czy user jest adminem.
@@ -13,6 +11,8 @@ import pl.com.setvar.dofi.util.DefaultLogger;
  */
 public class AdminGuard extends LoggedInGuard {
 
+    // TODO dopisac komentarz
+    
     @Override
     protected boolean canContinueChain(SessionUser sessionUser){
         boolean canContinueChain = false;

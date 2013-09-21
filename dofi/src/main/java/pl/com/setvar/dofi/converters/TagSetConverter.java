@@ -13,6 +13,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import pl.com.setvar.dofi.model.Tag;
 
+// TODO przenieśc implementację do klasy Tag i nastepnie napisać testy jednostkowe
+
 /**
  *
  * @author Marta
