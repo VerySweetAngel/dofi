@@ -33,7 +33,7 @@ public class Settings implements Serializable{
     /** powtórzenie nowego hasła */
     private String repeatedPassword = "";
     /** zalogowany użytkownik */
-    @ManagedProperty("sessionUser")
+    @ManagedProperty("#{sessionUser}")
     private SessionUser sessionUser;
     
     /** wewnętrzna lista categorii do zapisania */
@@ -154,5 +154,12 @@ public class Settings implements Serializable{
      */
     public void setRepeatedPassword(String repeatedPassword) {
         this.repeatedPassword = repeatedPassword;
+    }
+
+    /**
+     * @param sessionUser the sessionUser to set
+     */
+    public void setSessionUser(SessionUser sessionUser) {
+        this.sessionUser = sessionUser;
     }
 }

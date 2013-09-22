@@ -40,7 +40,7 @@
         </module>
         <!-- kontrola poprawności deklaracji w klasie -->
         <module name="DeclarationOrder"/>
-        <!-- upewnienie się, że defaulty sa na końcu -->
+        <!-- upewnienie się, że defaulty są na końcu -->
         <module name="DefaultComesLast"/>        
         <!-- maksymalna długośc linii -->
         <module name="LineLength">
