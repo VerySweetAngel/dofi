@@ -20,10 +20,20 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.creationDate}" />
                     </f:facet>
-                    <h:inputText value="#{operation.creationDate}">
+                    <h:outputText value="#{operation.creationDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:outputText>
+                    <f:facet name="#{text.creationDate}">      
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.operationDate}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.operationDate}" required="true" requiredMessage="#{text.noOperationDate}">
                         <f:convertDateTime pattern="yyyy-MM-dd"/>
                     </h:inputText>
-                    <f:facet name="#{text.creationDate}">      
+                    <f:facet name="#{text.operationDate}">
                     </f:facet>
                 </h:column>
                 <h:column>    

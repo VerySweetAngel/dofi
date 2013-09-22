@@ -8,13 +8,15 @@
 
 #menu {
     float: left;
-    background-color: #ece3a5;
-    width: 10%;
+    background-color: #c2dfef;
     position: absolute;
+    width: 156px;
   
 }
 
 #menu .option {
-    width: 90%;
+    width: 100%;
     background-repeat: repeat-x;
+    
+   
 }

@@ -39,7 +39,7 @@ public class FinancialPlans implements Serializable {
         list.add(new FinancialPlan("AGD",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Kosmetyki",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Hobby",(short) 50,(short) 30,(short) 20));
-        list.add(new FinancialPlan("Prezenty",(short) 50,(short) 30,(short) 20));
+        list.add(new FinancialPlan("Prezent",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Transport",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Zdrowie",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Artykoły Biurowe",(short) 50,(short) 30,(short) 20));
@@ -49,5 +49,7 @@ public class FinancialPlans implements Serializable {
         list.add(new FinancialPlan("Słodycze",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Rozrywka",(short) 50,(short) 30,(short) 20));
         list.add(new FinancialPlan("Inne",(short) 50,(short) 30,(short) 20));
+        list.add(new FinancialPlan("Pożyczka",(short) 50,(short) 30,(short) 20));
     }
 }
+

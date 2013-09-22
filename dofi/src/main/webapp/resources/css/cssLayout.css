@@ -1,6 +1,6 @@
 #top {
     position: relative;
-    background-color: #036fab;
+    background-color: #036fab; 
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
@@ -18,21 +18,24 @@
 
 #right {
     float: right;
-    background-color: #ece3a5;
+    background-color: #c2dfef;
+    background-size:200px;
     padding: 5px;
     width: 150px;
+   
 }
 
 .right_content {
-    background-color: #dddddd;
-    position: absolute;
-    top: 172px;
+    background-color: #c2dfef;
+    background-size: 200px;
+    top: 20px;
+    height: auto;
     width: 88.5%;
     text-align:center;
-    line-height: 10px;
+    /*line-height: 80px;*/
     font-size: x-large;
     margin-left: 10.5%;
-    background-repeat: repeat-x;
+   
     
 }
 
@@ -52,6 +55,7 @@
     bottom: -200px;
     font-size: medium;
     position: relative;
+    
 
 
 }

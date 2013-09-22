@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import pl.com.setvar.dofi.model.Operation;
@@ -29,9 +30,12 @@ public class Operations implements Serializable {
 
     private List<Operation> operationsList;
     private List<User> usersList;
+    @ManagedProperty("#{sessionUser}")
+    private SessionUser sessionUser;
 
     public Operations() {
         usersList = User.findAll();
+        operationsList = Operation.findAll();
     }
 
     public void save() {
@@ -50,8 +54,8 @@ public class Operations implements Serializable {
         }
         Operation operation = new Operation();
         operation.setCreationDate(new Date());
-        operation.setOperator(usersList.get(0));
-        operation.setCreator(usersList.get(1));
+        operation.setOperator(getSessionUser().getLoggedInUser());
+        operation.setCreator(getSessionUser().getLoggedInUser());
         operation.setValue(0);
         operation.setTags(new HashSet<Tag>());
 
@@ -66,4 +70,19 @@ public class Operations implements Serializable {
     public List<Operation> getList() {
         return operationsList;
     }
+
+    /**
+     * @return the sessionUser
+     */
+    public SessionUser getSessionUser() {
+        return sessionUser;
+    }
+
+    /**
+     * @param sessionUser the sessionUser to set
+     */
+    public void setSessionUser(SessionUser sessionUser) {
+        this.sessionUser = sessionUser;
+    }
+
 }
