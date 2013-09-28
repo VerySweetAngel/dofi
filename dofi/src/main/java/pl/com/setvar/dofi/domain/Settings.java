@@ -92,7 +92,6 @@ public class Settings implements Serializable{
     /** metoda dodaje nową kategorię */
     public void addCategory(){
         Category newCategory = new Category();
-        newCategory.setCategory(true);
         categories.add(0, newCategory);
     }
     

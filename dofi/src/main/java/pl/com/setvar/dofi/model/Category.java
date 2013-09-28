@@ -62,7 +62,7 @@ public class Category implements java.io.Serializable {
      * Metoda usówa tylko te kategorie, które nie mają powiązanych żadnych operacji.
      */
     public void delete() {
-        if (operations.isEmpty()) {
+        if (getOperations().isEmpty()) {
             // TODO należy usunąć linki, jeżeli są
             dao.delete(this);
         }
@@ -80,7 +80,7 @@ public class Category implements java.io.Serializable {
         category = dao.findByName(name);
         if (category == null) {
             category = new Category(name);
-            category.category = true;
+            category.setCategory(true);
             dao.save(category);
         }
         return category;
@@ -94,5 +94,96 @@ public class Category implements java.io.Serializable {
     public static ArrayList<Category> listAll() {
         CategoryDaoInterface dao = new CategoryDao();
         return new ArrayList<Category>(dao.listAll());
+    }
+
+    /**
+     * Metoda zapisuje obiekt na końcu rząania.
+     */
+    public void save() {
+        dao.replicate(this);
+    }
+
+    /**
+     * @return klucz główny
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id klucz główny
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return nazwa kategorii
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name nazwa kategorii
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return wartośc kolumny {@code category}
+     */
+    public boolean isCategory() {
+        return category;
+    }
+
+    /**
+     * @param category wartośc kolumny {@code category}
+     */
+    public void setCategory(boolean category) {
+        this.category = category;
+    }
+
+    /**
+     * @return katoegoria nadrzędna
+     */
+    public Category getParent() {
+        return parent;
+    }
+
+    /**
+     * @param parent katoegoria nadrzędna
+     */
+    public void setParent(Category parent) {
+        this.parent = parent;
+    }
+
+    /**
+     * @return wiązania ze słowami
+     */
+    public Set<Taglink> getLinks() {
+        return links;
+    }
+
+    /**
+     * @param links wiązania ze słowami
+     */
+    public void setLinks(Set<Taglink> links) {
+        this.links = links;
+    }
+
+    /**
+     * @return powiązane operacje
+     */
+    public Set<Operation> getOperations() {
+        return operations;
+    }
+
+    /**
+     * @param operations powiązane operacje
+     */
+    public void setOperations(Set<Operation> operations) {
+        this.operations = operations;
     }
 }
