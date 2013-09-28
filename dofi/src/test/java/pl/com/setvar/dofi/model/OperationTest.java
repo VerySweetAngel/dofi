@@ -19,7 +19,7 @@ public class OperationTest extends BaseTestWithHibernate{
     @Test
     public void saveNewOperation() {
         User u = User.findByLogin("tester");
-        Tag category = new Tag("markiza");
+        Category category = new Category("markiza");
         Tag t1 = new Tag("jaguar");
         Tag t2 = new Tag("giewont");
         HashSet<Tag> tags = new HashSet<Tag>();

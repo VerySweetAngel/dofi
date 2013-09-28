@@ -86,7 +86,7 @@
         <br />
         <h2>#{text.nonCategoriesSettingsTitle}</h2>
         <h:form id="nonCSettingsForm">
-            <h:dataTable class="categoryTable" value="#{settings.nonCategories()}" var="nonCategory">
+            <h:dataTable class="categoryTable" value="#{settings.tags()}" var="nonCategory">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{text.tagName}" />
@@ -113,7 +113,7 @@
                     <h:inputText value="#{nonCategory.parent}" />
                 </h:column>
                 <h:column>
-                    <h:commandButton value="#{text.delete}" action="#{settings.deleteNonCategory(nonCategory)}" />
+                    <h:commandButton value="#{text.delete}" action="#{settings.deleteTag()}" />
                 </h:column>
             </h:dataTable>
             <h:commandButton value="#{text.addNew}" action="#{settings.addNonCategory()}" />

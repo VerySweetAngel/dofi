@@ -10,9 +10,9 @@
     <property name="creationDate" type="timestamp">
       <column length="29" name="CREATION_DATE" not-null="true" default="CURRENT_TIMESTAMP" />
     </property>
-    <many-to-one name="operator" class="pl.com.setvar.dofi.model.User" column="OPERATOR" not-null="true"/>
-    <many-to-one name="creator" class="pl.com.setvar.dofi.model.User" column="CREATOR" not-null="true"/>
-    <many-to-one name="category" class="pl.com.setvar.dofi.model.Tag" column="CATEGORY" not-null="true" cascade="save-update"/>
+    <many-to-one name="operator" class="pl.com.setvar.dofi.model.User" column="OPERATOR" not-null="true" />
+    <many-to-one name="creator" class="pl.com.setvar.dofi.model.User" column="CREATOR" not-null="true" />
+    <many-to-one name="category" class="pl.com.setvar.dofi.model.Category" column="CATEGORY" not-null="true" />
     <property name="value" type="int">
       <column name="value" not-null="true"/>
     </property>

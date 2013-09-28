@@ -5,6 +5,8 @@ import java.util.List;
 import pl.com.setvar.dofi.dao.UserDao;
 import pl.com.setvar.dofi.dao.UserDaoInterface;
 
+// TODO udokumentować klasę
+
 /**
  * Użytkownik systemu.
  *
@@ -130,7 +132,7 @@ public class User implements Serializable {
     }
 
     public static User findByLogin(String login) {
-        UserDao userDao = new UserDao();
-        return userDao.findByLogin(login);
+        UserDaoInterface dao = new UserDao();
+        return dao.findByLogin(login);
     }
 }

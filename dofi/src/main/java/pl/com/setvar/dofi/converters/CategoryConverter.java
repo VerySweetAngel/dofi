@@ -2,22 +2,19 @@ package pl.com.setvar.dofi.converters;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import pl.com.setvar.dofi.model.Tag;
-
-// TODO przenieśc implementację do klasy Category (po uwczesnym jej utworzeniu) i nastepnie napisać testy jednostkowe. 
-// TODO Dopisać do faces-config.xml
+import pl.com.setvar.dofi.model.Category;
 
 /**
- * Konwerter do Tagów (będących kategoriami).
+ * Konwerter do Kategorii.
  * @author Marta
  */
-public class CategoryTagConverter extends TagConverter {
+public class CategoryConverter extends TagConverter {
 
     @Override
     public final Object getAsObject(final FacesContext context, final UIComponent component, final String value) {
         if (value == null) {
             return null;
         }
-        return Tag.findByCategoryTagname(value);
+        return Category.findByName(value);
     }
 }

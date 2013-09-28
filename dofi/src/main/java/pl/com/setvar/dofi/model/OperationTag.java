@@ -13,15 +13,6 @@ public class OperationTag implements java.io.Serializable {
     private Tag tag;
     private Operation operation;
 
-    public OperationTag() {
-    }
-
-    public OperationTag(int id, Tag tag, Operation operation) {
-        this.id = id;
-        this.tag = tag;
-        this.operation = operation;
-    }
-
     public int getId() {
         return this.id;
     }

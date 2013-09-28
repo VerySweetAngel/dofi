@@ -1,6 +1,8 @@
 package pl.com.setvar.dofi.model;
 
 // TODO dopisac dokumentację
+// TODO dopisac testy
+// TODO zmienić nazwę klasy i tabeli na WordLink
 
 /**
  * Wiązanie tagów ze słowami.
@@ -12,15 +14,6 @@ public class Taglink implements java.io.Serializable {
     private int id;
     private String word;
     private Tag tag;
-
-    public Taglink() {
-    }
-
-    public Taglink(int id, String word, Tag tag) {
-        this.id = id;
-        this.word = word;
-        this.tag = tag;
-    }
 
     public int getId() {
         return this.id;

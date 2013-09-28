@@ -17,32 +17,15 @@ import pl.com.setvar.dofi.model.Tag;
  * @author tirpitz
  */
 public class TagDao extends GenericDao implements TagDaoInterface {
-    
-    @Override
-    public List<Tag> findTags(String criteria){
-        return findTags(criteria, NOT_A_CATEGORY_TAG);
-    }
-    
-    /** metoda wyszukuje kategorie, czyli tagi,l będące kategoriami */
-    @Override
-    public List<Tag> findCategories(String criteria){
-        return findTags(criteria, CATEGORY_TAG);
-    }
-    
-    /** metoda wyszukuje tagi nie będące kategorią */
-    @Override
-    public List<Tag> findAvaibleTags(String criteria){
-        return findTags(criteria, NOT_A_CATEGORY_TAG);
-    }
-    
+        
     /** 
      * Zwraca listę tagów spełniających żądane kryteria.
      */
-    private List<Tag> findTags(String criteria, boolean category){
-        return (List<Tag>) getSession().getNamedQuery("findTagsByTagnameAndTaglinkWord")
-                .setBoolean("category", category)
+    @Override
+    public List<Tag> find(String criteria){
+        return (List<Tag>) getSession().getNamedQuery("findByTagnameAndTaglinkWord")
                 .setString("criteria", String.format("%1$s%2$s%1$s", "%", criteria))
-                .list();
+                .list(); 
     }
 
     @Override
@@ -69,17 +52,9 @@ public class TagDao extends GenericDao implements TagDaoInterface {
     }
 
     @Override
-    public Tag findCategoryByTagname(String tagname) {
-        return (Tag) getSession().createQuery("FROM Tag t WHERE t.tagname = :tagname AND t.category = :category")
-                .setString("tagname", tagname)
-                .setParameter("category", true)
-                .uniqueResult();
-    }
-
-    @Override
-    public List<Tag> listAll(boolean category) {
+    public List<Tag> listAll() {
         return (List<Tag>) getSession().createQuery("FROM Tag t WHERE t.category = :category")
-                .setParameter("category", true)
+                .setParameter("category", false)
                 .list();
     }
 }

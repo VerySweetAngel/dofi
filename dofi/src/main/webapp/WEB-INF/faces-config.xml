@@ -44,11 +44,10 @@
         </converter-id>
     </converter>
     <converter>
+        <converter-for-class>
+            pl.com.setvar.dofi.model.Category
+        </converter-for-class>
         <converter-class>
-            pl.com.setvar.dofi.converters.CategoryTagConverter
+            pl.com.setvar.dofi.converters.CategoryConverter
         </converter-class>
-        <converter-id>
-            CategoryTagConverter
-        </converter-id>
     </converter>
-</faces-config>

@@ -140,7 +140,7 @@
         <module name="StringLiteralEquality"/>
         <!-- poprawna finalizacja -->
         <module name="SuperFinalize"/>
-        <!--nie zapominajmy o TODO'sach-->
+        <!--nie zapominajmy o TO DO'sach-->
         <module name="TodoComment"/>
         <!-- komentarze na końcu linii -->
         <module name="TrailingComment"/>

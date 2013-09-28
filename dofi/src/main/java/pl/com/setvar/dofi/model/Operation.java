@@ -20,23 +20,13 @@ public class Operation implements java.io.Serializable {
     private Date creationDate;
     private User operator;
     private User creator;
-    private Tag category;
+    private Category category;
     private int value;
     private Set<Tag> tags = new HashSet<Tag>(0);
     
     protected transient GenericDaoInterface dao = new GenericDao();
 
     public Operation() {
-    }
-
-    public Operation(int id, Date creationDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
-        this.id = id;
-        this.creationDate = (Date) creationDate.clone();
-        this.operator = operator;
-        this.creator = creator;
-        this.category = category;
-        this.value = value;
-        this.tags.addAll(tags);
     }
 
     /**
@@ -95,11 +85,11 @@ public class Operation implements java.io.Serializable {
         this.creator = creator;
     }
 
-    public Tag getCategory() {
+    public Category getCategory() {
         return this.category;
     }
 
-    public void setCategory(Tag category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

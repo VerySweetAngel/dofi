@@ -13,23 +13,6 @@ import pl.com.setvar.dofi.model.Tag;
 public interface TagDaoInterface extends GenericDaoInterface {
 
     /**
-     * dla kolumny category - oznacza, że dany tag jest kategorią
-     */
-    boolean CATEGORY_TAG = true;
-    /**
-     * dla kolumny category - oznacza, że dany tag nie jest kategorią
-     */
-    boolean NOT_A_CATEGORY_TAG = false;
-
-    /**
-     * Metoda wyszukuje tagi nie będące kategorią.
-     *
-     * @param criteria kryterium wyboru - może być nazwa taga, lub powiązane z nim słowo
-     * @return lista tagów
-     */
-    List<Tag> findAvaibleTags(String criteria);
-
-    /**
      * Metoda przeszukuje tablice tagów wedle zadanej nazwy. Nie ma rozgraniczenia na kategorie.
      *
      * @param tagname nazwa taga do wyszukania
@@ -38,28 +21,12 @@ public interface TagDaoInterface extends GenericDaoInterface {
     Tag findByTagname(String tagname);
 
     /**
-     * Metoda wyszukuje kategorie, czyli tagi, będące kategoriami.
-     *
-     * @param criteria nazwa kategorii, lub słową z nią powiązane
-     * @return lista kategorii spełniających zadane kryteria
-     */
-    List<Tag> findCategories(String criteria);
-
-    /**
-     * Metoda wyszukuje kategorie jedynie po nazwie.
-     *
-     * @param tagname nazwa kategorii
-     * @return ządana kategoria
-     */
-    Tag findCategoryByTagname(String tagname);
-
-    /**
      * Metoda wyszukuje tagi niebędące kategoriami po nazwie.
      *
      * @param criteria nazwa lub część nazwy taga
      * @return listan tagów spełaniających zadane kryterium
      */
-    List<Tag> findTags(String criteria);
+    List<Tag> find(String criteria);
 
     /**
      * Metdoa zwraca {@link Set} tagów, których nazwy odpowiadają zadanym nazwom.
@@ -70,10 +37,9 @@ public interface TagDaoInterface extends GenericDaoInterface {
     Set<Tag> getSetByTagnames(String tagnames);
 
     /**
-     * MEtoda zwraca wszytstkie tagi, bądź kategorie.
+     * Metoda zwraca wszytstkie tagi.
      *
-     * @param category czy zwrócone tagi mają być kategoriami?
      * @return lista tagó spłniających zadane kryterium
      */
-    List<Tag> listAll(boolean category);
+    List<Tag> listAll();
 }

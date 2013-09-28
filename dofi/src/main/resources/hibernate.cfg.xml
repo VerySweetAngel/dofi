@@ -15,6 +15,7 @@
     <mapping resource="pl/com/setvar/dofi/dao/OperationTag.hbm.xml"/>
     <mapping resource="pl/com/setvar/dofi/dao/Operation.hbm.xml"/>
     <mapping resource="pl/com/setvar/dofi/dao/Tag.hbm.xml"/>
+    <mapping resource="pl/com/setvar/dofi/dao/Category.hbm.xml"/>
     <mapping resource="pl/com/setvar/dofi/dao/Juxtaposition.hbm.xml"/>
     <mapping resource="pl/com/setvar/dofi/dao/Taglink.hbm.xml"/>
   </session-factory>

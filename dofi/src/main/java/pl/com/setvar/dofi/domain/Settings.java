@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
@@ -14,11 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.I18nText;
 
 // TODO dodać testy jednostkowe
+// TODO udokumentować klasę
 
 /**
  * Bean strony ustawień.
@@ -37,14 +35,14 @@ public class Settings implements Serializable{
     private SessionUser sessionUser;
     
     /** wewnętrzna lista categorii do zapisania */
-    private ArrayList<Tag> categories;
+    private ArrayList<Category> categories;
     /** wewnętrzna lista categorii do usunięcia */
-    private Set<Tag> categoriesToDelete = new HashSet<Tag>();
+    private Set<Category> categoriesToDelete = new HashSet<Category>();
     
     /** wewnętrzna lista tagów do zapisania */
-    private ArrayList<Tag> nonCategories;
+    private ArrayList<Tag> tags;
     /** wewnętrzna lista tagów do usunięcia */
-    private Set<Tag> nonCategoriesToDelete = new HashSet<Tag>();
+    private Set<Tag> tagsToDelete = new HashSet<Tag>();
     
     // TODO dorobić sortowanie i filtrowanie
     
@@ -68,48 +66,48 @@ public class Settings implements Serializable{
     }
     
     /** metoda zwraca lliste tagów, będących kategoriami */
-    public List<Tag> categories(){
-        categories = Tag.listAllCategories();
+    public List<Category> categories(){
+        categories = Category.listAll();
         return categories;
     }
     
     /** metoda zwraca lliste tagów, będących kategoriami */
-    public List<Tag> nonCategories(){
-        nonCategories = Tag.listAllTags();
-        return nonCategories;
+    public List<Tag> tags(){
+        tags = Tag.listAll();
+        return tags;
     }
     
     /** metoda usówa zadaną kategorię */
-    public void deleteCategory(Tag categoryToDelete){
+    public void deleteCategory(Category categoryToDelete){
         categoriesToDelete.add(categoryToDelete);
         categories.remove(categoryToDelete);
     }
     
     /** metoda usówa zadany tag nie będący kategorią */
-    public void deleteNonCategory(Tag nonCategoryToDelete){
-        nonCategoriesToDelete.add(nonCategoryToDelete);
-        nonCategories.remove(nonCategoryToDelete);
+    public void deleteTag(Tag tagToDelete){
+        tagsToDelete.add(tagToDelete);
+        tags.remove(tagToDelete);
     }
     
     /** metoda dodaje nową kategorię */
     public void addCategory(){
-        Tag newCategory = new Tag();
+        Category newCategory = new Category();
         newCategory.setCategory(true);
         categories.add(0, newCategory);
     }
     
     /** metoda dodaje now tag nie będący kategorią */
     public void addNonCategory(){
-        Tag newNonCategory = new Tag();
-        nonCategories.add(0, newNonCategory);
+        Tag tag = new Tag();
+        tags.add(0, tag);
     }
     
     /** metoda zapisuje zmiany poczynione w kategoriach */
     public void saveCategories(){
-        for(Tag category : categories){
+        for(Category category : categories){
             category.save();
         }
-        for(Tag category : categoriesToDelete){
+        for(Category category : categoriesToDelete){
             category.delete();
         }
         categoriesToDelete.clear();
@@ -118,13 +116,13 @@ public class Settings implements Serializable{
     
      /** metoda zapisuje zmiany poczynione w tagach nie będących kategoriami */
     public void saveNonCategories(){
-        for(Tag nonCategory : nonCategories){
+        for(Tag nonCategory : tags){
             nonCategory.save();
         }
-        for(Tag nonCategory : nonCategoriesToDelete){
+        for(Tag nonCategory : tagsToDelete){
             nonCategory.delete();
         }
-        nonCategoriesToDelete.clear();
+        tagsToDelete.clear();
         // TODO dodać wiadomość
     }
 

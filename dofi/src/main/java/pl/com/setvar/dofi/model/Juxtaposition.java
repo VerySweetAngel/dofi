@@ -16,15 +16,6 @@ public class Juxtaposition implements java.io.Serializable {
     private String name;
     protected GenericDaoInterface dao = new GenericDao();
 
-    public Juxtaposition() {
-    }
-
-    public Juxtaposition(int id, Tag tag, String name) {
-        this.id = id;
-        this.tag = tag;
-        this.name = name;
-    }
-
     public int getId() {
         return this.id;
     }

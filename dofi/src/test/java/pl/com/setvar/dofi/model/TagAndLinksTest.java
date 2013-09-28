@@ -24,7 +24,7 @@ public class TagAndLinksTest extends BaseTestWithHibernate{
         tagDao.saveOrUpdate(t2);
         tagDao.saveOrUpdate(t1);
              
-        List<Tag> result = tagDao.findAvaibleTags("jag");
+        List<Tag> result = tagDao.find("jag");
         assertTrue((result.size() == 2), "powinny być tylko dwa takie tagi a było " + result.size());
     }
 }

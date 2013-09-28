@@ -2,19 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Sep 9, 2013 9:02:25 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class name="pl.com.setvar.dofi.model.Tag" schema="APP" table="TAGS">
+  <class name="pl.com.setvar.dofi.model.Category" schema="APP" table="TAGS">
     <id name="id" type="int">
       <column name="ID"/>
       <generator class="identity"/>
     </id>
-    <property name="tagname" type="string">
+    <property name="name" type="string">
       <column length="50" name="TAGNAME" not-null="true" unique="true"/>
     </property>
     <property name="category" type="boolean">
-      <column name="CATEGORY" default="false" />
+      <column name="CATEGORY" default="true" />
     </property>
-    <many-to-one name="parent" class="pl.com.setvar.dofi.model.Tag" column="PARENT" cascade="all" />
-    <set name="taglinks" table="TAGLINKS" cascade="save-update, delete" inverse="true">
+    <many-to-one name="parent" class="pl.com.setvar.dofi.model.Category" column="PARENT" cascade="all" />
+    <set name="links" table="TAGLINKS" cascade="save-update, delete" inverse="true">
         <key column="TAG" not-null="true" />
         <one-to-many class="pl.com.setvar.dofi.model.Taglink" />
     </set>
@@ -30,9 +30,9 @@
   <sql-query name="findByTagnameAndTaglinkWord">
       <return alias="Tag" class="pl.com.setvar.dofi.model.Tag" />
       <![CDATA[
-            SELECT t1.* FROM tags t1 WHERE t1.tagname LIKE :criteria AND t1.category = 0
+            SELECT t1.* FROM tags t1 WHERE t1.tagname LIKE :criteria AND t1.category = 1
             UNION ALL
-            SELECT t2.* FROM tags t2 JOIN taglinks tl ON tl.tag = t2.id WHERE tl.word LIKE :criteria AND t2.category = 0
+            SELECT t2.* FROM tags t2 JOIN taglinks tl ON tl.tag = t2.id WHERE tl.word LIKE :criteria AND t2.category = 1
         ]]>
   </sql-query>
 </hibernate-mapping>
