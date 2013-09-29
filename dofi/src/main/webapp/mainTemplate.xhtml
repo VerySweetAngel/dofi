@@ -8,23 +8,17 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="#{resource['css:default.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:cssLayout.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:menu.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:operations.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:financialTable.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:indexTable.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:savingTable.css']}" rel="stylesheet" type="text/css" />
-        <link href="#{resource['css:setingsTable.css']}" rel="stylesheet" type="text/css" />
+        <link href="#{resource['css:style.css']}" rel="stylesheet" type="text/css" />
         <link type="image/x-icon" href="#{resource['img:logo_dofi.jpg']}" rel="shortcut icon"/>
-
         <title>#{global.dofi} - <ui:insert name="title" /></title>
     </h:head>
 
     <h:body>
-         <f:loadBundle basename="buildNumber" var="buildNumber" />
+        <f:loadBundle basename="buildNumber" var="buildNumber" />
         <div id="top" class="top">
-            <img src="#{resource['img:logo_dofi.jpg']}" alt="#{global.mainLogoAltText}" />
+            <h:link outcome="/index">
+                <img src="#{resource['img:logo_dofi.jpg']}" alt="#{global.mainLogoAltText}" />
+            </h:link>
             <span>
                 #{global.applicationTitle} - <ui:insert name="title" />
             </span>
