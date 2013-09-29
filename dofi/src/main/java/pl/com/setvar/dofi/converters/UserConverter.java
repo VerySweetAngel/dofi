@@ -59,7 +59,7 @@ public class UserConverter implements Converter {
             return null;
         }
         if (!(value instanceof User)) {
-            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!"));
+            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!")); //TODO przenieśc do zasobów
         }
         User user = (User) value;
         String name = user.getRealName() + " [" + user.getLogin() + "]";

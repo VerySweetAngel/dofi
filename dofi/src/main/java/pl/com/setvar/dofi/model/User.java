@@ -2,7 +2,7 @@ package pl.com.setvar.dofi.model;
 
 import java.io.Serializable;
 import java.util.List;
-import pl.com.setvar.dofi.dao.UserDao;
+import pl.com.setvar.dofi.dao.DaoFactory;
 import pl.com.setvar.dofi.dao.UserDaoInterface;
 
 // TODO udokumentować klasę
@@ -21,7 +21,7 @@ public class User implements Serializable {
     private String email = "";
     private boolean isAdmin = false;
     
-    protected transient UserDaoInterface dao = new UserDao();
+    protected transient UserDaoInterface dao = DaoFactory.getDao(User.class);
 
     public User() {
     }
@@ -32,7 +32,8 @@ public class User implements Serializable {
     }
 
     public static List<User> findAll() {
-        return new UserDao().findAll(User.class);
+        UserDaoInterface dao = DaoFactory.getDao(User.class);
+        return dao.findAll(User.class);
     }
 
     public boolean loadIfExistsByCredentials() {
@@ -132,7 +133,7 @@ public class User implements Serializable {
     }
 
     public static User findByLogin(String login) {
-        UserDaoInterface dao = new UserDao();
+        UserDaoInterface dao = DaoFactory.getDao(User.class);
         return dao.findByLogin(login);
     }
 }

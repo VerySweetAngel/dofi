@@ -67,7 +67,7 @@ public class GenericDao implements GenericDaoInterface {
         return (T) getSession().load(klass, id);
     }
     
-    /** zwraca listę wszytkioch */
+    /** zwraca listę wszystkich */
     @Override
     public <T> List<T> findAll(Class<T> klass){
         return getSession().createQuery(String.format("FROM %s", klass.getSimpleName())).list();

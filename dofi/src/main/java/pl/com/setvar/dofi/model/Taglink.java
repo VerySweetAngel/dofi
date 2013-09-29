@@ -2,10 +2,9 @@ package pl.com.setvar.dofi.model;
 
 // TODO dopisac dokumentację
 // TODO dopisac testy
-// TODO zmienić nazwę klasy i tabeli na WordLink
 
 /**
- * Wiązanie tagów ze słowami.
+ * Wiązanie tag'ów ze słowami.
  *
  * @author tirpitz-verus
  */

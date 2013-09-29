@@ -44,7 +44,7 @@ public class TagConverter implements Converter {
             return null;
         }
         if (!(value instanceof Tag)) {
-            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!"));
+            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!")); //TODO przenieśc do zasobów
         }
         Tag tag = (Tag) value;
         String name = tag.getTagname();

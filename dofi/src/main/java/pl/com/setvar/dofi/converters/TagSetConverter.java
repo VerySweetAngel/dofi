@@ -51,7 +51,7 @@ public class TagSetConverter implements Converter {
             return null;
         }
         if (!(value instanceof Set<?>)) {
-            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!"));
+            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!")); //TODO przenieśc do zasobów
         }
         StringBuilder result = new StringBuilder();
         Set<Tag> tagList = (Set<Tag>) value;

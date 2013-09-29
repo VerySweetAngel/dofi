@@ -1,6 +1,6 @@
 package pl.com.setvar.dofi.model;
 
-import pl.com.setvar.dofi.dao.GenericDao;
+import pl.com.setvar.dofi.dao.DaoFactory;
 import pl.com.setvar.dofi.dao.GenericDaoInterface;
 
 // TODO dopisac dokumentację
@@ -14,7 +14,7 @@ public class Juxtaposition implements java.io.Serializable {
     private int id;
     private Tag tag;
     private String name;
-    protected GenericDaoInterface dao = new GenericDao();
+    protected GenericDaoInterface dao = DaoFactory.getDao(Juxtaposition.class);
 
     public int getId() {
         return this.id;

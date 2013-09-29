@@ -3,7 +3,7 @@ package pl.com.setvar.dofi.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import pl.com.setvar.dofi.dao.GenericDao;
+import pl.com.setvar.dofi.dao.DaoFactory;
 import pl.com.setvar.dofi.dao.GenericDaoInterface;
 
 // TODO dopisać dokumentację.
@@ -24,7 +24,7 @@ public class Operation implements java.io.Serializable {
     private int value;
     private Set<Tag> tags = new HashSet<Tag>(0);
     
-    protected transient GenericDaoInterface dao = new GenericDao();
+    protected transient GenericDaoInterface dao = DaoFactory.getDao(Operation.class);
 
     public Operation() {
     }

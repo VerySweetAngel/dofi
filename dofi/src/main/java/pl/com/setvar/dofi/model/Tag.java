@@ -2,116 +2,173 @@ package pl.com.setvar.dofi.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import pl.com.setvar.dofi.dao.TagDao;
+import pl.com.setvar.dofi.dao.DaoFactory;
 import pl.com.setvar.dofi.dao.TagDaoInterface;
 
 // TODO napisać testy jednostkowe do klasy.
 // TODO udokumentować klasę
 
 /**
- * Klasa taga do opisu operacji.
+ * Klasa tag'a do opisu operacji.
  * @author tirpitz-verus
  */
 public class Tag implements java.io.Serializable {
     
+    /**
+     * Klucz główny.
+     */
     private int id;
+    /**
+     * Nazwa kategorii.
+     */
     private String tagname;
-    private boolean category = false;
+    /**
+     * Kategoria nadrzędna.
+     */
     private Tag parent;
+    /**
+     * Wiązania kategorii ze słowami.
+     */
     private Set<Taglink> taglinks = new HashSet<Taglink>();
+    /**
+     * Powiązane z tą kategorią operacje.
+     */
     private Set<Operation> operations = new HashSet<Operation>();
     
-    protected transient TagDaoInterface dao = new TagDao();
+        /**
+     * Obiekt do wykonywania operacji na bazie danych.
+     */
+    protected transient TagDaoInterface dao = DaoFactory.getDao(Tag.class);
 
+        /**
+     * Konstruktor bezargumentowy.
+     */
     public Tag() {
     }
 
+        /**
+     * Konstruktor, tworzący tag o zadanej nazwie.
+     *
+     * @param tagName nazwa nowego tag'a
+     */
     public Tag(String tagName) {
         tagname = tagName;
     }
-
-    public void setOperations(Set<Operation> operations){
-        this.operations = operations;
-    }
     
-    public Set<Operation> getOperations(){
-        return operations;
-    }
-    
-    public void setTaglinks(Set<Taglink> taglinks){
-        this.taglinks = taglinks;
-    }
-    
-    public Set<Taglink> getTaglinks(){
-        return taglinks;
-    }
-    
+    /**
+     * @return klucz główny
+     */
     public int getId() {
-        return this.id;
+        return id;
     }
 
+    /**
+     * @param id klucz główny
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return nazwa kategorii
+     */
     public String getTagname() {
-        return this.tagname;
+        return tagname;
     }
 
-    public void setTagname(String tagname) {
-        this.tagname = tagname;
+    /**
+     * @param name nazwa kategorii
+     */
+    public void setTagname(String name) {
+        this.tagname = name;
     }
 
-    public boolean isCategory() {
-        return this.category;
-    }
-
-    public void setCategory(boolean category) {
-        this.category = category;
-    }
-
+    /**
+     * @return kategoria nadrzędna
+     */
     public Tag getParent() {
-        return this.parent;
+        return parent;
     }
 
+    /**
+     * @param parent kategoria nadrzędna
+     */
     public void setParent(Tag parent) {
         this.parent = parent;
     }
     
+        /**
+     * @return wiązania ze słowami
+     */
+    public Set<Taglink> getLinks() {
+        return taglinks;
+    }
+
+    /**
+     * @param links wiązania ze słowami
+     */
+    public void setLinks(Set<Taglink> links) {
+        this.taglinks = links;
+    }
+
+    /**
+     * @return powiązane operacje
+     */
+    public Set<Operation> getOperations() {
+        return operations;
+    }
+
+    /**
+     * @param operations powiązane operacje
+     */
+    public void setOperations(Set<Operation> operations) {
+        this.operations = operations;
+    }
+    
+    /**
+     * Metoda zwraca tekstową reprezentację obiektu. Format to tagname[id (parent)].
+     * @return tekstowa reprezentacja obiektu
+     */
     @Override
     public String toString(){
         String par = (getParent() != null ? String.format(",%s", getParent().getTagname()) : "");
-        String cat = (isCategory() ? ",cat" : "");
-        return String.format("%s[%d %s %s]", getTagname(), (Integer) getId(), cat, par);
+        return String.format("%s[%d %s]", getTagname(), (Integer) getId(), par);
     }
 
-    /** metoda zapisuje obiekt na koniec sesji */
+    /**
+     * Metoda zapisuje obiekt na końcu rządania.
+     */
     public void save() {
         dao.replicate(this);
     }
 
-    /** metoda usówa obiekt */
+    /**
+     * Metoda usówa tag razem z jego powiązaniami z operacjami.
+     * Usunięte zostają wszytkie powiązania ze słowami.
+     */
     public void delete() {
         // TODO jeżeli usówamy zwykły tag, to trzeba też usunąć jego powiązania z operacjami
-        dao.delete(this);
+        dao.deleteWithTaglinks(this);
     }
     
         /** metoda wyszukuje tagi po nazwie, niezależnie  */
     public static Tag findByTagname(String tagname) {
-        TagDaoInterface dao = new TagDao();
+        TagDaoInterface dao = DaoFactory.getDao(Tag.class);
         return dao.findByTagname(tagname);
     }
 
     /** funkcja zwraca kolekcję tagów na podstawie zadanych nazw */
     public static Set<Tag> getSetByTagnames(String tagnames) {
-        TagDaoInterface dao = new TagDao();
+        TagDaoInterface dao = DaoFactory.getDao(Tag.class);
         return dao.getSetByTagnames(tagnames);
     }
 
     /** metoda zwraca listę wszytstkich tagów nie będących katqegoriami */
-    public static ArrayList<Tag> listAll() {
-        TagDaoInterface dao = new TagDao();
-        return new ArrayList<Tag>(dao.listAll());
+    public static <T extends Tag> ArrayList<T> listAll() {
+        TagDaoInterface dao = DaoFactory.getDao(Tag.class);
+        List<T> l = (List<T>) dao.findAll(Tag.class);
+        return new ArrayList<T>(l);
     }
 }

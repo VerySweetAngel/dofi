@@ -9,23 +9,19 @@ import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Restrictions;
 import pl.com.setvar.dofi.model.Tag;
 
-// TODO przenieść implementację rzeczy dla kategorii do klasy CategoryDao i nastepnie napisać testy jednostkowe
-// TODO dopisać dokumentację
-
+// TODO napisać testy jednostkowe
 /**
  * Klasa DAO dla klasy {@link pl.com.setvar.dofi.model.Tag}.
+ *
  * @author tirpitz
  */
 public class TagDao extends GenericDao implements TagDaoInterface {
-        
-    /** 
-     * Zwraca listę tagów spełniających żądane kryteria.
-     */
+
     @Override
-    public List<Tag> find(String criteria){
+    public List<Tag> find(String criteria) {
         return (List<Tag>) getSession().getNamedQuery("findByTagnameAndTaglinkWord")
                 .setString("criteria", String.format("%1$s%2$s%1$s", "%", criteria))
-                .list(); 
+                .list();
     }
 
     @Override
@@ -38,12 +34,12 @@ public class TagDao extends GenericDao implements TagDaoInterface {
     @Override
     public Set<Tag> getSetByTagnames(String tagnames) {
         StringTokenizer st = new StringTokenizer(tagnames);
-        if(st.hasMoreTokens() == false){
+        if (st.hasMoreTokens() == false) {
             return new HashSet<Tag>();
         }
         Junction junction = Restrictions.disjunction();
-        while (st.hasMoreTokens()){
-            String tagname  = st.nextToken();
+        while (st.hasMoreTokens()) {
+            String tagname = st.nextToken();
             junction = junction.add(Restrictions.eq("tagname", tagname));
         }
         Criteria criteria = getSession().createCriteria(Tag.class);
@@ -52,9 +48,10 @@ public class TagDao extends GenericDao implements TagDaoInterface {
     }
 
     @Override
-    public List<Tag> listAll() {
-        return (List<Tag>) getSession().createQuery("FROM Tag t WHERE t.category = :category")
-                .setParameter("category", false)
-                .list();
+    public <T extends Tag> void deleteWithTaglinks(T model) {
+        delete(model);
+        getSession().createQuery("delete Taglink where tag = :tagId")
+            .setInteger("tagId", model.getId())
+            .executeUpdate();
     }
 }
