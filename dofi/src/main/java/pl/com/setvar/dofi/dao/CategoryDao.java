@@ -13,7 +13,7 @@ public class CategoryDao extends TagDao implements TagDaoInterface {
 
     @Override
     public Category findByTagname(String tagname) {
-        return (Category) getSession().createQuery("FROM TCategory t WHERE t.tagname = :tagname")
+        return (Category) getSession().createQuery("FROM Category t WHERE t.tagname = :tagname")
                 .setString("tagname", tagname)
                 .uniqueResult();
     }

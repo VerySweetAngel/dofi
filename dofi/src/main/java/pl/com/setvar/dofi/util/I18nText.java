@@ -20,7 +20,12 @@ public class I18nText {
     public I18nText(final Bundles name) {
         String bundleName = name.getPath();
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        Locale locale = facesContext.getViewRoot().getLocale();
+        Locale locale;
+        if (facesContext == null) {
+            locale = Locale.getDefault();
+        } else {
+            locale = facesContext.getViewRoot().getLocale();
+        }
         bundle = ResourceBundle.getBundle(bundleName, locale);
     }
 

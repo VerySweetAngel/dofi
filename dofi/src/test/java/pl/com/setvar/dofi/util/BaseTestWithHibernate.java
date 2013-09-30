@@ -7,13 +7,14 @@ import org.testng.annotations.BeforeMethod;
 import pl.com.setvar.dofi.dao.HibernateUtil;
 
 /**
- * bazowa klasa testów z obsługą hibernate - całe klasy są otoczone sesją a metoday rollbackowanymi tranzakcjami
+ * Bazowa klasa testów z obsługą hibernate. Całe klasy są otoczone sesją a metoday rollbackowanymi tranzakcjami.
+ *
  * @author tirpitz
  */
 public class BaseTestWithHibernate {
-    
+
     private HibernateUtil hibernateUtil = new HibernateUtil();
-    
+
     @BeforeClass
     public static void setUpClass() throws Exception {
         HibernateUtil.createFactory();

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 9, 2013 9:02:25 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="pl.com.setvar.dofi.model.Tag" schema="APP" table="TAGS" discriminator-value="false">
+    <class name="pl.com.setvar.dofi.model.Tag" schema="APP" table="TAGS" discriminator-value="0">
         <id name="id" type="int">
             <column name="ID"/>
             <generator class="identity"/>
         </id>
+        <discriminator column="CATEGORY" type="short" />
         <property name="tagname" type="string">
             <column length="50" name="TAGNAME" not-null="true" unique="true"/>
         </property>
-        <discriminator column="CATEGORY" type="boolean" />
         <many-to-one name="parent" class="pl.com.setvar.dofi.model.Tag" column="PARENT" cascade="all" />
         <set name="taglinks" table="TAGLINKS" cascade="save-update, delete" inverse="true">
             <key column="TAG" not-null="true" />
@@ -24,7 +23,7 @@
                 <column name="OPERATION" not-null="true" />
             </many-to-many>
         </set>
-        <subclass name="pl.com.setvar.dofi.model.Category" extends="pl.com.setvar.dofi.model.Tag" discriminator-value="true">
+        <subclass name="pl.com.setvar.dofi.model.Category" extends="pl.com.setvar.dofi.model.Tag" discriminator-value="1">
         </subclass>
     </class>
     <sql-query name="findByTagnameAndTaglinkWord">

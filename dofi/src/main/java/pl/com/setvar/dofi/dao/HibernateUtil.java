@@ -62,7 +62,7 @@ public class HibernateUtil {
         }
     }
 
-    /** funckaj zamyka sesję */
+    /** funkcja zamyka sesję */
     public static void closeFactory(){
         sessionFactory.close();       
         DofiLogger.HIBERNATE.info("HibernateUtil.close session factory closed");

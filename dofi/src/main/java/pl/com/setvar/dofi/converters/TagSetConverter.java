@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.converters;
 
-import java.util.Iterator;
+import com.google.common.base.Joiner;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -12,22 +8,22 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import pl.com.setvar.dofi.model.Tag;
-
-// TODO przenieśc implementację do klasy Tag i nastepnie napisać testy jednostkowe
+import pl.com.setvar.dofi.util.Bundles;
+import pl.com.setvar.dofi.util.I18nText;
 
 /**
+ * Konweter do {@code Set<Tag>}.
  *
  * @author Marta
  */
 public class TagSetConverter implements Converter {
 
     /**
-     * Zwraca łańcuch znaków utworzony na podstawie przekazanego objektu.
-     * Komponent określa skąd została pobrana wartość.
+     * Zwraca łańcuch znaków utworzony na podstawie przekazanego objektu. Komponent określa skąd została pobrana
+     * wartość.
      *
      * @param value to jest napis.
-     * @return na podstawie napisu jest w stanie zwrócić którego taga to
-     * dotyczy.
+     * @return na podstawie napisu jest w stanie zwrócić którego taga to dotyczy.
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -35,12 +31,11 @@ public class TagSetConverter implements Converter {
             return null;
         }
         return Tag.getSetByTagnames(value);
-        
-   }
+
+    }
 
     /**
-     * Zwraca objekt przekonwertowany z podanej wartości tekstowej. Komponent
-     * określa skąd została pobrana wartość.
+     * Zwraca objekt przekonwertowany z podanej wartości tekstowej. Komponent określa skąd została pobrana wartość.
      *
      * @param value to jest tag (wszystkie jego dane)
      * @return na podstawie danych taga zwraca napis.
@@ -50,16 +45,11 @@ public class TagSetConverter implements Converter {
         if (value == null) {
             return null;
         }
-        if (!(value instanceof Set<?>)) {
-            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!")); //TODO przenieśc do zasobów
+        if (!(Set.class.isAssignableFrom(value.getClass()))) {
+            I18nText global = new I18nText(Bundles.I18N_GLOBAL);
+            throw new ConverterException(new FacesMessage(global.get("coverterError")));
         }
-        StringBuilder result = new StringBuilder();
-        Set<Tag> tagList = (Set<Tag>) value;
-        for (Iterator<Tag> it = tagList.iterator(); it.hasNext();) {
-            Tag tag = it.next();
-            result.append(tag.getTagname());
-            result.append(" ");
-        }
-        return result.toString();
+        Set<Tag> tagSet = (Set<Tag>) value;
+        return Joiner.on(" ").join(tagSet);
     }
 }

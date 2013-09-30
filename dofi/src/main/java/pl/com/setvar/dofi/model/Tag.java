@@ -102,15 +102,15 @@ public class Tag implements java.io.Serializable {
         /**
      * @return wiązania ze słowami
      */
-    public Set<Taglink> getLinks() {
+    public Set<Taglink> getTaglinks() {
         return taglinks;
     }
 
     /**
      * @param links wiązania ze słowami
      */
-    public void setLinks(Set<Taglink> links) {
-        this.taglinks = links;
+    public void setTaglinks(Set<Taglink> links) {
+        taglinks = links;
     }
 
     /**
@@ -128,13 +128,12 @@ public class Tag implements java.io.Serializable {
     }
     
     /**
-     * Metoda zwraca tekstową reprezentację obiektu. Format to tagname[id (parent)].
-     * @return tekstowa reprezentacja obiektu
+     * Metoda zwraca tekstową reprezentację obiektu.
+     * @return tagname
      */
     @Override
     public String toString(){
-        String par = (getParent() != null ? String.format(",%s", getParent().getTagname()) : "");
-        return String.format("%s[%d %s]", getTagname(), (Integer) getId(), par);
+        return tagname;
     }
 
     /**

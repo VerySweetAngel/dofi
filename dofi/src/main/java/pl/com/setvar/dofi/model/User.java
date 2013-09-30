@@ -136,4 +136,8 @@ public class User implements Serializable {
         UserDaoInterface dao = DaoFactory.getDao(User.class);
         return dao.findByLogin(login);
     }
+
+    public void save() {
+        dao.replicate(this);
+    }
 }
