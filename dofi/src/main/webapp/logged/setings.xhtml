@@ -26,6 +26,17 @@
                     <td><h:message class="formErrorMessage" for="userSettingsForm:email" /></td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td><h:commandButton value="#{text.save}" action="#{settings.saveUserSettings()}" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </h:form>
+        <br />
+        <h2>#{text.passwordChange}</h2>
+        <h:form id="passwordForm">
+            <table style="margin: auto;">
+                <tr>
                     <td>#{text.password}</td>
                     <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" /></td>
                     <td><h:message class="formErrorMessage" for="userSettingsForm:password" /></td>
@@ -42,7 +53,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><h:commandButton value="#{text.save}" action="#{settings.saveUserSettings()}" /></td>
+                    <td><h:commandButton value="#{text.save}" action="#{settings.passwordSettings()}" /></td>
                     <td></td>
                 </tr>
             </table>
@@ -57,12 +68,6 @@
                     </f:facet>
                     <h:inputText id="tagname" value="#{category.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
                     <h:message class="formErrorMessage" for="categoriesSettingsForm:tagname" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{text.category}" />
-                    </f:facet>
-                    <h:selectBooleanCheckbox value="#{category.category}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -96,12 +101,6 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{text.category}" />
-                    </f:facet>
-                    <h:selectBooleanCheckbox value="#{nonCategory.category}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
                         <h:outputText value="#{text.parent}" />
                     </f:facet>
                     <h:inputText value="#{nonCategory.parent}" />
@@ -116,8 +115,8 @@
                     <h:commandButton value="#{text.delete}" action="#{settings.deleteTag()}" />
                 </h:column>
             </h:dataTable>
-            <h:commandButton value="#{text.addNew}" action="#{settings.addNonCategory()}" />
-            <h:commandButton value="#{text.save}" action="#{settings.saveNonCategories()}" />
+            <h:commandButton value="#{text.addNew}" action="#{settings.addTag()}" />
+            <h:commandButton value="#{text.save}" action="#{settings.saveTags()}" />
         </h:form>
     </ui:define>
     

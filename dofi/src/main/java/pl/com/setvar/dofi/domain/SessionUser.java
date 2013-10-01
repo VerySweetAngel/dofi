@@ -52,7 +52,6 @@ public final class SessionUser implements Serializable {
         loggedInUser = new User(login, password);
         setLoggerdIn(loggedInUser.loadIfExistsByCredentials());
         admin = loggedInUser.isIsAdmin();
-        password = "";
     }
 
     public String logMeOut() {

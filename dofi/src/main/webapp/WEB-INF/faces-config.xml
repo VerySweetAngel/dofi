@@ -51,3 +51,4 @@
             pl.com.setvar.dofi.converters.CategoryConverter
         </converter-class>
     </converter>
+</faces-config>

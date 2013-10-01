@@ -1,11 +1,8 @@
 package pl.com.setvar.dofi.dao;
 
-// TODO testy
-
 import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.model.User;
-
 
 /**
  * Klasa produkuje instancję DAO na podstawie klasy proszącej. 
@@ -15,11 +12,14 @@ public class DaoFactory {
     
     /**
      * Funkcja zwraca instancję klasy DAO w zależności od zadanej klasy modelu.
-     * @param <T>
-     * @param klass
-     * @return 
+     * @param <T> typ interfejsu DAO
+     * @param klass klasa modelu
+     * @return implementacja interfejsu DAO
      */
     public static <T> T getDao(Class klass) {
+        if (klass == null) {
+            throw new NullPointerException("klass cannot be null");
+        }
         if (klass.equals(Category.class)) {
             return (T) new CategoryDao();
         } else if (klass.equals(Tag.class)) {
