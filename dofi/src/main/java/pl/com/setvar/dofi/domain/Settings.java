@@ -5,20 +5,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.util.Bundles;
-import pl.com.setvar.dofi.util.I18nText;
 
-// TODO zrobić klasę MessageSender, która będzie mockować wysyłanie wiadomości do contextu
 // TODO dodać testy jednostkowe
 // TODO dorobić sortowanie i filtrowanie
-
 /**
  * Bean strony ustawień.
  *
@@ -26,7 +21,7 @@ import pl.com.setvar.dofi.util.I18nText;
  */
 @ManagedBean
 @ViewScoped
-public class Settings implements Serializable {
+public class Settings extends BaseBackingBean implements Serializable {
 
     /**
      * nowe hasło
@@ -63,9 +58,7 @@ public class Settings implements Serializable {
      */
     public void saveUserSettings() {
         sessionUser.getLoggedInUser().save();
-        I18nText texts = new I18nText(Bundles.I18N_SETTINGS);
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", texts.get("userSettingsSaved"));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        messageAdder.addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
     }
 
     /**
@@ -73,21 +66,18 @@ public class Settings implements Serializable {
      */
     public void passwordSettings() {
         setRepeatedPassword("");
-        I18nText texts = new I18nText(Bundles.I18N_SETTINGS);
-        FacesMessage msg;
         if (getNewPassword().equals(getRepeatedPassword())) {
             if (getNewPassword().equals(sessionUser.getLoggedInUser().getPassword())) {
                 sessionUser.getLoggedInUser().setPassword(getNewPassword());
                 sessionUser.getLoggedInUser().save();
                 setNewPassword("");
-                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", texts.get("userSettingsSaved"));
+                messageAdder.addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
             } else {
-                msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, texts.get("badPassword"), texts.get("userSettingsSaveError"));
+                messageAdder.addErrorMessage(Bundles.I18N_SETTINGS, "userSettingsSaveError", "badPassword");
             }
         } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, texts.get("badRepeatedPassword"), texts.get("userSettingsSaveError"));
+            messageAdder.addErrorMessage(Bundles.I18N_SETTINGS, "userSettingsSaveError", "badRepeatedPassword");
         }
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     /**

@@ -1,13 +1,11 @@
 package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import pl.com.setvar.dofi.model.User;
 import pl.com.setvar.dofi.util.Bundles;
-import pl.com.setvar.dofi.util.I18nText;
 
 // TODO udokumentować klasę.
 // TODO napisać testy jednostkowe.
@@ -19,7 +17,7 @@ import pl.com.setvar.dofi.util.I18nText;
  */
 @ManagedBean
 @SessionScoped
-public final class SessionUser implements Serializable {
+public final class SessionUser extends BaseBackingBean implements Serializable {
 
     private String login = "";
     private String password = "";
@@ -37,15 +35,12 @@ public final class SessionUser implements Serializable {
      * Metoda realizuje akcję, wywoływaną ze strony logowania - próba zalogowania użytkownika według podanych danych.
      */
     public void logMeIn() {
-        FacesMessage msg;
-        I18nText texts = new I18nText(Bundles.I18N_INDEX);
         tryToLogUser();
         if (isLoggerdIn()) {
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", texts.get("loginWasSuccessful"));
+            messageAdder.addInfoMessage(Bundles.I18N_INDEX, "loginWasSuccessful");
         } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, texts.get("badPassword"), texts.get("loginError"));
+            messageAdder.addErrorMessage(Bundles.I18N_INDEX, "loginError", "badPassword");
         }
-        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     private void tryToLogUser() {
@@ -56,9 +51,7 @@ public final class SessionUser implements Serializable {
 
     public String logMeOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        I18nText texts = new I18nText(Bundles.I18N_INDEX);
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", texts.get("logout"));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        messageAdder.addInfoMessage(Bundles.I18N_INDEX, "logout");
         return "/index";
     }
 
