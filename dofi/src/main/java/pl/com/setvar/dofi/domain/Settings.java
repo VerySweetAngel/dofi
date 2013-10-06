@@ -61,7 +61,7 @@ public class Settings extends BaseBackingBean implements Serializable {
      * Metoda zapisuje ustawienia użytkownika.
      */
     public void saveUserSettings() {
-        sessionUser.getLoggedInUser().save();
+        sessionUser.save();
         messageAdder.addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
     }
 
@@ -69,12 +69,10 @@ public class Settings extends BaseBackingBean implements Serializable {
      * Metoda zapisuje zmianę hasła użytkownika. Wymagane jest podanie starego hasła powtórzenie nowego dwa razy.
      */
     public void passwordSettings() {
-        setRepeatedPassword("");
         if (getNewPassword().equals(getRepeatedPassword())) {
-            if (getNewPassword().equals(sessionUser.getLoggedInUser().getPassword())) {
-                sessionUser.getLoggedInUser().setPassword(getNewPassword());
-                sessionUser.getLoggedInUser().save();
-                setNewPassword("");
+            if (getOldPassword().equals(sessionUser.getPassword())) {
+                sessionUser.setPassword(getNewPassword());
+                sessionUser.save();
                 messageAdder.addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
             } else {
                 messageAdder.addErrorMessage(Bundles.I18N_SETTINGS, "userSettingsSaveError", "badPassword");
@@ -82,6 +80,9 @@ public class Settings extends BaseBackingBean implements Serializable {
         } else {
             messageAdder.addErrorMessage(Bundles.I18N_SETTINGS, "userSettingsSaveError", "badRepeatedPassword");
         }
+        setNewPassword("");
+        setRepeatedPassword("");
+        setOldPassword("");
     }
 
     /**
@@ -208,5 +209,12 @@ public class Settings extends BaseBackingBean implements Serializable {
      */
     public void setOldPassword(String oldPassword) {
         this.oldPassword = oldPassword;
+    }
+    
+    /**
+     * @return  oldPassword stare hasło
+     */
+    public String getOldPassword() {
+        return this.oldPassword;
     }
 }

@@ -9,6 +9,7 @@ import pl.com.setvar.dofi.util.Bundles;
 
 // TODO udokumentować klasę.
 // TODO napisać testy jednostkowe.
+// TODO wyłączyć stąd funkcjonalności index.xhtml
 
 /**
  * Użytkownik używający aplikacji w ramach trwającej sesji.
@@ -17,13 +18,15 @@ import pl.com.setvar.dofi.util.Bundles;
  */
 @ManagedBean
 @SessionScoped
-public final class SessionUser extends BaseBackingBean implements Serializable {
+public class SessionUser extends BaseBackingBean implements Serializable {
 
-    private String login = "";
-    private String password = "";
     private boolean loggerdIn = false;
     private boolean admin = false;
     private User loggedInUser;
+    
+    
+    private String enteredLogin = "";
+    private String enteredPassword = "";
 
     /**
      * Konstruktor klasy.
@@ -44,7 +47,7 @@ public final class SessionUser extends BaseBackingBean implements Serializable {
     }
 
     private void tryToLogUser() {
-        loggedInUser = new User(login, password);
+        loggedInUser = new User(enteredLogin, enteredPassword);
         setLoggerdIn(loggedInUser.loadIfExistsByCredentials());
         admin = loggedInUser.isIsAdmin();
     }
@@ -58,29 +61,29 @@ public final class SessionUser extends BaseBackingBean implements Serializable {
     /**
      * @return the login
      */
-    public String getLogin() {
-        return login;
+    public String getEnteredLogin() {
+        return enteredLogin;
     }
 
     /**
      * @param userLogin the login to set
      */
-    public void setLogin(String userLogin) {
-        this.login = userLogin;
+    public void setEnteredLogin(String userLogin) {
+        this.enteredLogin = userLogin;
     }
 
     /**
      * @return the password
      */
-    public String getPassword() {
-        return password;
+    public String getEnteredPassword() {
+        return enteredPassword;
     }
 
     /**
      * @param userPassword the password to set
      */
-    public void setPassword(String userPassword) {
-        this.password = userPassword;
+    public void setEnteredPassword(String userPassword) {
+        this.enteredPassword = userPassword;
     }
 
     /**
@@ -106,6 +109,7 @@ public final class SessionUser extends BaseBackingBean implements Serializable {
         this.loggerdIn = isUserLoggedIn;
     }
 
+    // TODO usunąć tą metodę - SessionUser powinna powielac interface User
     /**
      * Metoda zwraca zalogowanego użytkownika.
      *
@@ -113,5 +117,17 @@ public final class SessionUser extends BaseBackingBean implements Serializable {
      */
     public User getLoggedInUser() {
         return loggedInUser;
+    }
+    
+    public String getPassword() {
+        return loggedInUser.getPassword();
+    }
+    
+    public void setPassword(String newPassword) {
+        loggedInUser.setPassword(newPassword);
+    }
+    
+        public void save() {
+        loggedInUser.save();
     }
 }

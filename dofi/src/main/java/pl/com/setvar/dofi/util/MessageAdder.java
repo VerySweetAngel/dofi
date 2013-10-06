@@ -1,10 +1,24 @@
 package pl.com.setvar.dofi.util;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 /**
- * Interfejs klasy narzędziowej do dodawania wiadomości do kontekstu.
+ * Klasa narzędziowa do dodawania wiadomości do kontekstu.
+ *
  * @author tirpitz
  */
-public interface MessageAdder {
+public class MessageAdder {
+
+    /**
+     * Metoda dodaje wiadomość informacyjną do kontekstu.
+     *
+     * @param boundle paczka z tekstami
+     * @param textKey klucz tekstu
+     */
+    public void addInfoMessage(Bundles boundle, String textKey) {
+        addMessage(boundle, FacesMessage.SEVERITY_INFO, textKey, null);
+    }
 
     /**
      * Metoda dodaje wiadomość o błędzie do kontekstu.
@@ -13,7 +27,9 @@ public interface MessageAdder {
      * @param titleKey klucz tytułu wiadomości
      * @param textKey klucz treści wiadomości
      */
-    void addErrorMessage(Bundles boundle, String textKey, String titleKey);
+    public void addErrorMessage(Bundles boundle, String textKey, String titleKey) {
+        addMessage(boundle, FacesMessage.SEVERITY_ERROR, textKey, titleKey);
+    }
     
     /**
      * Metoda dodaje wiadomość o błędzie do kontekstu.
@@ -21,13 +37,22 @@ public interface MessageAdder {
      * @param boundle paczka z tekstami
      * @param textKey klucz treści wiadomości
      */
-    void addErrorMessage(Bundles boundle, String textKey);
+    public void addErrorMessage(Bundles boundle, String textKey) {
+        addMessage(boundle, FacesMessage.SEVERITY_ERROR, textKey, null);
+    }
 
     /**
-     * Metoda dodaje wiadomość informacyjną do kontekstu.
+     * Metoda dodaje zadaną wiadomość do kontekstu.
      *
-     * @param boundle paczka z tekstami
-     * @param textKey klucz tekstu
+     * @param b paczka z tekstami
+     * @param s rodzaj wiadomości
+     * @param titleKey klucz tytułu wiadomości
+     * @param textKey klucz treści wiadomości
      */
-    void addInfoMessage(Bundles boundle, String textKey);
+    private void addMessage(Bundles b, FacesMessage.Severity s, String textKey, String titleKey) {
+        I18nText texts = new I18nText(b);
+        FacesMessage msg = new FacesMessage(s, texts.get(titleKey), texts.get(textKey));
+        String target = null;
+        FacesContext.getCurrentInstance().addMessage(target, msg);
+    }
 }

@@ -1,7 +1,6 @@
 package pl.com.setvar.dofi.domain;
 
 import pl.com.setvar.dofi.util.MessageAdder;
-import pl.com.setvar.dofi.util.MessageAdderImpl;
 
 /**
  * Klasa bazowa dla obiektów wspierających widoki.
@@ -9,6 +8,6 @@ import pl.com.setvar.dofi.util.MessageAdderImpl;
  */
 public class BaseBackingBean {
     
-    protected MessageAdder messageAdder = new MessageAdderImpl();
+    protected MessageAdder messageAdder = new MessageAdder();
     
 }

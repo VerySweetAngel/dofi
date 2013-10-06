@@ -1,60 +1,86 @@
 package pl.com.setvar.dofi.converters;
 
 import javax.faces.convert.ConverterException;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 
 /**
+ * Testy dla klasy {@link pl.com.setvar.dofi.converters.TagConverter}.
+ *
  * @author tirpitz
  */
 public class TagConverterTest extends BaseTestWithHibernate {
 
     private TagConverter out = new TagConverter();
-    private Tag expected;
+    private Tag expected = new Tag("name");
 
-    @BeforeMethod
+    @BeforeMethod(groups = "integration")
     @Override
     public void setUpMethod() throws Exception {
         super.setUpMethod();
-
-        String name = "somename";
-        expected = new Tag(name);
         expected.save();
     }
 
-    /**
-     * Test of getAsObject method, of class TagConverter.
-     */
-    @Test
+    @Test(groups = "integration")
     public void testGetAsObject() {
-        Tag actual = (Tag) out.getAsObject(null, null, expected.getTagname());
-        assertEquals(actual.getId(), expected.getId());
-        assertEquals(actual.getTagname(), actual.getTagname());
+        //given
+        String tagname = expected.getTagname();
+        
+        //when
+        Tag actual = (Tag) out.getAsObject(null, null, tagname);
+        
+        //than
+        assertThat(actual.getId(), is(expected.getId()));
+        assertThat(actual.getTagname(), is(expected.getTagname()));
+    }
 
-        actual = (Tag) out.getAsObject(null, null, null);
+    @Test(groups = "integration")
+    public void testGetAsObjectBad() {
+        //given
+        String tagname = null;
+        
+        //when
+        Tag actual = (Tag) out.getAsObject(null, null, tagname);
+        
+        //than
         assertNull(actual);
     }
 
-    /**
-     * Test of getAsString method, of class TagConverter.
-     */
     @Test
     public void testGetAsString() {
+        //given
+        Tag tag = expected;
+        
+        //when
         String actual = out.getAsString(null, null, expected);
-        assertEquals(actual, expected.getTagname());
+        
+        //than
+        assertThat(actual, is(expected.getTagname()));
+    }
 
-        actual = out.getAsString(null, null, null);
+    @Test
+    public void testGetAsStringBad() {
+        //given
+        Tag tag = null;
+        
+        //when
+        String actual = out.getAsString(null, null, expected);
+        
+        //than
         assertNull(actual);
     }
-    
-    /**
-     * Test of getAsString method, of class TagConverter.
-     */
-    @Test(expectedExceptions = {ConverterException.class})
+
+    @Test(expectedExceptions = ConverterException.class)
     public void testGetAsStringConverterException() {
-        out.getAsString(null, null, out);
+        //given
+        Object tag = this;
+        
+        //when
+        String actual = out.getAsString(null, null, expected);
     }
 }

@@ -1,6 +1,8 @@
 package pl.com.setvar.dofi.converters;
 
-import static org.testng.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.testng.Assert.assertNull;
 import org.testng.annotations.BeforeMethod;
 import javax.faces.convert.ConverterException;
 import org.testng.annotations.Test;
@@ -8,53 +10,77 @@ import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 
 /**
+ * Testy dla klasy {@link pl.com.setvar.dofi.converters.CategoryConverter}.
+ *
  * @author tirpitz
  */
 public class CategoryConverterTest extends BaseTestWithHibernate {
 
     private CategoryConverter out = new CategoryConverter();
-    private Category expected;
+    private Category expected = new Category("somename");
 
-    @BeforeMethod
+    @BeforeMethod(groups = "integration")
     @Override
     public void setUpMethod() throws Exception {
         super.setUpMethod();
-
-        String name = "somename";
-        expected = new Category(name);
         expected.save();
     }
 
-    /**
-     * Test of getAsObject method, of class CategoryConverter.
-     */
-    @Test
-    public void testGetAsObject() {
-        Category actual = (Category) out.getAsObject(null, null, expected.getTagname());
-        assertEquals(actual.getId(), expected.getId());
-        assertEquals(actual.getTagname(), actual.getTagname());
+    @Test(groups = "integration")
+    public void getAsObjectOk() {
+        //given
+        String tagname = expected.getTagname();
+        
+        //when        
+        Category actual = (Category) out.getAsObject(null, null, tagname);
+        
+        //than
+        assertThat(actual.getId(), is(expected.getId()));
+        assertThat(actual.getTagname(), is(expected.getTagname()));
+    }
 
-        actual = (Category) out.getAsObject(null, null, null);
+    @Test(groups = "integration")
+    public void getAsObjectBad() {
+        //given
+        String tagname = null;
+        
+        //when        
+        Category actual = (Category) out.getAsObject(null, null, tagname);
+        
+        //than
         assertNull(actual);
     }
 
-    /**
-     * Test of getAsString method, of class CategoryConverter.
-     */
     @Test
-    public void getAsString() {
-        String actual = out.getAsString(null, null, expected);
-        assertEquals(actual, expected.getTagname());
+    public void getAsStringOk() {
+        //given
+        Category category = expected;
+        
+        //when
+        String actual = out.getAsString(null, null, category);
+        
+        //than
+        assertThat(actual, is(expected.getTagname()));
+    }
 
-        actual = out.getAsString(null, null, null);
+    @Test
+    public void getAsStringBad() {
+        //given
+        Category category = null;
+        
+        //when
+        String actual = out.getAsString(null, null, category);
+        
+        //than
         assertNull(actual);
     }
 
-    /**
-     * Test of getAsString method, of class CategoryConverter.
-     */
-    @Test(expectedExceptions = {ConverterException.class})
+    @Test(expectedExceptions = ConverterException.class)
     public void getAsStringConverterException() {
-        out.getAsString(null, null, out);
+        //given
+        Object category = this;
+        
+        //when
+        out.getAsString(null, null, category);
     }
 }
