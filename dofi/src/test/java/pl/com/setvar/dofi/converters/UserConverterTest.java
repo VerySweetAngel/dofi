@@ -1,68 +1,113 @@
 package pl.com.setvar.dofi.converters;
 
 import javax.faces.convert.ConverterException;
-import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import pl.com.setvar.dofi.model.User;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 
 /**
+ * Testy klasy {@link pl.com.setvar.dofi.converters.UserConverter}.
+ * 
  * @author tirpitz
  */
 public class UserConverterTest extends BaseTestWithHibernate {
     
     private UserConverter out = new UserConverter();
-    private User expected1;
-    private User expected2;
+    private User userWithLogin = new User("login", "password");
+    private String userWithLoginAsString = String.format("[%s]", userWithLogin.getLogin());
+    private User userWithRealname = new User("login2", "password", "resalname");
+    private String userWithRealnameAsString = String.format("%s [%s]", userWithRealname.getRealName(), userWithRealname.getLogin());
 
-    @BeforeMethod
+    @BeforeMethod(groups = "integration")
     @Override
     public void setUpMethod() throws Exception {
         super.setUpMethod();
-
-        expected1 = new User("login", "password");
-        expected1.save();
-        expected2 = new User("login2", "password");
-        expected2.setRealName("resalname");
-        expected2.save();
+        userWithLogin.save();
+        userWithRealname.save();
     }
 
-    /**
-     * Test of getAsObject method, of class UserConverter.
-     */
-    @Test
-    public void testGetAsObject() {
-        User actual = (User) out.getAsObject(null, null, String.format("[%s]", expected1.getLogin()));
-        assertEquals(actual, expected1);
-
-        actual = (User) out.getAsObject(null, null, String.format("%s [%s]", expected2.getRealName(), expected2.getLogin()));
-        assertEquals(actual, expected2);
+    @Test(groups = "integration")
+    public void testGetAsObjectLogin() {
+        //given
+        String asString = userWithLoginAsString;
         
-        actual = (User) out.getAsObject(null, null, null);
-        assertNull(actual);
+        //when
+        User actual = (User) out.getAsObject(null, null, asString);
+        
+        //than
+        assertThat(actual, is(userWithLogin));
     }
 
-    /**
-     * Test of getAsString method, of class UserConverter.
-     */
-    @Test
-    public void testGetAsString() {
-        String actual = out.getAsString(null, null, expected1);
-        assertEquals(actual, String.format("[%s]", expected1.getLogin()));
+    @Test(groups = "integration")
+    public void testGetAsObjectRealName() {
+        //given
+        String asString = userWithRealnameAsString;
         
-        actual = out.getAsString(null, null, expected2);
-        assertEquals(actual, String.format("%s [%s]", expected2.getRealName(), expected2.getLogin()));
+        //when
+        User actual = (User) out.getAsObject(null, null, asString);
+        
+        //than
+        assertThat(actual, is(userWithRealname));
+    }
 
-        actual = out.getAsString(null, null, null);
-        assertNull(actual);
+    @Test(groups = "integration")
+    public void testGetAsObjectNull() {
+        //given
+        String asString = null;
+        
+        //when
+        User actual = (User) out.getAsObject(null, null, asString);
+        
+        //than
+        assertThat(actual, is(nullValue()));
+    }
+ 
+    @Test
+    public void testGetAsStringLogin() {
+        //given
+        User user = userWithLogin;
+        
+        //when       
+        String actual = out.getAsString(null, null, user);
+        
+        //than
+        assertThat(actual, is(userWithLoginAsString));
+    }
+        
+    @Test
+    public void testGetAsStringRealname() {
+        //given
+        User user = userWithRealname;
+        
+        //when       
+        String actual = out.getAsString(null, null, user);
+        
+        //than
+        assertThat(actual, is(userWithRealnameAsString));
+    }   
+
+    @Test
+    public void testGetAsStringNull() {
+        //given
+        User user = userWithRealname;
+        
+        //when       
+        String actual = out.getAsString(null, null, user);
+        
+        //than
+        assertThat(actual, is(nullValue()));
     }
     
-    /**
-     * Test of getAsString method, of class UserConverter.
-     */
     @Test(expectedExceptions = {ConverterException.class})
     public void testGetAsStringConverterException() {
-        out.getAsString(null, null, out);
+        //given
+        User user = null;
+        
+        //when       
+        out.getAsString(null, null, user);
     }
 }

@@ -5,7 +5,10 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.never;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.CoreMatchers.is;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import static org.testng.Assert.fail;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.com.setvar.dofi.util.Bundles;
@@ -23,10 +26,12 @@ public class SettingsTest {
     private String newPassword = "56456456";
     private String badOldPassoword = "QEWEERER";
     private SessionUser sessionUser = when(mock(SessionUser.class).getPassword()).thenReturn(oldPassword).getMock();
-    private MessageAdder messageAdder = mock(MessageAdder.class);
+    @Mock
+    private MessageAdder messageAdder;
     
-    @BeforeMethod(groups = "unit")
+    @BeforeMethod
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
         out = new Settings();
         out.setSessionUser(sessionUser);
         out.messageAdder = messageAdder;
@@ -40,7 +45,7 @@ public class SettingsTest {
         out.setOldPassword(badOldPassoword);
         
         //when
-        out.passwordSettings();
+        out.savePasswordChange();
         
         //than
         assertThat(out.getNewPassword(), is(""));
@@ -56,7 +61,7 @@ public class SettingsTest {
         out.setRepeatedPassword(newPassword);
         
         //when
-        out.passwordSettings();
+        out.savePasswordChange();
         
         //than
         verify(sessionUser, never()).setEnteredPassword(newPassword);
@@ -73,7 +78,7 @@ public class SettingsTest {
         out.setRepeatedPassword(oldPassword);
         
         //when
-        out.passwordSettings();
+        out.savePasswordChange();
         
         //than
         verify(sessionUser, never()).setEnteredPassword(newPassword);
@@ -90,11 +95,45 @@ public class SettingsTest {
         out.setRepeatedPassword(newPassword);
         
         //when
-        out.passwordSettings();
+        out.savePasswordChange();
         
         //than
         verify(sessionUser).setPassword(newPassword);
         verify(sessionUser).save();
         verify(messageAdder).addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
+    }
+    
+//    @Test(groups = "integration")
+    public void categories(){
+        fail();
+    }
+    
+//    @Test(groups = "integration")
+    public void tags(){
+        fail();
+    }
+    
+    public void deleteCategory(){
+        fail();
+    }
+    
+    public void deleteTag(){
+        fail();
+    }
+    
+    public void addCategory(){
+        fail();
+    }
+    
+    public void addTag(){
+        fail();
+    }
+    
+    public void saveCategories(){
+        fail();
+    }
+    
+    public void saveTags(){
+        fail();
     }
 }

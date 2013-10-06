@@ -12,7 +12,6 @@ import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.util.Bundles;
 
-// TODO dodać testy jednostkowe
 // TODO dorobić sortowanie i filtrowanie
 /**
  * Bean strony ustawień.
@@ -68,9 +67,11 @@ public class Settings extends BaseBackingBean implements Serializable {
     /**
      * Metoda zapisuje zmianę hasła użytkownika. Wymagane jest podanie starego hasła powtórzenie nowego dwa razy.
      */
-    public void passwordSettings() {
-        if (getNewPassword().equals(getRepeatedPassword())) {
-            if (getOldPassword().equals(sessionUser.getPassword())) {
+    public void savePasswordChange() {
+        boolean passwordRepeatedCorectly = getNewPassword().equals(getRepeatedPassword());
+        if (passwordRepeatedCorectly) {
+            boolean oldPasswordCorrect = getOldPassword().equals(sessionUser.getPassword());
+            if (oldPasswordCorrect) {
                 sessionUser.setPassword(getNewPassword());
                 sessionUser.save();
                 messageAdder.addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");

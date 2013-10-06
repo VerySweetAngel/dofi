@@ -13,24 +13,29 @@ import pl.com.setvar.dofi.dao.HibernateUtil;
  */
 public class BaseTestWithHibernate {
 
-    private HibernateUtil hibernateUtil = new HibernateUtil();
+    private HibernateUtil hibernateUtil;
 
-    @BeforeClass
+    @BeforeClass(groups = "integration")
     public static void setUpClass() throws Exception {
         HibernateUtil.createFactory();
     }
 
-    @AfterClass
+    @AfterClass(groups = "integration")
     public static void tearDownClass() throws Exception {
         HibernateUtil.closeFactory();
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = "integration")
+    public void setUpHibernateUtil() {
+         hibernateUtil = new HibernateUtil();
+    }
+    
+    @BeforeMethod(groups = "integration")
     public void setUpMethod() throws Exception {
         hibernateUtil.beginTransaction();
     }
 
-    @AfterMethod
+    @AfterMethod(groups = "integration")
     public void tearDownMethod() throws Exception {
         hibernateUtil.rollbackTransaction();
     }
