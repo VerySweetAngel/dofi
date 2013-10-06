@@ -24,6 +24,10 @@ import pl.com.setvar.dofi.util.Bundles;
 public class Settings extends BaseBackingBean implements Serializable {
 
     /**
+     * stare hasło
+     */
+    private String oldPassword = "";
+    /**
      * nowe hasło
      */
     private String newPassword = "";
@@ -197,5 +201,12 @@ public class Settings extends BaseBackingBean implements Serializable {
      */
     public void setSessionUser(SessionUser sessionUser) {
         this.sessionUser = sessionUser;
+    }
+
+    /**
+     * @param oldPassword stare hasło
+     */
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
     }
 }

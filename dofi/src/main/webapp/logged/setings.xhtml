@@ -38,7 +38,7 @@
             <table style="margin: auto;">
                 <tr>
                     <td>#{text.password}</td>
-                    <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" /></td>
+                    <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{settings.oldPassword}" /></td>
                     <td><h:message class="formErrorMessage" for="userSettingsForm:password" /></td>
                 </tr>
                 <tr>

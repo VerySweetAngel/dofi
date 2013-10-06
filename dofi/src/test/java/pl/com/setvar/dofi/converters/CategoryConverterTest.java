@@ -1,8 +1,8 @@
 package pl.com.setvar.dofi.converters;
 
-import javax.faces.convert.ConverterException;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
+import javax.faces.convert.ConverterException;
 import org.testng.annotations.Test;
 import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
@@ -48,15 +48,13 @@ public class CategoryConverterTest extends BaseTestWithHibernate {
 
         actual = out.getAsString(null, null, null);
         assertNull(actual);
+    }
 
-        try {
-            actual = out.getAsString(null, null, out);
-        }
-        catch (ConverterException exception) {
-            // all ok
-        }
-        catch (Exception exception) {
-            fail("powinien pojawić się wyjątek ConverterException");
-        }
+    /**
+     * Test of getAsString method, of class CategoryConverter.
+     */
+    @Test(expectedExceptions = {ConverterException.class})
+    public void getAsStringConverterException() {
+        out.getAsString(null, null, out);
     }
 }

@@ -78,16 +78,13 @@ public class TagSetConverterTest extends BaseTestWithHibernate {
 
         actual = out.getAsString(null, null, null);
         assertNull(actual);
-
-        try {
-            actual = out.getAsString(null, null, out);
-        }
-        catch (ConverterException exception) {
-            // all ok
-        }
-        catch (Exception exception) {
-            System.out.println(exception);
-            fail("powinien pojawić się wyjątek ConverterException");
-        }
+    }
+    
+    /**
+     * Test of getAsString method, of class TagSetConverter.
+     */
+    @Test(expectedExceptions = {ConverterException.class})
+    public void testGetAsStringConverterException() {
+        out.getAsString(null, null, out);
     }
 }
