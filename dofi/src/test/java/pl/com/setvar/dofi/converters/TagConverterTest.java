@@ -57,7 +57,7 @@ public class TagConverterTest extends BaseTestWithHibernate {
         Tag tag = expected;
         
         //when
-        String actual = out.getAsString(null, null, expected);
+        String actual = out.getAsString(null, null, tag);
         
         //than
         assertThat(actual, is(expected.getTagname()));
@@ -69,7 +69,7 @@ public class TagConverterTest extends BaseTestWithHibernate {
         Tag tag = null;
         
         //when
-        String actual = out.getAsString(null, null, expected);
+        String actual = out.getAsString(null, null, tag);
         
         //than
         assertNull(actual);
@@ -81,6 +81,6 @@ public class TagConverterTest extends BaseTestWithHibernate {
         Object tag = this;
         
         //when
-        String actual = out.getAsString(null, null, expected);
+        String actual = out.getAsString(null, null, tag);
     }
 }

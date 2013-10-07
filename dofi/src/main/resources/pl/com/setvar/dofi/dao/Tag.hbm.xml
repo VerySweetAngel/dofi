@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="pl.com.setvar.dofi.model.Tag" schema="APP" table="TAGS" discriminator-value="0">
+    <class name="pl.com.setvar.dofi.model.Tag" schema="APP" table="TAGS" discriminator-value="0" abstract="true">
         <id name="id" type="int">
             <column name="ID"/>
             <generator class="identity"/>
@@ -29,9 +29,9 @@
     <sql-query name="findByTagnameAndTaglinkWord">
         <return alias="Tag" class="pl.com.setvar.dofi.model.Tag" />
       <![CDATA[
-            SELECT t1.* FROM tags t1 WHERE t1.tagname LIKE :criteria AND t1.category = 0
+            SELECT t1.* FROM tags t1 WHERE t1.tagname LIKE :criteria
             UNION ALL
-            SELECT t2.* FROM tags t2 JOIN taglinks tl ON tl.tag = t2.id WHERE tl.word LIKE :criteria AND t2.category = 0
+            SELECT t2.* FROM tags t2 JOIN taglinks tl ON tl.tag = t2.id WHERE tl.word LIKE :criteria
         ]]>
     </sql-query>
 </hibernate-mapping>

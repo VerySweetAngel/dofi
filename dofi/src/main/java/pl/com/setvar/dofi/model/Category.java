@@ -1,5 +1,7 @@
 package pl.com.setvar.dofi.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import pl.com.setvar.dofi.dao.DaoFactory;
 import pl.com.setvar.dofi.dao.TagDaoInterface;
 
@@ -29,8 +31,8 @@ public class Category extends Tag implements java.io.Serializable {
     }
 
     /**
-     * Metoda usuwa tylko te kategorie, które nie mają powiązanych żadnych operacji.
-     * Usunięte zostają wszytkie powiązania ze słowami.
+     * Metoda usuwa tylko te kategorie, które nie mają powiązanych żadnych operacji. Usunięte zostają wszytkie
+     * powiązania ze słowami.
      */
     @Override
     public void delete() {
@@ -54,5 +56,16 @@ public class Category extends Tag implements java.io.Serializable {
             category.save();
         }
         return category;
+    }
+
+    /**
+     * Metoda zwraca listę wszystkich kategorii.
+     *
+     * @return lista wszytkich kategorii
+     */
+    public static ArrayList<Category> listAllCategories() {
+        TagDaoInterface dao = DaoFactory.getDao(Category.class);
+        List<Category> l = (List<Category>) dao.findAll(Category.class);
+        return new ArrayList<Category>(l);
     }
 }

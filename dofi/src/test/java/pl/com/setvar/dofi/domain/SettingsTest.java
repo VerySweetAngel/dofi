@@ -1,16 +1,23 @@
 package pl.com.setvar.dofi.domain;
 
+import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.never;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.testng.Assert.fail;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.com.setvar.dofi.model.Category;
+import pl.com.setvar.dofi.model.Tag;
+import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.MessageAdder;
 
@@ -19,7 +26,7 @@ import pl.com.setvar.dofi.util.MessageAdder;
  * 
  * @author tirpitz
  */
-public class SettingsTest {
+public class SettingsTest extends BaseTestWithHibernate {
     
     private Settings out = new Settings();
     private String oldPassword = "WERTEGDG";
@@ -103,37 +110,125 @@ public class SettingsTest {
         verify(messageAdder).addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
     }
     
-//    @Test(groups = "integration")
+    @Test(groups = "integration")
     public void categories(){
-        fail();
+        //given
+        Category cat1 = new Category("cat1");
+        cat1.save();
+        Category cat2 = new Category("cat2");
+        cat2.save();
+        Tag tag1 = new Tag("tag1");
+        tag1.save();
+        Tag tag2 = new Tag("tag2");
+        tag2.save();
+        
+        //when
+        List<Category> categories = out.categories();
+        
+        //than
+        assertThat(categories, hasItem(cat1));
+        assertThat(categories, hasItem(cat2));
+        assertThat(categories, hasSize(2));
     }
     
-//    @Test(groups = "integration")
+    @Test(groups = "integration")
     public void tags(){
-        fail();
+        //given
+        Category cat = new Category("cat1");
+        cat.save();
+        Tag tag = new Tag("tag1");
+        tag.save();
+        
+        //when
+        List<Tag> tags = out.tags();
+        
+        //than
+        assertThat(tags, hasItem(tag));
+        assertThat(tags, hasItem(cat));
+        assertThat(tags, hasSize(2));
     }
     
+    @Test
     public void deleteCategory(){
-        fail();
+        //given
+        Category c = new Category();
+        out.categories.add(c);
+        
+        //when
+        out.deleteCategory(c);
+        
+        //than
+        assertThat(out.categoriesToDelete, hasItem(c));
+        assertThat(out.categories, not(hasItem(c)));
     }
     
+    @Test
     public void deleteTag(){
-        fail();
+        //given
+        Tag t = new Tag();
+        out.tags.add(t);
+        
+        //when
+        out.deleteTag(t);
+        
+        //than
+        assertThat(out.tagsToDelete, hasItem(t));
+        assertThat(out.tags, not(hasItem(t)));
     }
     
+    @Test
     public void addCategory(){
-        fail();
+        //when
+        out.addCategory();
+        
+        //than
+        assertThat(out.categoriesToDelete, is(empty()));
+        assertThat(out.categories, is(not(empty())));
     }
     
+    @Test
     public void addTag(){
-        fail();
+        //when
+        out.addTag();
+        
+        //than
+        assertThat(out.tagsToDelete, is(empty()));
+        assertThat(out.tags, is(not(empty())));
     }
     
+    @Test
     public void saveCategories(){
-        fail();
+        //given
+        Category cat = mock(Category.class);
+        out.categories.add(cat);
+        Category catToDel = mock(Category.class);
+        out.categoriesToDelete.add(catToDel);
+        
+        //when
+        out.saveCategories();
+        
+        //than
+        verify(cat).save();
+        verify(catToDel).delete();
+        assertThat(out.categoriesToDelete, is(empty()));
+        assertThat(out.categories, hasItem(cat));
     }
     
+    @Test
     public void saveTags(){
-        fail();
+        //given
+        Tag tag = mock(Tag.class);
+        out.tags.add(tag);
+        Tag tagToDel = mock(Tag.class);
+        out.tagsToDelete.add(tagToDel);
+        
+        //when
+        out.saveTags();
+        
+        //than
+        verify(tag).save();
+        verify(tagToDel).delete();
+        assertThat(out.tagsToDelete, is(empty()));
+        assertThat(out.tags, hasItem(tag));
     }
 }

@@ -42,19 +42,19 @@ public class Settings extends BaseBackingBean implements Serializable {
     /**
      * wewnętrzna lista kategorii do zapisania
      */
-    private ArrayList<Category> categories;
+    protected ArrayList<Category> categories = new ArrayList<Category>();
     /**
      * wewnętrzna lista kategorii do usunięcia
      */
-    private Set<Category> categoriesToDelete = new HashSet<Category>();
+    protected Set<Category> categoriesToDelete = new HashSet<Category>();
     /**
      * wewnętrzna lista tag'ów do zapisania
      */
-    private ArrayList<Tag> tags;
+    protected ArrayList<Tag> tags = new ArrayList<Tag>();
     /**
      * wewnętrzna lista tag'ów do usunięcia
      */
-    private Set<Tag> tagsToDelete = new HashSet<Tag>();
+    protected Set<Tag> tagsToDelete = new HashSet<Tag>();
 
     /**
      * Metoda zapisuje ustawienia użytkownika.
@@ -92,7 +92,7 @@ public class Settings extends BaseBackingBean implements Serializable {
      * @return lista wszystkich kategorii
      */
     public List<Category> categories() {
-        categories = Category.listAll();
+        categories = Category.listAllCategories();
         return categories;
     }
 

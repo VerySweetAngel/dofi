@@ -5,7 +5,7 @@ import java.util.Set;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.is;
 import pl.com.setvar.dofi.dao.DaoFactory;
 import pl.com.setvar.dofi.dao.TagDaoInterface;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
@@ -60,9 +60,13 @@ public class TagTest extends BaseTestWithHibernate {
     public void findTags() {
         //given
         Tag t1 = new Tag("markiza");
+        t1.save();
         Tag t2 = new Tag("jaguar");
+        t2.save();
         Tag t3 = new Tag("giewont");
+        t3.save();
         Tag t4 = new Tag("jagoda");
+        t4.save();
         TagDaoInterface dao = DaoFactory.getDao(Tag.class);
 
         //when

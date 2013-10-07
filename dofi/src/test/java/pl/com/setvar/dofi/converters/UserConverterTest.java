@@ -93,7 +93,7 @@ public class UserConverterTest extends BaseTestWithHibernate {
     @Test
     public void testGetAsStringNull() {
         //given
-        User user = userWithRealname;
+        User user = null;
         
         //when       
         String actual = out.getAsString(null, null, user);
@@ -105,7 +105,7 @@ public class UserConverterTest extends BaseTestWithHibernate {
     @Test(expectedExceptions = {ConverterException.class})
     public void testGetAsStringConverterException() {
         //given
-        User user = null;
+        Object user = this;
         
         //when       
         out.getAsString(null, null, user);

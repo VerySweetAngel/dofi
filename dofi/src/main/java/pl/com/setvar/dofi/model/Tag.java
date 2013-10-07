@@ -164,10 +164,10 @@ public class Tag implements java.io.Serializable {
         return dao.getSetByTagnames(tagnames);
     }
 
-    /** metoda zwraca listę wszytstkich tagów nie będących katqegoriami */
-    public static <T extends Tag> ArrayList<T> listAll() {
+    /** metoda zwraca listę wszytstkich tagów */
+    public static ArrayList<Tag> listAll() {
         TagDaoInterface dao = DaoFactory.getDao(Tag.class);
-        List<T> l = (List<T>) dao.findAll(Tag.class);
-        return new ArrayList<T>(l);
+        List<Tag> l = (List<Tag>) dao.findAll(Tag.class);
+        return new ArrayList<Tag>(l);
     }
 }
