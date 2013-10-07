@@ -59,65 +59,35 @@
             </table>
         </h:form>
         <br />
-        <h2>#{text.categoriesSettingsTitle}</h2>
-        <h:form id="categoriesSettingsForm">
-            <h:dataTable class="categoryTable" value="#{settings.categories()}" var="category">
+        <h2>#{text.tagsSettingsTitle}</h2>
+        <h:form id="tagsSettingsForm">
+            <h:dataTable class="categoryTable" value="#{settings.tags()}" var="tag">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{text.tagName}" />
                     </f:facet>
-                    <h:inputText id="tagname" value="#{category.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
-                    <h:message class="formErrorMessage" for="categoriesSettingsForm:tagname" />
+                    <h:inputText id="tagname" value="#{tag.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
+                    <h:message class="formErrorMessage" for="tagsSettingsTitle:tagname" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{text.parent}" />
                     </f:facet>
-                    <h:inputText value="#{category.parent}" />
+                    <h:inputText value="#{tag.parent}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{text.links}" />
                     </f:facet>
-                    <h:inputText value="#{category.parent}" />
+                    <h:inputText value="#{tag.parent}" />
                 </h:column>
                 <h:column>
-                    <h:commandButton value="#{text.delete}" action="#{settings.deleteCategory(category)}" />
-                </h:column>
-            </h:dataTable>
-            <h:commandButton value="#{text.addNew}" action="#{settings.addCategory()}" />
-            <h:commandButton value="#{text.save}" action="#{settings.saveCategories()}" />
-        </h:form>
-        <br />
-        <h2>#{text.nonCategoriesSettingsTitle}</h2>
-        <h:form id="nonCSettingsForm">
-            <h:dataTable class="categoryTable" value="#{settings.tags()}" var="nonCategory">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{text.tagName}" />
-                    </f:facet>
-                    <h:inputText value="#{nonCategory.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
-                    <h:message class="formErrorMessage" for="nonCategoriesSettingsTitle:tagname" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{text.parent}" />
-                    </f:facet>
-                    <h:inputText value="#{nonCategory.parent}" />
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="#{text.links}" />
-                    </f:facet>
-                    <h:inputText value="#{nonCategory.parent}" />
-                </h:column>
-                <h:column>
-                    <h:commandButton value="#{text.delete}" action="#{settings.deleteTag()}" />
+                    <h:commandButton value="#{text.delete}" action="#{settings.deleteTag(tag)}" />
                 </h:column>
             </h:dataTable>
             <h:commandButton value="#{text.addNew}" action="#{settings.addTag()}" />
+            <h:commandButton value="#{text.addNewCategory}" action="#{settings.addCategory()}" />
             <h:commandButton value="#{text.save}" action="#{settings.saveTags()}" />
         </h:form>
     </ui:define>
-    
 </ui:composition>

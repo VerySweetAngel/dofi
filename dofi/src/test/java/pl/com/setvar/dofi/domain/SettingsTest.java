@@ -109,28 +109,7 @@ public class SettingsTest extends BaseTestWithHibernate {
         verify(sessionUser).save();
         verify(messageAdder).addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
     }
-    
-    @Test(groups = "integration")
-    public void categories(){
-        //given
-        Category cat1 = new Category("cat1");
-        cat1.save();
-        Category cat2 = new Category("cat2");
-        cat2.save();
-        Tag tag1 = new Tag("tag1");
-        tag1.save();
-        Tag tag2 = new Tag("tag2");
-        tag2.save();
-        
-        //when
-        List<Category> categories = out.categories();
-        
-        //than
-        assertThat(categories, hasItem(cat1));
-        assertThat(categories, hasItem(cat2));
-        assertThat(categories, hasSize(2));
-    }
-    
+      
     @Test(groups = "integration")
     public void tags(){
         //given
@@ -146,20 +125,6 @@ public class SettingsTest extends BaseTestWithHibernate {
         assertThat(tags, hasItem(tag));
         assertThat(tags, hasItem(cat));
         assertThat(tags, hasSize(2));
-    }
-    
-    @Test
-    public void deleteCategory(){
-        //given
-        Category c = new Category();
-        out.categories.add(c);
-        
-        //when
-        out.deleteCategory(c);
-        
-        //than
-        assertThat(out.categoriesToDelete, hasItem(c));
-        assertThat(out.categories, not(hasItem(c)));
     }
     
     @Test
@@ -182,8 +147,8 @@ public class SettingsTest extends BaseTestWithHibernate {
         out.addCategory();
         
         //than
-        assertThat(out.categoriesToDelete, is(empty()));
-        assertThat(out.categories, is(not(empty())));
+        assertThat(out.tagsToDelete, is(empty()));
+        assertThat(out.tags, is(not(empty())));
     }
     
     @Test
@@ -195,25 +160,7 @@ public class SettingsTest extends BaseTestWithHibernate {
         assertThat(out.tagsToDelete, is(empty()));
         assertThat(out.tags, is(not(empty())));
     }
-    
-    @Test
-    public void saveCategories(){
-        //given
-        Category cat = mock(Category.class);
-        out.categories.add(cat);
-        Category catToDel = mock(Category.class);
-        out.categoriesToDelete.add(catToDel);
-        
-        //when
-        out.saveCategories();
-        
-        //than
-        verify(cat).save();
-        verify(catToDel).delete();
-        assertThat(out.categoriesToDelete, is(empty()));
-        assertThat(out.categories, hasItem(cat));
-    }
-    
+       
     @Test
     public void saveTags(){
         //given

@@ -82,7 +82,7 @@ public class Tag implements java.io.Serializable {
      * @param name nazwa kategorii
      */
     public void setTagname(String name) {
-        this.tagname = name;
+        this.tagname = name.toLowerCase();
     }
 
     /**

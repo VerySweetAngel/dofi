@@ -40,14 +40,6 @@ public class Settings extends BaseBackingBean implements Serializable {
     @ManagedProperty("#{sessionUser}")
     private SessionUser sessionUser;
     /**
-     * wewnętrzna lista kategorii do zapisania
-     */
-    protected ArrayList<Category> categories = new ArrayList<Category>();
-    /**
-     * wewnętrzna lista kategorii do usunięcia
-     */
-    protected Set<Category> categoriesToDelete = new HashSet<Category>();
-    /**
      * wewnętrzna lista tag'ów do zapisania
      */
     protected ArrayList<Tag> tags = new ArrayList<Tag>();
@@ -87,16 +79,6 @@ public class Settings extends BaseBackingBean implements Serializable {
     }
 
     /**
-     * Metoda zwraca listę kategorii.
-     *
-     * @return lista wszystkich kategorii
-     */
-    public List<Category> categories() {
-        categories = Category.listAllCategories();
-        return categories;
-    }
-
-    /**
      * Metoda zwraca listę tag'ów.
      *
      * @return lista wszystkich tag'ów
@@ -104,16 +86,6 @@ public class Settings extends BaseBackingBean implements Serializable {
     public List<Tag> tags() {
         tags = Tag.listAll();
         return tags;
-    }
-
-    /**
-     * Metoda usuwa zadaną kategorię.
-     *
-     * @param categoryToDelete kategoria do usunięcia
-     */
-    public void deleteCategory(Category categoryToDelete) {
-        categoriesToDelete.add(categoryToDelete);
-        categories.remove(categoryToDelete);
     }
 
     /**
@@ -127,44 +99,30 @@ public class Settings extends BaseBackingBean implements Serializable {
     }
 
     /**
-     * Metoda dodaje nową kategorię.
-     */
-    public void addCategory() {
-        Category newCategory = new Category();
-        categories.add(0, newCategory);
-    }
-
-    /**
      * Metoda dodaje nowy tag.
      */
     public void addTag() {
         Tag tag = new Tag();
         tags.add(0, tag);
     }
-
+    
     /**
-     * Metoda zapisuje zmiany poczynione w kategoriach.
+     * Metoda dodaje nową kategorię.
      */
-    public void saveCategories() {
-        for (Category category : categories) {
-            category.save();
-        }
-        for (Category category : categoriesToDelete) {
-            category.delete();
-        }
-        categoriesToDelete.clear();
-        // TODO dodać wiadomość
+    public void addCategory() {
+        Category category = new Category();
+        tags.add(0, category);
     }
-
+    
     /**
      * Metoda zapisuje zmiany poczynione w tag'ach.
      */
     public void saveTags() {
-        for (Tag nonCategory : tags) {
-            nonCategory.save();
+        for (Tag tag : tags) {
+            tag.save();
         }
-        for (Tag nonCategory : tagsToDelete) {
-            nonCategory.delete();
+        for (Tag tag : tagsToDelete) {
+            tag.delete();
         }
         tagsToDelete.clear();
         // TODO dodać wiadomość

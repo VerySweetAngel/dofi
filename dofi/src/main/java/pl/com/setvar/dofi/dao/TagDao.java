@@ -44,7 +44,9 @@ public class TagDao extends GenericDao implements TagDaoInterface {
         }
         Criteria criteria = getSession().createCriteria(Tag.class);
         criteria = criteria.add(junction);
-        return new HashSet(criteria.list());
+        List<Tag> list = criteria.list();
+        Set<Tag> set = new HashSet<Tag>(list);
+        return set;
     }
 
     @Override

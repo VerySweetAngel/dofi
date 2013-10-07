@@ -31,13 +31,23 @@ public class Category extends Tag implements java.io.Serializable {
     }
 
     /**
+     * Metoda ustwia nazwę katoegorii. Nazwa zostanie przekonwertowana na wielkie litery.
+     *
+     * @param name nazwa kategorii
+     */
+    @Override
+    public void setTagname(String name) {
+        super.setTagname(name.toUpperCase());
+    }
+
+    /**
      * Metoda usuwa tylko te kategorie, które nie mają powiązanych żadnych operacji. Usunięte zostają wszytkie
      * powiązania ze słowami.
      */
     @Override
     public void delete() {
         if (getOperations().isEmpty()) {
-            dao.deleteWithTaglinks(this);
+            super.delete();
         }
     }
 
