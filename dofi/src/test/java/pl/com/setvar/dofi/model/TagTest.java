@@ -46,7 +46,7 @@ public class TagTest extends BaseTestWithHibernate {
     @Test(groups = "integration")
     public void getSetByTagnames() {
         //given 
-        String nazwaTaga = "nazwaTaga";
+        String nazwaTaga = "nazwataga";
         Tag tag = new Tag(nazwaTaga);
         tag.save();
         
