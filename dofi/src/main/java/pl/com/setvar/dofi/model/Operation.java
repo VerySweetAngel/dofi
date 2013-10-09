@@ -37,6 +37,7 @@ public class Operation implements java.io.Serializable {
         this.category = category;
         this.value = value;
         this.tags = tags;
+        
     }
 
     /**

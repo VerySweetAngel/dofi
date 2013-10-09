@@ -37,6 +37,7 @@ public class Operations implements Serializable {
         usersList = User.findAll();
         operationsList = Operation.findAll();
     }
+   
 
     public void save() {
         for (Operation operation : operationsList) {
@@ -70,6 +71,7 @@ public class Operations implements Serializable {
     public List<Operation> getList() {
         return operationsList;
     }
+    
 
     /**
      * @return the sessionUser
@@ -83,6 +85,13 @@ public class Operations implements Serializable {
      */
     public void setSessionUser(SessionUser sessionUser) {
         this.sessionUser = sessionUser;
+    }
+
+    /**
+     * @return the usersList
+     */
+    public List<User> getUsersList() {
+        return usersList;
     }
 
 }

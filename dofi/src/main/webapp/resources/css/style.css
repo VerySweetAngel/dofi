@@ -32,7 +32,15 @@
     margin: auto;
     font-size: medium;
     white-space: pre;
-}   
+}  
+.textOperation{
+    text-align: center;
+    
+}
+.valueOperations{
+    text-align: right;
+    font-weight: bold;
+}
 
 .panelGroup{
     text-align: center;

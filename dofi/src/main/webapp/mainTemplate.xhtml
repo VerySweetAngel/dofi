@@ -9,7 +9,23 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="#{resource['css:style.css']}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
         <link type="image/x-icon" href="#{resource['img:logo_dofi.jpg']}" rel="shortcut icon"/>
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $(".datepicker").datepicker({
+                    monthNames: ["#{global.m01}", "#{global.m02}", "#{global.m03}", "#{global.m04}",
+                        "#{global.m05}", "#{global.m06}", "#{global.m07}", "#{global.m08}", "#{global.m09}",
+                        "#{global.m10}", "#{global.m11}", "#{global.m12}"],
+                    firstDay: 1,
+                    dateFormat: "yy-mm-dd",
+                    dayNamesMin: ["#{global.d01}", "#{global.d02}", "#{global.d03}", "#{global.d04}",
+                                "#{global.d05}","#{global.d06}", "#{global.d07}"]
+                });
+            });
+        </script>
         <title>#{global.dofi} - <ui:insert name="title" /></title>
     </h:head>
 
