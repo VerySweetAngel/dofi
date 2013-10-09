@@ -39,17 +39,17 @@
                 <tr>
                     <td>#{text.password}</td>
                     <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{settings.oldPassword}" /></td>
-                    <td><h:message class="formErrorMessage" for="userSettingsForm:password" /></td>
+                    <td><h:message class="formErrorMessage" for="passwordForm:password" /></td>
                 </tr>
                 <tr>
                     <td>#{text.newPassword}</td>
                     <td><h:inputSecret id="newPassword" required="true" requiredMessage="#{text.noNewPasswordEntered}" value="#{settings.newPassword}" /></td>
-                    <td><h:message class="formErrorMessage" for="userSettingsForm:newPassword" /></td>
+                    <td><h:message class="formErrorMessage" for="passwordForm:newPassword" /></td>
                 </tr>
                 <tr>
                     <td>#{text.repeatedPassword}</td>
                     <td><h:inputSecret id="repeatedPassword" required="true" requiredMessage="#{text.noNewPasswordEntered}" value="#{settings.repeatedPassword}" /></td>
-                    <td><h:message class="formErrorMessage" for="userSettingsForm:repeatedPassword" /></td>
+                    <td><h:message class="formErrorMessage" for="passwordForm:repeatedPassword" /></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -67,7 +67,7 @@
                         <h:outputText value="#{text.tagName}" />
                     </f:facet>
                     <h:inputText id="tagname" value="#{tag.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
-                    <h:message class="formErrorMessage" for="tagsSettingsTitle:tagname" />
+                    <h:message class="formErrorMessage" for="tagname" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">

@@ -84,7 +84,9 @@ public class Settings extends BaseBackingBean implements Serializable {
      * @return lista wszystkich tag'ów
      */
     public List<Tag> tags() {
-        tags = Tag.listAll();
+        if(tags.isEmpty()) {
+            tags = Tag.listAll();
+        }
         return tags;
     }
 

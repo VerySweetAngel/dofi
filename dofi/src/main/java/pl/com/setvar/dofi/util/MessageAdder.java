@@ -51,7 +51,9 @@ public class MessageAdder {
      */
     private void addMessage(Bundles b, FacesMessage.Severity s, String textKey, String titleKey) {
         I18nText texts = new I18nText(b);
-        FacesMessage msg = new FacesMessage(s, texts.get(titleKey), texts.get(textKey));
+        String title = titleKey == null ? null : texts.get(titleKey);
+        String text = textKey == null ? null : texts.get(textKey);
+        FacesMessage msg = new FacesMessage(s, title, text);
         String target = null;
         FacesContext.getCurrentInstance().addMessage(target, msg);
     }
