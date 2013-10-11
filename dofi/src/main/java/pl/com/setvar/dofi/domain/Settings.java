@@ -2,6 +2,7 @@ package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,8 +12,8 @@ import javax.faces.bean.ViewScoped;
 import pl.com.setvar.dofi.model.Category;
 import pl.com.setvar.dofi.model.Tag;
 import pl.com.setvar.dofi.util.Bundles;
+import pl.com.setvar.dofi.util.I18nText;
 
-// TODO dorobić sortowanie i filtrowanie
 /**
  * Bean strony ustawień.
  *
@@ -47,6 +48,95 @@ public class Settings extends BaseBackingBean implements Serializable {
      * wewnętrzna lista tag'ów do usunięcia
      */
     protected Set<Tag> tagsToDelete = new HashSet<Tag>();
+    
+    short tagnameSort = 0;
+    short parentSort = 0;
+
+    public String tagnameButton() {
+        I18nText text = new I18nText(Bundles.I18N_SETTINGS);
+        String buttonName = text.get("tagName"); 
+        switch (tagnameSort) {
+            case 1:
+                return buttonName + " (A-Z)";
+            case -1:
+                return buttonName + " (Z-A)";
+            default:
+                return buttonName;
+        }
+    }
+    
+    public String parentButton() {
+        I18nText text = new I18nText(Bundles.I18N_SETTINGS);
+        String buttonName = text.get("parent"); 
+        switch (parentSort) {
+            case 1:
+                return buttonName + " (A-Z)";
+            case -1:
+                return buttonName + " (Z-A)";
+            default:
+                return buttonName;
+        }
+    }
+    
+    public void sortByParent(){
+        parentSort = parentSort == 0 ? 1 : parentSort;
+        tagnameSort = 0;
+        parentSort *= -1;
+        if (parentSort == 0){
+            return;
+        }
+        Comparator<Tag> comparator;
+        if (parentSort == -1){
+            comparator = new Comparator<Tag>() {
+                @Override
+                public int compare(Tag o1, Tag o2) {
+                    Tag o1Par = o1.getParent();
+                    Tag o2Par = o2.getParent();
+                    String par1Name = (o1Par != null ? o1Par.getTagname() : "");
+                    String par2Name = (o2Par != null ? o2Par.getTagname() : "");
+                    return par1Name.compareToIgnoreCase(par2Name) * -1;
+                }
+            };
+        } else {
+            comparator = new Comparator<Tag>() {
+                @Override
+                public int compare(Tag o1, Tag o2) {
+                    Tag o1Par = o1.getParent();
+                    Tag o2Par = o2.getParent();
+                    String par1Name = (o1Par != null ? o1Par.getTagname() : "");
+                    String par2Name = (o2Par != null ? o2Par.getTagname() : "");
+                    return par1Name.compareToIgnoreCase(par2Name);
+                }
+            };
+        }
+        java.util.Collections.sort(tags, comparator);
+    }
+    
+    public void sortByTagname(){
+        tagnameSort = tagnameSort == 0 ? 1 : tagnameSort;
+        parentSort = 0;
+        tagnameSort *= -1;
+        if (tagnameSort == 0){
+            return;
+        }
+        Comparator<Tag> comparator;
+        if (tagnameSort == -1){
+            comparator = new Comparator<Tag>() {
+                @Override
+                public int compare(Tag o1, Tag o2) {
+                    return o1.getTagname().compareToIgnoreCase(o2.getTagname()) * -1;
+                }
+            };
+        } else {
+            comparator = new Comparator<Tag>() {
+                @Override
+                public int compare(Tag o1, Tag o2) {
+                    return o1.getTagname().compareToIgnoreCase(o2.getTagname());
+                }
+            };
+        }
+        java.util.Collections.sort(tags, comparator);
+    }
 
     /**
      * Metoda zapisuje ustawienia użytkownika.
@@ -84,7 +174,7 @@ public class Settings extends BaseBackingBean implements Serializable {
      * @return lista wszystkich tag'ów
      */
     public List<Tag> tags() {
-        if(tags.isEmpty()) {
+        if (tags.isEmpty()) {
             tags = Tag.listAll();
         }
         return tags;
@@ -107,7 +197,7 @@ public class Settings extends BaseBackingBean implements Serializable {
         Tag tag = new Tag();
         tags.add(0, tag);
     }
-    
+
     /**
      * Metoda dodaje nową kategorię.
      */
@@ -115,9 +205,9 @@ public class Settings extends BaseBackingBean implements Serializable {
         Category category = new Category();
         tags.add(0, category);
     }
-    
+
     /**
-     * Metoda zapisuje zmiany poczynione w tag'ach.
+     * Metoda zapisuje zmiany poczynione w tag'ach. Wyświetla wiadomość o zapisaniu ustawień.
      */
     public void saveTags() {
         for (Tag tag : tags) {
@@ -127,7 +217,7 @@ public class Settings extends BaseBackingBean implements Serializable {
             tag.delete();
         }
         tagsToDelete.clear();
-        // TODO dodać wiadomość
+        messageAdder.addInfoMessage(Bundles.I18N_SETTINGS, "userSettingsSaved");
     }
 
     /**
@@ -171,9 +261,9 @@ public class Settings extends BaseBackingBean implements Serializable {
     public void setOldPassword(String oldPassword) {
         this.oldPassword = oldPassword;
     }
-    
+
     /**
-     * @return  oldPassword stare hasło
+     * @return oldPassword stare hasło
      */
     public String getOldPassword() {
         return this.oldPassword;

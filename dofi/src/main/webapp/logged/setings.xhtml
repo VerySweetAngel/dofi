@@ -64,14 +64,15 @@
             <h:dataTable class="categoryTable" value="#{settings.tags()}" var="tag">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{text.tagName}" />
+                        <h:commandButton value="#{settings.tagnameButton()}" action="#{settings.sortByTagname()}" />
                     </f:facet>
                     <h:inputText id="tagname" value="#{tag.tagname}" required="true" requiredMessage="#{text.tagNoTgnameEntered}" />
+                    <br/>
                     <h:message class="formErrorMessage" for="tagname" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="#{text.parent}" />
+                        <h:commandButton value="#{settings.parentButton()}" action="#{settings.sortByParent()}" />
                     </f:facet>
                     <h:inputText value="#{tag.parent}" />
                 </h:column>

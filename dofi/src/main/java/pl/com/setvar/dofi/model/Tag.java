@@ -23,7 +23,7 @@ public class Tag implements java.io.Serializable {
     /**
      * Nazwa kategorii.
      */
-    private String tagname;
+    protected String tagname;
     /**
      * Kategoria nadrzędna.
      */

@@ -37,7 +37,7 @@ public class Category extends Tag implements java.io.Serializable {
      */
     @Override
     public void setTagname(String name) {
-        super.setTagname(name.toUpperCase());
+        tagname = name.toUpperCase();
     }
 
     /**
