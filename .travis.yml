@@ -6,7 +6,7 @@ before_install:
  
 before_script:
  - cd $DERBY_INSTALL/bin
- - ./setNetworkServerCP.ksh
- - ./startNetworkServer.ksh
+ - setNetworkServerCP.ksh
+ - startNetworkServer.ksh
  - cd /home/travis/build/tirpitz-verus/dofi/dofi
  - ij '/home/travis/build/tirpitz-verus/dofi/dofi/src/main/resources/create_db.sql'
