@@ -1,0 +1,13 @@
+language: java
+
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq sun-javadb-client sun-javadb-core 
+ 
+before_script:
+ - export PATH=$PATH:/usr/share/javadb/bin/
+ - export DERBY_HOME=/usr/share/javadb
+ - ij
+ - connect 'jdbc:derby://localhost:1527/sample';
+ - run '~/dofi/src/main/resources/create_db.sql';
+ - exit;
