@@ -21,3 +21,6 @@ DROP TABLE tags;
 -- tabela uzytkowników
 DROP INDEX users_login_index;
 DROP TABLE users;
+
+-- schemat
+DROP SCHEMA APP RESTRICT;
