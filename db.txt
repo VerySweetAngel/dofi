@@ -1,0 +1,2 @@
+CONNECT 'jdbc:derby://localhost:1527/dofi;create=true';
+exit;

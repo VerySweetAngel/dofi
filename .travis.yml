@@ -5,7 +5,8 @@ before_install:
  - sudo apt-get install -qq sun-javadb-client sun-javadb-core 
  
 before_script:
- - $DERBY_INSTALL/bin/setNetworkServerCP.ksh
- - $DERBY_INSTALL/bin/startNetworkServer.ksh
+ - export PATH=$PATH:/usr/share/javadb/bin/
+ - export DERBY_HOME=/usr/share/javadb
+ - /usr/share/javadb/bin/startNetworkServer.ksh
  - cd /home/travis/build/tirpitz-verus/dofi/dofi
  - ij '/home/travis/build/tirpitz-verus/dofi/dofi/src/main/resources/create_db.sql'
