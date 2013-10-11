@@ -1,2 +1,2 @@
-CONNECT 'jdbc:derby://localhost:1527/dofi;create=true';
+CONNECT 'jdbc:derby://localhost:1527/sample;create=true';
 exit;
