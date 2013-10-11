@@ -7,7 +7,4 @@ before_install:
 before_script:
  - export PATH=$PATH:/usr/share/javadb/bin/
  - export DERBY_HOME=/usr/share/javadb
- - ij
- - connect 'jdbc:derby://localhost:1527/sample';
- - run '~/dofi/src/main/resources/create_db.sql';
- - exit;
+ - ij '~/dofi/src/main/resources/create_db.sql'
