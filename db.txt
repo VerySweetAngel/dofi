@@ -1,2 +1,3 @@
 CONNECT 'jdbc:derby://localhost:1527/sample;create=true';
+'/home/travis/build/tirpitz-verus/dofi/dofi/src/main/resources/create_db.sql';
 exit;
