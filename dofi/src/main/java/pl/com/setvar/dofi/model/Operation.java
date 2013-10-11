@@ -61,7 +61,7 @@ public class Operation implements java.io.Serializable {
     }
 
     public String getOperationClass(Operation o) {
-        String dodatnie = "positve";
+        String dodatnie = "positive";
         String ujemne = "negative";
         if (o.getValue() > 0) {
             return dodatnie;

@@ -67,7 +67,9 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.value}" />
                     </f:facet>
-                    <h:inputText class="valueOperations #{operation.getOperationClass(operation)}" value="#{operation.value}" />
+                    <h:inputText class="valueOperations #{operation.getOperationClass(operation)}" value="#{operation.value}">
+                        <f:converter converterId="ValueConverter"/>  
+                    </h:inputText>
                     <f:facet name="footer">
                     </f:facet>
                 </h:column>
