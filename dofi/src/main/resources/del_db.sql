@@ -1,5 +1,5 @@
 --
--- skrypt do usówania struktury bazy danych
+-- skrypt do usuwania struktury bazy danych
 --
 
 -- tabela zestawień

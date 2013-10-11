@@ -13,7 +13,7 @@ import pl.com.setvar.dofi.util.I18nText;
  * użytkownik używający aplikację w ramach trwającej sesji
  * @author tirpitz
  */
-@ManagedBean
+@ManagedBean()
 @SessionScoped
 public final class SessionUser implements Serializable {
     

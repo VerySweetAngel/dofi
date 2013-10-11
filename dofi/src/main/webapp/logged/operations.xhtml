@@ -15,15 +15,25 @@
     <ui:define name="content">
         <f:loadBundle basename="I18N.operations" var="text" />
         <h:form>
-            <h:dataTable class="opTable" value="#{operations.list}" var="operation">
+            <h:dataTable class="Table" value="#{operations.list}" var="operation">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{text.creationDate}" />
                     </f:facet>
-                    <h:inputText value="#{operation.creationDate}">
+                    <h:outputText value="#{operation.creationDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    </h:outputText>
+                    <f:facet name="#{text.creationDate}">      
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{text.operationDate}" />
+                    </f:facet>
+                    <h:inputText value="#{operation.operationDate}" required="true" requiredMessage="#{text.noOperationDate}">
                         <f:convertDateTime pattern="yyyy-MM-dd"/>
                     </h:inputText>
-                    <f:facet name="#{text.creationDate}">      
+                    <f:facet name="#{text.operationDate}">
                     </f:facet>
                 </h:column>
                 <h:column>    

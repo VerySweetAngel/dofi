@@ -1,0 +1,153 @@
+/* 
+    Document   : menu
+    Created on : 2013-07-13, 22:18:58
+    Author     : Marta
+    Description:
+    style dla menu
+*/
+
+#menu {
+    float: left;
+    background-color: #c2dfef;
+    position: absolute;
+    width: 156px;
+  
+}
+
+#menu .option {
+    width: 100%;
+    background-repeat: repeat-x;
+    
+   
+}
+.Table{
+    position: relative;
+    text-align: center;
+    color:blue ;
+    border: medium double #045491;
+    border-style: double;
+    font-stretch: expanded;
+    line-height: initial;
+    top: 15px;
+    margin: auto;
+    font-size: medium;
+    white-space: pre;
+}   
+
+.panelGroup{
+    text-align: center;
+    text-decoration-color: #D20005;
+    column-gap: calc;
+}
+.button{
+    
+   margin: 36px;
+   margin-left: -365px;
+}
+.setingsTable {
+    border: medium double #045491;
+    color: blue;
+    font-stretch: expanded;
+    line-height: initial;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    top: 15px;
+    white-space: pre;
+}
+
+#top {
+    position: relative;
+    background-color: #036fab; 
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+    font-size: x-large;
+    font-stretch: ultra-expanded;
+    text-align: left;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#right {
+    float: right;
+    background-color: #c2dfef;
+    background-size:200px;
+    padding: 5px;
+    width: 150px;
+   
+}
+
+.right_content {
+    background-color: #c2dfef;
+    background-size: 200px;
+    top: 20px;
+    height: auto;
+    width: 88.5%;
+    text-align:center;
+    /*line-height: 80px;*/
+    font-size: x-large;
+    margin-left: 10.5%;
+   
+    
+}
+
+#top a:link, #top a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+
+}
+#loginForm {
+    bottom: -200px;
+    font-size: medium;
+    position: relative;
+}
+
+body {
+    background-color: #ffffff; 
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;   
+    margin: 10px;
+    background-color: #c2dfef;
+    background-size: 100%;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF;  
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+  
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.formErrorMessage{
+   color: red;
+}
