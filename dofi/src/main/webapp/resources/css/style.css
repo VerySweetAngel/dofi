@@ -159,3 +159,11 @@ a:link:hover, a:visited:hover  {
 .formErrorMessage{
    color: red;
 }
+
+.positive{
+    color: blue; 
+}
+
+.negative{
+  color: red;   
+}

@@ -67,7 +67,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.value}" />
                     </f:facet>
-                    <h:inputText class="valueOperations" value="#{operation.value}" />
+                    <h:inputText class="valueOperations #{operation.getOperationClass(operation)}" value="#{operation.value}" />
                     <f:facet name="footer">
                     </f:facet>
                 </h:column>

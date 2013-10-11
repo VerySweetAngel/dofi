@@ -37,7 +37,7 @@ public class Operation implements java.io.Serializable {
         this.category = category;
         this.value = value;
         this.tags = tags;
-        
+
     }
 
     /**
@@ -58,6 +58,16 @@ public class Operation implements java.io.Serializable {
         System.out.println(String.format("operation save id: %d; cat: %s; tags: %s", id, getCategory().toString(), getTags().toString()));
         new GenericDao().saveOrUpdate(this);
         System.out.println(String.format("operation saved id: %d; cat: %s; tags: %s", id, getCategory().toString(), getTags().toString()));
+    }
+
+    public String getOperationClass(Operation o) {
+        String dodatnie = "positve";
+        String ujemne = "negative";
+        if (o.getValue() > 0) {
+            return dodatnie;
+        } else {
+            return ujemne;
+        }
     }
 
     /**
