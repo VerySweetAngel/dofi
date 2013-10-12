@@ -9,7 +9,6 @@ import pl.com.setvar.dofi.dao.GenericDaoInterface;
 
 // TODO dopisać dokumentację.
 // TODO dopisać testy.
-
 /**
  * Klasa operacji księgowej.
  *
@@ -18,23 +17,25 @@ import pl.com.setvar.dofi.dao.GenericDaoInterface;
 public class Operation implements java.io.Serializable {
 
     public static List<Operation> findAll() {
-        return new GenericDao().findAll(Operation.class);
+        GenericDaoInterface dao = DaoFactory.getDao(Operation.class);
+        return dao.findAll(Operation.class);
     }
+    
     private int id;
     private Date creationDate;
     private Date operationDate;
     private User operator;
     private User creator;
-    private Tag category;
+    private Category category;
     private int value;
     private Set<Tag> tags = new HashSet<Tag>(0);
+    protected transient GenericDaoInterface dao = DaoFactory.getDao(Operation.class);
 
     public Operation() {
     }
 
     /**
-     * metoda sprawdza, czy wprowadzono jakieś dane, na podstawie wartości,
-     * operatora i kategorii
+     * metoda sprawdza, czy wprowadzono jakieś dane, na podstawie wartości, operatora i kategorii
      */
     public boolean anyDataEntered() {
         if (value != 0 & category != null & operator != null) {
@@ -47,11 +48,15 @@ public class Operation implements java.io.Serializable {
      * natychmiastowy zapis do bazy danych
      */
     public void save() {
-        System.out.println(String.format("operation save id: %d; cat: %s; tags: %s", id, getCategory().toString(), getTags().toString()));
-        new GenericDao().saveOrUpdate(this);
-        System.out.println(String.format("operation saved id: %d; cat: %s; tags: %s", id, getCategory().toString(), getTags().toString()));
+        dao.saveOrUpdate(this);
     }
 
+    /**
+     * Metioda zwraca klasę CSS w zależoności od wortości operacji.
+     *
+     * @param o operacja
+     * @return "positive" lub "negative"
+     */
     public String getOperationClass(Operation o) {
         String dodatnie = "positive";
         String ujemne = "negative";

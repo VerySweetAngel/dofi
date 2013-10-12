@@ -3,8 +3,6 @@ package pl.com.setvar.dofi.model;
 import java.util.Date;
 import java.util.HashSet;
 import org.testng.annotations.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.CoreMatchers.not;
 import pl.com.setvar.dofi.dao.GenericDao;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 import static org.testng.Assert.assertEquals;
@@ -37,7 +35,7 @@ public class OperationTest extends BaseTestWithHibernate{
         o.setOperator(u);
         o.setTags(tags);
         o.setValue(100);
-        dao.saveOrUpdate(o);
+        o.save();
 
         Operation fromDb = dao.get(Operation.class, o.getId());
 
