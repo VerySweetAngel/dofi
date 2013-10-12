@@ -30,17 +30,17 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.operationDate}" />
                     </f:facet>
-                    <h:inputText value="#{operation.operationDate}" required="true" requiredMessage="#{text.noOperationDate}">
+                    <h:inputText class="datepicker textOperation" value="#{operation.operationDate}" required="true" requiredMessage="#{text.noOperationDate}">
                         <f:convertDateTime pattern="yyyy-MM-dd"/>
                     </h:inputText>
-                    <f:facet name="#{text.operationDate}">
+                    <f:facet id="datepicker" name="#{text.operationDate}">
                     </f:facet>
                 </h:column>
                 <h:column>    
                     <f:facet name="header">
                         <h:outputText value="#{text.creator}" />
                     </f:facet>
-                    <h:inputText value="#{operation.creator}" />
+                    <h:inputText class="textOperation" value="#{operation.creator}" />
                     <f:facet name="footer">
                     </f:facet>
                 </h:column>
@@ -48,8 +48,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.operator}" />
                     </f:facet>
-                    <h:inputText value="#{operation.operator}" >
-                    </h:inputText>
+                    <h:inputText class="textOperation" value="#{operation.operator}" />
                     <f:facet name="footer">
                     </f:facet>
                 </h:column>
@@ -57,7 +56,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.category}" />
                     </f:facet>
-                    <h:inputText required="true" requiredMessage="#{text.noCategoryEntered}" value="#{operation.category}" >
+                    <h:inputText class="textOperation" required="true" requiredMessage="#{text.noCategoryEntered}" value="#{operation.category}" >
                         <f:converter converterId="CategoryTagConverter" />
                         <f:validateLength minimum="2" maximum="50" />
                     </h:inputText>
@@ -68,7 +67,9 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.value}" />
                     </f:facet>
-                    <h:inputText value="#{operation.value}" />
+                    <h:inputText class="valueOperations #{operation.getOperationClass(operation)}" value="#{operation.value}">
+                        <f:converter converterId="ValueConverter"/>  
+                    </h:inputText>
                     <f:facet name="footer">
                     </f:facet>
                 </h:column>
@@ -76,7 +77,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{text.tags}" />
                     </f:facet>
-                    <h:inputText value="#{operation.tags}">
+                    <h:inputText class="textOperation" value="#{operation.tags}">
                         <f:converter converterId="TagSetConverter" />
                     </h:inputText>
                     <f:facet name="footer">
