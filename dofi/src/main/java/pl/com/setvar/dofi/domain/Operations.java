@@ -51,6 +51,7 @@ public class Operations extends BaseBackingBean implements Serializable {
         }
         Operation operation = new Operation();
         operation.setCreationDate(new Date());
+        operation.setOperationDate(new Date());
         operation.setOperator(getSessionUser().getLoggedInUser());
         operation.setCreator(getSessionUser().getLoggedInUser());
         operation.setValue(0);
