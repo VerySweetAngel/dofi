@@ -2,6 +2,9 @@
 -- skrypt do tworzenia struktury bazy danych
 --
 
+-- schemat
+CREATE SCHEMA APP;
+
 -- tabela uzytkowników
 CREATE TABLE users(
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) CONSTRAINT users_pk PRIMARY KEY,
