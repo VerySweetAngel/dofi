@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.converters;
 
 import java.util.regex.Matcher;
@@ -12,22 +8,22 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import pl.com.setvar.dofi.model.User;
+import pl.com.setvar.dofi.util.Bundles;
+import pl.com.setvar.dofi.util.I18nText;
 
 /**
- * Klasa ta służy do zmieniania danych każdego użytkownika na napis. Działa w
- * dwie strony.
+ * Klasa ta służy do zmieniania danych każdego użytkownika na napis. Działa w dwie strony.
  *
  * @author Marta
  */
 public class UserConverter implements Converter {
 
     /**
-     * Zwraca łańcuch znaków utworzony na podstawie przekazanego objektu.
-     * Komponent określa skąd została pobrana wartość.
+     * Zwraca łańcuch znaków utworzony na podstawie przekazanego objektu. Komponent określa skąd została pobrana
+     * wartość.
      *
      * @param value to jest napis.
-     * @return na podstawie napisu jest w stanie zwrócić którego użytkownika to
-     * dotyczy.
+     * @return na podstawie napisu jest w stanie zwrócić którego użytkownika to dotyczy.
      */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -45,8 +41,7 @@ public class UserConverter implements Converter {
     }
 
     /**
-     * Zwraca objekt przekonwertowany z podanej wartości tekstowej. Komponent
-     * określa skąd została pobrana wartość.
+     * Zwraca objekt przekonwertowany z podanej wartości tekstowej. Komponent określa skąd została pobrana wartość.
      *
      * @param value to jest użytkownik (wszystkie jego dane)
      * @return na podstawie danych użytkownika zwraca napis.
@@ -57,10 +52,17 @@ public class UserConverter implements Converter {
             return null;
         }
         if (!(value instanceof User)) {
-            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!"));
+            I18nText global = new I18nText(Bundles.I18N_GLOBAL);
+            throw new ConverterException(new FacesMessage(global.get("coverterError")));
         }
         User user = (User) value;
-        String name = user.getRealName() + " [" + user.getLogin() + "]";
-        return name;
+        String realName = user.getRealName();
+        if (realName == null) {
+            realName = "";
+        }
+        if (realName.isEmpty() == false) {
+            realName += " ";
+        }
+        return String.format("%s[%s]", realName, user.getLogin());
     }
 }

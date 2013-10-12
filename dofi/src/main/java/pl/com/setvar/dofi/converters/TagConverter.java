@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.converters;
 
 import javax.faces.application.FacesMessage;
@@ -10,6 +6,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import pl.com.setvar.dofi.model.Tag;
+import pl.com.setvar.dofi.util.Bundles;
+import pl.com.setvar.dofi.util.I18nText;
 
 /**
  * Klasa ta służy do zmieniania tagów na napis. Działa w dwie strony.
@@ -46,7 +44,8 @@ public class TagConverter implements Converter {
             return null;
         }
         if (!(value instanceof Tag)) {
-            throw new ConverterException(new FacesMessage("Nastąpił błąd konwersji!"));
+            I18nText global = new I18nText(Bundles.I18N_GLOBAL);
+            throw new ConverterException(new FacesMessage(global.get("coverterError")));
         }
         Tag tag = (Tag) value;
         String name = tag.getTagname();

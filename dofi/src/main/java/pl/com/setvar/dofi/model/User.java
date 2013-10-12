@@ -2,10 +2,14 @@ package pl.com.setvar.dofi.model;
 
 import java.io.Serializable;
 import java.util.List;
-import pl.com.setvar.dofi.dao.UserDao;
+import pl.com.setvar.dofi.dao.DaoFactory;
+import pl.com.setvar.dofi.dao.UserDaoInterface;
+
+// TODO udokumentować klasę
 
 /**
- * użytkownik systemu
+ * Użytkownik systemu.
+ *
  * @author tirpitz
  */
 public class User implements Serializable {
@@ -17,7 +21,15 @@ public class User implements Serializable {
     private String email = "";
     private boolean isAdmin = false;
     
+    protected transient UserDaoInterface dao = DaoFactory.getDao(User.class);
+
     public User() {
+    }
+
+        public User(String login, String password, String realName) {
+        this.login = login;
+        this.password = password;
+        this.realName = realName;
     }
     
     public User(String login, String password) {
@@ -25,14 +37,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public static List<User> findAll(){
-        return new UserDao().findAll(User.class);
+    public static List<User> findAll() {
+        UserDaoInterface dao = DaoFactory.getDao(User.class);
+        return dao.findAll(User.class);
     }
-    
-    public boolean loadIfExistsByCredentials(){
-        UserDao dao = new UserDao();
+
+    public boolean loadIfExistsByCredentials() {
         User fromDb = dao.findByCredentials(login, password);
-        if(fromDb == null){
+        if (fromDb == null) {
             return false;
         }
         id = fromDb.id;
@@ -41,7 +53,7 @@ public class User implements Serializable {
         isAdmin = fromDb.isAdmin;
         return true;
     }
-    
+
     /**
      * @return the login
      */
@@ -125,8 +137,13 @@ public class User implements Serializable {
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+
     public static User findByLogin(String login) {
-        UserDao userDao = new UserDao();
-        return userDao.findByLogin(login);
-}
+        UserDaoInterface dao = DaoFactory.getDao(User.class);
+        return dao.findByLogin(login);
+    }
+
+    public void save() {
+        dao.replicate(this);
+    }
 }

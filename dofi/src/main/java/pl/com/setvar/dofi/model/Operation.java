@@ -4,10 +4,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import pl.com.setvar.dofi.dao.GenericDao;
+import pl.com.setvar.dofi.dao.DaoFactory;
+import pl.com.setvar.dofi.dao.GenericDaoInterface;
+
+// TODO dopisać dokumentację.
+// TODO dopisać testy.
 
 /**
- * klasa operacji księgowej
+ * Klasa operacji księgowej.
  *
  * @author tirpitz-verus
  */
@@ -26,18 +30,6 @@ public class Operation implements java.io.Serializable {
     private Set<Tag> tags = new HashSet<Tag>(0);
 
     public Operation() {
-    }
-
-    public Operation(int id, Date creationDate, Date operationDate, User operator, User creator, Tag category, int value, Set<Tag> tags) {
-        this.id = id;
-        this.creationDate = creationDate;
-        this.operationDate = creationDate;
-        this.operator = operator;
-        this.creator = creator;
-        this.category = category;
-        this.value = value;
-        this.tags = tags;
-
     }
 
     /**
@@ -74,7 +66,7 @@ public class Operation implements java.io.Serializable {
      * usunięcie operacji
      */
     public void delete() {
-        new GenericDao().delete(this);
+        dao.delete(this);
     }
 
     public int getId() {
@@ -86,11 +78,11 @@ public class Operation implements java.io.Serializable {
     }
 
     public Date getCreationDate() {
-        return this.creationDate;
+        return (Date) this.creationDate.clone();
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = (Date) creationDate.clone();
     }
 
     public User getOperator() {
@@ -109,11 +101,11 @@ public class Operation implements java.io.Serializable {
         this.creator = creator;
     }
 
-    public Tag getCategory() {
+    public Category getCategory() {
         return this.category;
     }
 
-    public void setCategory(Tag category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

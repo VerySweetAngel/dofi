@@ -1,37 +1,80 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.model;
 
+import java.util.List;
 import java.util.Set;
-import static org.testng.Assert.*;
 import org.testng.annotations.Test;
-import pl.com.setvar.dofi.dao.TagDao;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
+import pl.com.setvar.dofi.dao.DaoFactory;
+import pl.com.setvar.dofi.dao.TagDaoInterface;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 
 /**
+ * Testy dla klasy {@link pl.com.setvar.dofi.model.Operation}.
  *
  * @author tirpitz
  */
 public class TagTest extends BaseTestWithHibernate {
 
-    @Test
-    public void getSetByTagnames() {
+    @Test(groups = "integration")
+    public void getSetByTagnamesSpace() {
+        //given 
         String nazwyTagów = " ";
-        Set<Tag> setTag;
-        setTag = Tag.getSetByTagnames(nazwyTagów);
-        assertTrue(setTag.isEmpty(), "Kolekcja tagów nie jest pusta.");
-        
-        nazwyTagów = "";
-        setTag = Tag.getSetByTagnames(nazwyTagów);
-        assertTrue(setTag.isEmpty(), "Kolekcja tagów nie jest pusta.");
 
-        String nazwaTaga = "nazwaTaga";
+        //when
+        Set<Tag> setTag = Tag.getSetByTagnames(nazwyTagów);
+
+        //than
+        assertThat(setTag, is(empty()));
+    }
+
+    @Test(groups = "integration")
+    public void getSetByTagnamesEmpty() {
+        //given 
+        String nazwyTagów = "";
+
+        //when
+        Set<Tag> setTag = Tag.getSetByTagnames(nazwyTagów);
+
+        //than
+        assertThat(setTag, is(empty()));
+    }
+
+    @Test(groups = "integration")
+    public void getSetByTagnames() {
+        //given 
+        String nazwaTaga = "nazwataga";
         Tag tag = new Tag(nazwaTaga);
-        new TagDao().saveOrUpdate(tag);
-        setTag = Tag.getSetByTagnames(nazwaTaga);
-        assertTrue(setTag.contains(tag), "Kolekcja nie zawiera zadanego taga.");
-        assertEquals(setTag.size(), 1, "Kolekcja ma nieodpowiednią ilość elementów.");
+        tag.save();
+        
+        //when
+        Set<Tag> setTag = Tag.getSetByTagnames(nazwaTaga);
+
+        //than
+        assertThat(setTag, hasSize(1));
+        assertThat(setTag, hasItem(tag));
+    }
+
+    @Test(groups = "integration")
+    public void findTags() {
+        //given
+        Tag t1 = new Tag("markiza");
+        t1.save();
+        Tag t2 = new Tag("jaguar");
+        t2.save();
+        Tag t3 = new Tag("giewont");
+        t3.save();
+        Tag t4 = new Tag("jagoda");
+        t4.save();
+        TagDaoInterface dao = DaoFactory.getDao(Tag.class);
+
+        //when
+        List<Tag> result = dao.find("jag");
+        
+        //than
+        assertThat(result, hasSize(2));
     }
 }

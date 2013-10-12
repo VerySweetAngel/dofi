@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <!-- czy paczki są opisane -->
+    <module name="JavadocPackage"/>
+    <!-- pliki muszą się kończyć znakiem nowej linii -->
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf" />
+    </module>
+    <!-- informacja o za długich klasach -->
+    <module name="FileLength"/>
+    <!-- ostrzeżenie o tablujacji w kodzie -->
+    <module name="FileTabCharacter"/>
+    <!-- kompletność tłumaczenia -->
+    <module name="Translation"/>
+    <module name="TreeWalker">
+        <!-- ograniczenie długości anonimowych klas wewnętrznych -->
+        <module name="AnonInnerLength">
+            <property name="max" value="30"/>
+        </module>
+        <!-- jeden element tablicy na wiersz -->
+        <module name="ArrayTrailingComma"/>
+        <!-- wymusza jednakowy styl deklarowania tablic -->
+        <module name="ArrayTypeStyle">
+            <property name="javaStyle" value="true"/>
+        </module>
+        <!-- ogranicza naciapanie warunków na jeden if -->
+        <module name="AvoidInlineConditionals"/>
+        <!-- ogranicza zagnieżdżone bloki - kiedy nie mają sensu -->
+        <module name="AvoidNestedBlocks">
+            <property name="allowInSwitchCase" value="true"/>
+        </module>
+        <!-- ograniczenie łączenia warunków logicznych do 3 na raz -->
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="7"/>
+        </module>
+        <!-- ograniczenie złożoności wykonania jednego bloku kodu -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="5"/>
+        </module>
+        <!-- kontrola poprawności deklaracji w klasie -->
+        <module name="DeclarationOrder"/>
+        <!-- upewnienie się, że defaulty są na końcu -->
+        <module name="DefaultComesLast"/>        
+        <!-- maksymalna długośc linii -->
+        <module name="LineLength">
+            <property name="max" value="120"/>
+        </module>
+        <!-- wyszukuje puste bloki w kodzie -->
+        <module name="EmptyBlock"/>
+        <!-- wyszukuje nadliczbowe średniki -->
+        <module name="EmptyStatement"/>
+        <!-- pilnowanie null przy porównywaniu stringów -->
+        <module name="EqualsAvoidNull"/>
+        <!-- pilnowanie przeciążania equals i hashCode -->
+        <module name="EqualsHashCode"/>
+        <!-- wychwytywanie podwójnej inicjalizacji -->
+        <module name="ExplicitInitialization"/>
+        <!-- ustawianie niezmiennych jako stałych -->
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+        </module>
+        <!-- wymuszenie spójnego kosdowania generics -->
+        <module name="GenericWhitespace"/>
+        <!--nadpisywanie zmiennych parametrami, etc. -->
+        <module name="HiddenField"/>
+        <!-- wymusza ukrywanie konstruktora w klasach któe go nie potrzebują -->
+        <module name="HideUtilityClassConstructor"/>
+        <!-- nie pozwala używać paczek sun.* -->
+        <module name="IllegalImport"/>
+        <!-- nie pozwala na rzucanie zbyt ogólnych wyjątków -->
+        <module name="IllegalThrows"/>
+        <!-- sortowanie importów -->
+        <module name="ImportOrder">
+            <property name="groups" value="/^javax?\./,org"/>
+            <property name="ordered" value="true"/>
+            <property name="separated" value="true"/>
+            <property name="option" value="above"/>
+        </module>
+        <!-- brak default w switchu -->
+        <module name="MissingSwitchDefault"/>
+        <!-- nie wolno modyfikować zmiennej i wewnątrz pętli -->
+        <module name="ModifiedControlVariable"/>
+        <!-- poprawna kolejnośc modyfikatorów -->
+        <module name="ModifierOrder"/>
+        <!-- spójne formatowanie deklaracji funkcji -->
+        <module name="MethodParamPad"/>
+        <!-- magiczne liczby są złe -->
+        <module name="MagicNumber"/>
+        <!-- metoday nie mogą być za długie -->
+        <module name="MethodLength"/>
+        <!-- spójne otwieranie klamr -->
+        <module name="LeftCurly"/>
+        <!-- komentowanie kodu -->
+        <module name="JavadocVariable"/>
+        <module name="JavadocType"/>
+        <module name="JavadocStyle"/>
+        <module name="JavadocMethod"/>
+        <!-- ograniczenie ilości kodu w jednej metodzie, klasie, pliku -->
+        <module name="JavaNCSS"/>
+        <!-- interfejsy nie mogą mieć samych stałych -->
+        <module name="InterfaceIsType"/>
+        <!-- nie wolno umieszczac przypisań w dzienych miejscach -->
+        <module name="InnerAssignment"/>
+        <!-- spójne wcięcia -->
+        <module name="Indentation"/>
+        <!-- wyszukuje kandydatów do stałych -->
+        <module name="MultipleStringLiterals"/>
+        <!-- jednak deklaracja na jeden wiersz -->
+        <module name="MultipleVariableDeclarations"/>
+        <!-- klamry poprawiają czytelność -->
+        <module name="NeedBraces"/>
+        <!-- nie wolno naćkac ifów -->
+        <module name="NestedIfDepth"/>
+        <!-- nie wolno nackać rzucania wyjątków -->
+        <module name="NestedTryDepth"/>
+        <!-- jedno wyrażenie na wiersz -->
+        <module name="OneStatementPerLine"/>
+        <!-- klasy w plikach o tych samych nazwach -->
+        <module name="OuterTypeFilename"/>
+        <!-- spójne umieszczanie paczkowych adnotacji -->
+        <module name="PackageAnnotation"/>
+        <!-- zawsze podaj paczkę -->
+        <module name="PackageDeclaration"/>
+        <!-- nigdy więcej niz 3 parametry w funkcji -->
+        <module name="ParameterNumber">
+            <property name="max" value="3"/>
+            <property name="tokens" value="METHOD_DEF"/>
+        </module>
+        <!-- niepotrzebne importy -->
+        <module name="RedundantImport"/>
+        <!-- nadmiarowe modyfikatory -->
+        <module name="RedundantModifier"/>
+        <!-- pozycjonowanie zamykania klamr -->
+        <module name="RightCurly"/>
+        <!-- zbyt skomplikowane wyrażenia logiczne -->
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <!-- porównywanie stringów -->
+        <module name="StringLiteralEquality"/>
+        <!-- poprawna finalizacja -->
+        <module name="SuperFinalize"/>
+        <!--nie zapominajmy o TO DO'sach-->
+        <module name="TodoComment"/>
+        <!-- komentarze na końcu linii -->
+        <module name="TrailingComment"/>
+        <!-- stałe z wielkiej litery -->
+        <module name="UpperEll"/>
+        <!-- zmienne klasowe mogą być tylko prywatne lub cchronione (dla testów jednostkowych) -->
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true"/>
+        </module>
+        <!-- spacje po nazwach -->
+        <module name="WhitespaceAfter"/>
+        <!-- konwencje nazewnicze -->
+        <module name="LocalVariableName"/>
+        <module name="TypeName"/>
+        <module name="MethodName"/>
+        <module name="ClassTypeParameterName"/>
+        <module name="ConstantName"/>
+        <module name="MethodTypeParameterName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="AbstractClassName"/>
+    </module>
+</module>

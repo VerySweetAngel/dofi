@@ -1,26 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.model;
 
 import java.util.List;
-import static org.testng.Assert.*;
-import org.testng.annotations.*;
-import pl.com.setvar.dofi.dao.UserDao;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import pl.com.setvar.dofi.util.BaseTestWithHibernate;
 
 /**
- *
+ * Testy dla klasy {@link pl.com.setvar.dofi.model.User}.
+ * 
  * @author tirpitz
  */
 public class UserTest extends BaseTestWithHibernate {
     
-    /**
-     *test sprawdza, czy findAll zwróci przynajmniej dwóch userów (admin i tester)
-     */
-    @Test
-    public void testFindAll() {
+    @Test(groups = "integration")
+    public void hasBasicUsers() {
+        //when
         List<User> result = User.findAll();
         boolean adminPresent = false;
         boolean testerPresent = false;
@@ -32,37 +28,30 @@ public class UserTest extends BaseTestWithHibernate {
             if(!admin & login.equals("tester"))
                 testerPresent = true;
         }
+        
+        //than
         assertTrue(adminPresent, "brak użytkownika admin");
         assertTrue(testerPresent, "brak użytkownika tester");
     }
 
-    /**
-     * test sprawdza, czy można utworzyć usera i go zalogować
-     */
-    @Test
+    @Test(groups = "integration")
     public void saveAndLogMeIn() {
-        String login = "sdfsdf";
-        String password = "dsdwedw";
-        String email = "dsdwedw@com.pl";
-        String realName = "sdf sfdsd";
-        boolean isAdmin = false;
-        UserDao dao = new UserDao();
+        //given
+        User expected = new User("sdfsdf", "dsdwedw");
+        expected.setEmail("dsdwedw@com.pl");
+        expected.setIsAdmin(false);
+        expected.setRealName("sdf sfdsd");
+        expected.save();
         
-        User expected = new User(login, password);
-        expected.setEmail(email);
-        expected.setIsAdmin(isAdmin);
-        expected.setRealName(realName);
-        dao.save(expected);
-        
-        User actual = new User(login, password);
+        //than
+        User actual = new User(expected.getLogin(), expected.getPassword());
         boolean isLoggedIn = actual.loadIfExistsByCredentials();
         
+        //than
         assertTrue(isLoggedIn, "zapisany user powinen dać się zalogować");
-        assertEquals(actual.getLogin(), expected.getLogin());
-        assertEquals(actual.getPassword(), expected.getPassword());
-        assertEquals(actual.getEmail(), expected.getEmail());
-        assertEquals(actual.getRealName(), expected.getRealName());
-        assertEquals(actual.isIsAdmin(), expected.isIsAdmin());
+        assertThat(actual.getLogin(), is(expected.getLogin()));
+        assertThat(actual.getPassword(), is(expected.getPassword()));
+        assertThat(actual.getRealName(), is(expected.getRealName()));
+        assertThat(actual.isIsAdmin(), is(expected.isIsAdmin()));
     }
-
 }

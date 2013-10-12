@@ -7,29 +7,35 @@ import org.testng.annotations.BeforeMethod;
 import pl.com.setvar.dofi.dao.HibernateUtil;
 
 /**
- * bazowa klasa testów z obsługą hibernate - całe klasy są otoczone sesją a metoday rollbackowanymi tranzakcjami
+ * Bazowa klasa testów z obsługą hibernate. Całe klasy są otoczone sesją a metoday rollbackowanymi tranzakcjami.
+ *
  * @author tirpitz
  */
 public class BaseTestWithHibernate {
-    
-    private HibernateUtil hibernateUtil = new HibernateUtil();
-    
-    @BeforeClass
+
+    private HibernateUtil hibernateUtil;
+
+    @BeforeClass(groups = "integration")
     public static void setUpClass() throws Exception {
         HibernateUtil.createFactory();
     }
 
-    @AfterClass
+    @AfterClass(groups = "integration")
     public static void tearDownClass() throws Exception {
         HibernateUtil.closeFactory();
     }
 
-    @BeforeMethod
+    @BeforeMethod(groups = "integration")
+    public void setUpHibernateUtil() {
+         hibernateUtil = new HibernateUtil();
+    }
+    
+    @BeforeMethod(groups = "integration")
     public void setUpMethod() throws Exception {
         hibernateUtil.beginTransaction();
     }
 
-    @AfterMethod
+    @AfterMethod(groups = "integration")
     public void tearDownMethod() throws Exception {
         hibernateUtil.rollbackTransaction();
     }

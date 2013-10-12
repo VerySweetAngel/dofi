@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.filters;
 
 import java.io.IOException;
@@ -14,7 +10,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pl.com.setvar.dofi.domain.SessionUser;
-import pl.com.setvar.dofi.util.DefaultLogger;
+import pl.com.setvar.dofi.util.DofiLogger;
+
+// TODO dopisac komentarze
+// TODO dopisać testy
 
 /**
  * Filtr sprawdza, czy user jest zalogowany.
@@ -36,6 +35,7 @@ public class LoggedInGuard implements Filter {
         } else {
             HttpServletResponse httpServletResponse = (HttpServletResponse) response;
             httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            // TODO dorobić swoją stronę wyjątku
         }
     }
 
@@ -48,7 +48,7 @@ public class LoggedInGuard implements Filter {
         if (sessionUser != null) {
             canContinueChain = sessionUser.isLoggerdIn();
         }
-        DefaultLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
+        DofiLogger.DEFAULT.debug("LoggedInGuard canContinueChain = ", canContinueChain);
         return true;
     }
 }

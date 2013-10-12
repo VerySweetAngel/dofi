@@ -1,11 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.filters;
 
 import pl.com.setvar.dofi.domain.SessionUser;
-import pl.com.setvar.dofi.util.DefaultLogger;
+import pl.com.setvar.dofi.util.DofiLogger;
+
+// TODO dopisać test
 
 /**
  *  Filtr sprawdza, czy user jest adminem.
@@ -13,13 +11,15 @@ import pl.com.setvar.dofi.util.DefaultLogger;
  */
 public class AdminGuard extends LoggedInGuard {
 
+    // TODO dopisac komentarz
+    
     @Override
     protected boolean canContinueChain(SessionUser sessionUser){
         boolean canContinueChain = false;
         if(sessionUser != null){
             canContinueChain = sessionUser.isAdmin();
         }
-        DefaultLogger.DEFAULT.debug("AdminGuard canContinueChain = ", canContinueChain);
+        DofiLogger.DEFAULT.debug("AdminGuard canContinueChain = ", canContinueChain);
         return canContinueChain;
     }    
 }

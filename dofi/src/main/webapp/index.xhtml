@@ -19,12 +19,12 @@
             <table style="margin: auto;">
                 <tr>
                     <td>#{text.login}</td>
-                    <td><h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{sessionUser.login}" /></td>
+                    <td><h:inputText id="login" required="true" requiredMessage="#{text.noLoginEntered}" value="#{sessionUser.enteredLogin}" /></td>
                     <td><h:message class="formErrorMessage" for="loginForm:login" /></td>
                 </tr>
                 <tr>
                     <td>#{text.password}</td>
-                    <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.password}" /></td>
+                    <td><h:inputSecret id="password" required="true" requiredMessage="#{text.noPasswordEntered}" value="#{sessionUser.enteredPassword}" /></td>
                     <td><h:message class="formErrorMessage" for="loginForm:password" /></td>
                 </tr>
                 <tr>

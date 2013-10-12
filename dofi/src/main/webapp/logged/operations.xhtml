@@ -60,8 +60,6 @@
                         <f:converter converterId="CategoryTagConverter" />
                         <f:validateLength minimum="2" maximum="50" />
                     </h:inputText>
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -80,8 +78,6 @@
                     <h:inputText class="textOperation" value="#{operation.tags}">
                         <f:converter converterId="TagSetConverter" />
                     </h:inputText>
-                    <f:facet name="footer">
-                    </f:facet>
                 </h:column>
                 <h:column>
                     <h:commandButton value="#{text.delete}" action="#{operations.delete(operation)}" />

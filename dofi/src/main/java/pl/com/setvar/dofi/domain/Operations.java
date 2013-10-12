@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.com.setvar.dofi.domain;
 
 import java.io.Serializable;
@@ -20,13 +16,16 @@ import pl.com.setvar.dofi.model.User;
 import pl.com.setvar.dofi.util.Bundles;
 import pl.com.setvar.dofi.util.I18nText;
 
+// TODO Onapisać testy jednostkowe.
+// TODO dopisac dokumentację.
+
 /**
  *
  * @author tirpitz
  */
 @ManagedBean
 @ViewScoped
-public class Operations implements Serializable {
+public class Operations extends BaseBackingBean implements Serializable {
 
     private List<Operation> operationsList;
     private List<User> usersList;
@@ -43,10 +42,7 @@ public class Operations implements Serializable {
         for (Operation operation : operationsList) {
             operation.save();
         }
-        I18nText texts = new I18nText(Bundles.I18N_OPERATIONS);
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", texts.get("saved"));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-
+        messageAdder.addInfoMessage(Bundles.I18N_OPERATIONS, "saved");
     }
 
     public void addEmpty() {
